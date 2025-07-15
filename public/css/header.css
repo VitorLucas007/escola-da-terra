@@ -1,0 +1,12 @@
+.header-logo {
+    max-height: 95px;
+}
+
+.header-text {
+    line-height: 2;
+}
+
+.header-pagina{
+    margin-bottom: 10px;
+    border-bottom: 1px solid #454040;
+}

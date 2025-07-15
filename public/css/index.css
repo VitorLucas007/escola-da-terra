@@ -1,0 +1,20 @@
+.text-container {
+    border: 1px solid #000;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 50px;
+    margin-bottom: 60px;
+}
+
+.mensagem-informativa-footer{
+    margin-top: 10px;
+    font-weight: 500;
+}
+
+.input-telefone:focus{
+    font-weight: bold;
+}
+
+.link-suporte{
+  text-decoration: none;
+}
