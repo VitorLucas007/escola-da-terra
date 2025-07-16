@@ -6,13 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../../public/css/sobre_condicao_estudo.css">
     <?php 
-        include $_SERVER['DOCUMENT_ROOT'] . '/formularios_php/aplicacao/views/includes/cdn.php';
+        include $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/views/includes/cdn.php';
     ?>
 </head>
 <body>
 
     <?php 
-        include $_SERVER['DOCUMENT_ROOT'] . '/formularios_php/aplicacao/views/includes/header.php';
+        include $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/views/includes/header.php';
     ?>
 
     <div class="container">
