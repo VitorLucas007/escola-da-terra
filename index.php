@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pesquisa Educacional - Escola da Terra</title>
     <link rel="stylesheet" href="public/css/index.css">
-    <link rel="icon" type="image/png" href="/pesquisa_educacional/public/assets/imagens/logo_escola_da_terra.png">
+    <link rel="icon" type="image/jpg" href="/pesquisa_educacional/public/assets/logos/favicon.jpg">
     <?php
         include  $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/views/includes/cdn.php';
     ?>
