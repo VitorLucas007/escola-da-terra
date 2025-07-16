@@ -17,14 +17,12 @@
         include $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/views/includes/header.php';
     ?>
 
-    <!-- Container com a apresentação: -->
     <div class="container container-texto">
 
         <div class="text-container">
 
-            <!-- Conteúdo de texto: -->
-            <div class="mb-4">
-                <p><strong>Prezado professor,</strong></p>
+            <div class="mb-4 text-start">
+                <p class><strong>Prezado professor,</strong></p>
 
                 <p>
                 Este questionário foi elaborado pela equipe de coordenação do <strong>Observatório da Educação do Campo no Maranhão (OECM)</strong> e constitui uma proposta de pesquisa vinculada ao <strong>Programa Escola da Terra</strong>, cujo objetivo é promover a melhoria das condições de acesso, permanência e aprendizagem de estudantes do campo e quilombolas em suas comunidades, por meio do apoio à formação de professores que atuam nas turmas dos anos iniciais do ensino fundamental, compostas, em sua grande maioria, por estudantes de várias idades (turmas multiseriadas).
@@ -57,7 +55,7 @@
                 <form action="loginController.php" method="post">
                     <!-- Campo Numérico para Telefone -->
                     <div class="mt-3 w-100" style="max-width: 300px;">
-                        <label for="telefone" class="form-label fw-bold ">Número de telefone:</label>
+                        <label for="telefone" class="form-label fw-bold ">Insira seu número de telefone:</label>
                         <input type="tel" id="telefone" name="telefone" class="form-control text-center input-telefone" placeholder="(DDD) 99999-9999" required pattern="\(\d{2}\)\s?\d{4,5}-\d{4}" autocomplete="tel">
                     </div>
 

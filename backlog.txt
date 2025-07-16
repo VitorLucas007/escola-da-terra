@@ -1,4 +1,5 @@
 * Implementações para serem feitas na aplicação
 
 1 -> Ajustes antes de iniciar a lógica de persistência
-    1.1 -> definir favicon nas páginas
+    1.1 -> definir favicon nas páginas -> OK
+    1.2 -> Ajustar texto do index da aplicação -> 
