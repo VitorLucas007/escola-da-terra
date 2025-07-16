@@ -2,4 +2,18 @@
 
 1 -> Ajustes antes de iniciar a lógica de persistência
     1.1 -> definir favicon nas páginas -> OK
-    1.2 -> Ajustar texto do index da aplicação -> 
+    1.2 -> Ajustar texto do index da aplicação -> OK
+
+2 -> Implementações sobre a lógica de persistência de dados no banco
+    2.1 -> Model com a conexão com o banco de dados -> 
+        2.1 -> Implementar estrutura do model Model ->  I
+        2.2 -> Criar método de cadastro de dados -> 
+
+
+    2.2 -> Lógica para persistência dos dados pesssoais(Telefone) do participante -> 
+        2.2.1 -> Criar processador que irá obter os dados via POST -> 
+        2.2.2 -> Implementar controller que irá chamar Model relacionado ->
+        2.2.3 -> Implementar model que irá persistir os dados -> 
+
+
+3 -> Implementações sobre monitoramento de sessões de usuários na aplicação
