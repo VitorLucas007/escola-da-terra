@@ -13,7 +13,7 @@ class BancoDeDados{
     }
 
     public function cadastrarDadosBanco($comando_sql){
-        
+        $this->conexao_banco
     }
 
 }
