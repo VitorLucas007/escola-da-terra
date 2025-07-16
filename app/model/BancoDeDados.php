@@ -12,8 +12,13 @@ class BancoDeDados{
         $this->conexao_banco = $inicializacao_conexao->getConexaoBanco();
     }
 
-    public function cadastrarDadosBanco($comando_sql){
-        $this->conexao_banco
+    public function cadastrarDadosBanco(string $sql, array $params = []): bool {
+        $stmt = $this->conexao_banco->prepare($sql);
+        return $stmt->execute($params);
+    }
+
+    public function getUltimoIdInsercao(): string {
+        return $this->conexao_banco->lastInsertId();
     }
 
 }
