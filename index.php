@@ -1,9 +1,3 @@
-<?php
-  // Incluindo constantes para usar a url base:
-  include $_SERVER['DOCUMENT_ROOT'] . '/formularios_php/aplicacao/config/constants.php';
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pesquisa Educacional - Escola da Terra</title>
     <link rel="stylesheet" href="public/css/index.css">
-    <link rel="icon" type="image/png" href="<?=BASE_URL?>/public/assets/imagens/logo_escola_da_terra.png">
+    <link rel="icon" type="image/png" href="/pesquisa_educacional/public/assets/imagens/logo_escola_da_terra.png">
     <?php
-        include $_SERVER['DOCUMENT_ROOT'] . '/formularios_php/aplicacao/views/includes/cdn.php';
+        include  $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/views/includes/cdn.php';
     ?>
 
 </head>
 <body>
 
     <?php
-        include $_SERVER['DOCUMENT_ROOT'] . '/formularios_php/aplicacao/views/includes/header.php';
+        include $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/views/includes/header.php';
     ?>
 
     <!-- Container com a apresentação: -->
