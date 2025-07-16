@@ -1,11 +1,11 @@
 <?php
-$host = 'localhost';            // Host do banco (geralmente 'localhost')
-$db   = 'nome_do_banco';        // Nome do banco de dados
-$user = 'usuario';              // Usuário do banco
-$pass = 'senha';                // Senha do banco
-$charset = 'utf8mb4';           // Charset recomendado
+$host = 'localhost';            
+$db   = 'pesquisa_educacional';        
+$user = 'root';              
+$pass = '';                
+$charset = 'utf8mb4';           
 
-$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+$informacoes_banco = "mysql:host=$host;dbname=$db;charset=$charset";
 
 $options = [
     PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION, // Mostra erros como exceções
@@ -14,7 +14,7 @@ $options = [
 ];
 
 try {
-    $pdo = new PDO($dsn, $user, $pass, $options);
+    $pdo = new PDO($informacoes_banco, $user, $pass, $options);
     // echo "Conexão estabelecida com sucesso!";
 } catch (PDOException $e) {
     die('Erro ao conectar: ' . $e->getMessage());
