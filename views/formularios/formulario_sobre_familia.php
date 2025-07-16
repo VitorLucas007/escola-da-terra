@@ -6,12 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../../public/css/sobre_familia.css">
     <?php 
-        include $_SERVER['DOCUMENT_ROOT'] . '/formularios_php/aplicacao/views/includes/cdn.php';
+        include $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/views/includes/cdn.php';
     ?>
 </head>
 <body>
     <?php 
-        include $_SERVER['DOCUMENT_ROOT'] . '/formularios_php/aplicacao/views/includes/header.php';
+        include $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/views/includes/header.php';
     ?>
 
     <div class="container">
@@ -108,11 +108,7 @@
             
                 </div>
 
-<<<<<<< HEAD
-                <div class="container d-md-none ">
-=======
                 <div class="container d-lg-none mt-4">
->>>>>>> bba91013714a46c54846f6c6f2054fa4d618ff1d
 
                     <div class="accordion" id="accordionFilhos">
 
