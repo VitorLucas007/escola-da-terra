@@ -14,7 +14,7 @@ class ConexaoBanco {
         $this->host = "localhost";
         $this->db = "pesquisa_educacional";
         $this->user = "root";
-        $this->pass = "";
+        $this->pass = "34512896";
         $this->charset = "utf8mb4";
         $this->informacoes_banco = "mysql:host=$this->host;dbname=$this->db;charset=$this->charset";
         $this->opcoes_conexao = [ 
@@ -22,6 +22,7 @@ class ConexaoBanco {
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
             PDO::ATTR_EMULATE_PREPARES   => false, 
         ];
+        $this->setConexaoBanco();
     }
 
     public function getConexaoBanco() {
