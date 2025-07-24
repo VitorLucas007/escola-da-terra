@@ -48,7 +48,20 @@ class UserParticipanteModel {
             ':telefone' => $this->telefone,
             ':progresso_participante' => $this->progresso_participante,
         ];
-        return $this->banco_de_dados->cadastrarDadosBanco($sql, $parametros_insercao);
+        return $this->banco_de_dados->executar($sql, $parametros_insercao);
+    }
+
+    public function atualizarProgressoParticipanteBanco($id_usuario_participante, $novo_progresso): bool{
+        $sql = "UPDATE TABLE UserParticipante
+            SET COLUMN progresso_participante = ':progresso_participante'
+            WHERE id_participante=':id_participante'
+        ";
+        $parametros_atualizacao = [
+            ':progresso_participante' => $novo_progresso,
+            ':id_participante' => $id_usuario_participante,
+        ];
+
+        return $this->banco_de_dados->executar($sql, $parametros_atualizacao);
     }
 
 

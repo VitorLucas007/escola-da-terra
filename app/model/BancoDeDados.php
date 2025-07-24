@@ -11,7 +11,7 @@ class BancoDeDados{
         $this->conexao_banco = $inicializacao_conexao->getConexaoBanco();
     }
 
-    public function cadastrarDadosBanco(string $sql, array $params = []): bool {
+    public function executar(string $sql, array $params = []): bool {
         $stmt = $this->conexao_banco->prepare($sql);
         return $stmt->execute($params);
     }

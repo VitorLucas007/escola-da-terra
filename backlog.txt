@@ -11,18 +11,21 @@
             2.1.1 -> Criar construtor que irá instânciar a classe de conexão -> Ok
             2.1.2 -> Criar método que irá cadastrar dados no banco o banco -> Ok
             2.1.3 -> Configuração do script do banco(Corrigir erros de sintaxe) -> Ok
-            2.1.3 -> Testar método de cadastro de dados -> 
+            2.1.3 -> Testar método de cadastro de dados -> Ok
 
     2.2 -> Lógica para persistência dos dados pesssoais(Telefone) do participante -> 
-        2.2.1 -> Criar processador que irá obter os dados via POST -> 
-        2.2.2 -> Implementar controller que irá chamar Model relacionado ->
+        2.2.1 -> Criar processador que irá obter os dados via POST -> Ok
+        2.2.2 -> Implementar controller que irá chamar Model relacionado -> Ok
         2.2.3 -> Implementar model que irá persistir os dados -> 
-            2.2.3.1 -> Método para cadastro de dados -> 
+            2.2.3.1 -> Método para cadastro de dados -> Ok
             2.2.3.2 -> Método para ataulização da coluna de progresso ->
             2.2.3.3 -> Método para obtenção do objeto no banco afim de verificar    
                 se o mesmo já existe -> 
             2.2.3.4 -> 
-        2.2.4 -> Quais dados preciso armazenar na sessão?
+        2.2.4 -> Implementar verificação de telefone já existente no momento da requisição -> 
+            2.2.4.1 -> Criar método de get com o telefone passado tendo em vista a verificação -> 
+            2.2.4.2 -> Redirecionar usuário com base no valor do progesso em casos onde o usuário já é cadastrado -> 
+        2.2.x -> Quais dados preciso armazenar na sessão?
 
     2.3 -> Persistência dos dados oriúndos dos formulários -> 
         2.3.1 -> Primeiro formulário ....

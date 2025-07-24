@@ -21,6 +21,14 @@ class UserParticipanteControler{
         }
     }   
 
+    public function atualizarProgressoParticipante($id_usuario_participante, $novo_progresso){
+        $requisicao_atualizacao = $this->user_participante_model->atualizarProgressoParticipanteBanco($id_usuario_participante, $novo_progresso);
+        if($requisicao_atualizacao){
+            echo "Atualizado.";
+        }
+    }
+
+
 
 }
 
