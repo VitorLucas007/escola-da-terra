@@ -6,7 +6,7 @@ class UserParticipanteControler{
     private $user_participante_model;
 
     public function __construct($telefone_passado=0, $progresso_participante_passado=1){
-        $this->user_participante_model = new UserParticipanteModel($ $telefone_passado, $progresso_participante_passado);
+        $this->user_participante_model = new UserParticipanteModel( $telefone_passado, $progresso_participante_passado);
     }
 
     public function cadastrarUserParticipante(){
@@ -16,7 +16,8 @@ class UserParticipanteControler{
             exit;
         }
         else{
-
+            //Adicionar mensagem de erro no array de sessão.
+            header('Location: /pesquisa_educacional/index.php');
         }
     }   
 

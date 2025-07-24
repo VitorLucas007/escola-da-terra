@@ -11,7 +11,7 @@ class ConexaoBanco {
     private $opcoes_conexao;
 
     public function __construct() {
-        $this->host = "localhost";
+        $this->host = "127.0.0.1";
         $this->db = "pesquisa_educacional";
         $this->user = "luisfl04";
         $this->pass = "Lf13052004@";

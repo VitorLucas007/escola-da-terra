@@ -56,7 +56,7 @@
                     <!-- Campo Numérico para Telefone -->
                     <div class="mt-3 w-100" style="max-width: 300px;">
                         <label for="telefone" class="form-label fw-bold ">Insira seu número de telefone:</label>
-                        <input type="tel" id="telefone" name="telefone" class="form-control text-center input-telefone" placeholder="(DDD) 99999-9999" required pattern="\(\d{2}\)\s?\d{4,5}-\d{4}" autocomplete="tel">
+                        <input type="text" id="telefone" name="telefone" class="form-control text-center input-telefone" placeholder="(DDD) 99999-9999" required pattern="\(\d{2}\)\s?\d{4,5}-\d{4}" autocomplete="tel">
                     </div>
 
                     <!-- Checkbox para confirmação de consentimento -->
