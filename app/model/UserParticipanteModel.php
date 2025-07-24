@@ -9,9 +9,8 @@ class UserParticipanteModel {
     private $telefone;
     private $progresso_participante;
 
-    public function __construct($id_participante_passado=0,$telefone_passado, $progresso_participante_passado=1){
+    public function __construct($telefone_passado=0, $progresso_participante_passado=1){
         $this->banco_de_dados = new BancoDeDados();
-        $this->id_participante = $id_participante_passado;
         $this->telefone = $telefone_passado;
         $this->progresso_participante = $progresso_participante_passado;
     }
@@ -42,7 +41,7 @@ class UserParticipanteModel {
 
     // Métodos de interação com o banco:
     
-    public function cadastrarUserParticipante() : bool{
+    public function cadastrarUserParticipanteBanco() : bool{
         $sql = "INSERT INTO UserParticipante(telefone, progresso_participante) VALUES(:telefone, :progresso_participante)";
         $parametros_insercao = [
             'telefone' => $this->telefone,

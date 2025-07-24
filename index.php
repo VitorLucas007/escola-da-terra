@@ -52,7 +52,7 @@
             <div class="d-flex flex-column align-items-center">
 
                 <!-- Formulário para o telefone -->
-                <form action="loginController.php" method="post">
+                <form action="/pesquisa_educacional/app/process/user_participante_process.php" method="post">
                     <!-- Campo Numérico para Telefone -->
                     <div class="mt-3 w-100" style="max-width: 300px;">
                         <label for="telefone" class="form-label fw-bold ">Insira seu número de telefone:</label>
