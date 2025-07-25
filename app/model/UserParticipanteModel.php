@@ -40,10 +40,8 @@ class UserParticipanteModel {
     }
 
     // Métodos de interação com o banco:
-    
     public function cadastrarUserParticipanteBanco() : bool{
         $sql = "INSERT INTO UserParticipante(telefone, progresso_participante) VALUES(:telefone, :progresso_participante)";
-        echo $this->telefone;
         $parametros_insercao = [
             ':telefone' => $this->telefone,
             ':progresso_participante' => $this->progresso_participante,
@@ -52,13 +50,14 @@ class UserParticipanteModel {
     }
 
     public function atualizarProgressoParticipanteBanco($id_usuario_participante, $novo_progresso): bool{
-        $sql = "UPDATE TABLE UserParticipante
-            SET COLUMN progresso_participante = ':progresso_participante'
-            WHERE id_participante=':id_participante'
+        $sql = "UPDATE UserParticipante
+            SET progresso_participante = :novo_progresso
+            WHERE id_participante = :id_usuario_participante
         ";
+
         $parametros_atualizacao = [
-            ':progresso_participante' => $novo_progresso,
-            ':id_participante' => $id_usuario_participante,
+            ':novo_progresso' => $novo_progresso,
+            ':id_usuario_participante' => $id_usuario_participante
         ];
 
         return $this->banco_de_dados->executar($sql, $parametros_atualizacao);
