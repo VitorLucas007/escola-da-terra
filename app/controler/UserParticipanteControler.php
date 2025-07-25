@@ -86,7 +86,7 @@ class UserParticipanteControler{
                 $_SESSION['mensagem_erro_user_participante'] = "Ocorreu um erro no redirecionamento ao formulário, tente novamente.";
                 header('Location: /pesquisa_educacional/index.php');
                 exit;    
-            }
+        }
     }
 
 
