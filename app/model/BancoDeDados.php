@@ -20,6 +20,13 @@ class BancoDeDados{
         return $this->conexao_banco->lastInsertId();
     }
 
+    public function consultar(string $sql, array $params = []): array {
+        $stmt = $this->conexao_banco->prepare($sql);
+        $stmt->execute($params);
+        return $stmt->fetchAll();
+    }
+
+
 }
 
 

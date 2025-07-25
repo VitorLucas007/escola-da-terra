@@ -63,6 +63,14 @@ class UserParticipanteModel {
         return $this->banco_de_dados->executar($sql, $parametros_atualizacao);
     }
 
+    public function getUserParticipanteBanco($telefone_participante){
+        $sql = "SELECT * FROM UserParticipante WHERE telefone = :telefone_participante";
+        $parametros_selecao = [
+            ':telefone_participante' => $telefone_participante,
+        ];
+        return $this->banco_de_dados->consultar($sql, $parametros_selecao);
+    }
+
 
 }
 

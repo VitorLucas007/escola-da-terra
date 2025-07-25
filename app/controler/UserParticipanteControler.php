@@ -21,10 +21,36 @@ class UserParticipanteControler{
         }
     }   
 
-    public function atualizarProgressoParticipante($id_usuario_participante, $novo_progresso){
+    public function atualizarProgressoParticipante($id_usuario_participante, $novo_progresso) : bool{
         $requisicao_atualizacao = $this->user_participante_model->atualizarProgressoParticipanteBanco($id_usuario_participante, $novo_progresso);
         if($requisicao_atualizacao){
-            echo "Atualizado.";
+            return true;
+        }
+        return false;
+    }
+
+    public function verificarExistenciaUserParticipante($telefone_participante):bool{
+        $participante_testado = $this->user_participante_model->getUserParticipanteBanco($telefone_participante);
+        if($participante_testado != null){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public function getUserParticipante($telefone_participante): UserParticipanteModel | null{
+        $participante = $this->user_participante_model->getUserParticipanteBanco($telefone_participante);
+        if($participante != null){
+            $id = $participante[0]['id_participante'];
+            $telefone = $participante[0]['telefone'];
+            $progresso = $participante[0]['progresso_participante'];
+            $participante_obtido = new UserParticipanteModel($telefone, $progresso);
+            $participante_obtido->setIdParticipante($id);
+            return $participante_obtido;
+        }
+        else{
+            return null;
         }
     }
 
