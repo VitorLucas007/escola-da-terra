@@ -13,7 +13,7 @@
             2.1.3 -> Configuração do script do banco(Corrigir erros de sintaxe) -> Ok
             2.1.3 -> Testar método de cadastro de dados -> Ok
 
-    2.2 -> Lógica para persistência dos dados pesssoais(Telefone) do participante -> 
+    2.2 -> Lógica para persistência dos dados pesssoais(Telefone) do participante(UserParticipanteModel) -> 
         2.2.1 -> Criar processador que irá obter os dados via POST -> Ok
         2.2.2 -> Implementar controller que irá chamar Model relacionado -> Ok
         2.2.3 -> Implementar model que irá persistir os dados -> 
@@ -23,9 +23,12 @@
                 se o mesmo já existe -> Ok
             2.2.3.4 -> Função que obtém o usuário do banco e o retorna como objeto -> Ok
         2.2.4 -> Implementar verificação de Usuário já existente no momento da requisição -> 
-            2.2.4.1 -> Criar método de get com o telefone passado tendo em vista a verificação -> 
+            2.2.4.1 -> Criar método de get com o telefone passado tendo em vista a verificação -> Ok
             2.2.4.2 -> Redirecionar usuário com base no valor do progesso em casos onde o usuário já é cadastrado -> 
+        2.2.5 -> Implementar try/catch nos métodos do controller -> 
+        2.2.6 -> Estabelecer tipo das funções -> 
         2.2.x -> Quais dados preciso armazenar na sessão?
+        
 
     2.3 -> Persistência dos dados oriúndos dos formulários -> 
         2.3.1 -> Primeiro formulário ....
@@ -38,3 +41,5 @@
 
 
 3 -> Implementações sobre monitoramento de sessões de usuários na aplicação
+
+4 -> Validações de segurança em relação as requisições(Ex: Só permitir requisições de usuário logados...)

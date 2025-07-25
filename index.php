@@ -1,3 +1,11 @@
+<?php
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+    $mensagem_erro_user_participante = $_SESSION['mensagem_erro_user_participante'] ?? '';
+    unset($_SESSION['mensagem_erro_user_participante']);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,6 +58,12 @@
 
             <!-- Obtenção do telefone -->
             <div class="d-flex flex-column align-items-center">
+
+                <?php if (!empty($mensagem_erro_user_participante)): ?>
+                    <div class="alert alert-info">
+                        <?= htmlspecialchars($mensagem_erro_user_participante) ?>
+                    </div>    
+                <?php endif; ?>
 
                 <!-- Formulário para o telefone -->
                 <form action="/pesquisa_educacional/app/process/user_participante_process.php" method="post">

@@ -8,7 +8,6 @@
         $telefone = "(86) 99525-4202";
         $user_participante_controler = new UserParticipanteControler($telefone);
         $participante =  $user_participante_controler->getUserParticipante();
-        echo "Telefone -> " . $participante->getTelefone();
     }
     else{
         echo "<h1 style='text-align: center;'>Método de requisição inválido</h1>";
