@@ -29,8 +29,8 @@ class UserParticipanteControler{
         return false;
     }
 
-    public function verificarExistenciaUserParticipante($telefone_participante):bool{
-        $participante_testado = $this->user_participante_model->getUserParticipanteBanco($telefone_participante);
+    public function verificarExistenciaUserParticipante():bool{
+        $participante_testado = $this->user_participante_model->getUserParticipanteBanco($this->user_participante_model->getTelefone());
         if($participante_testado != null){
             return true;
         }
@@ -39,8 +39,8 @@ class UserParticipanteControler{
         }
     }
 
-    public function getUserParticipante($telefone_participante): UserParticipanteModel | null{
-        $participante = $this->user_participante_model->getUserParticipanteBanco($telefone_participante);
+    public function getUserParticipante(): UserParticipanteModel | null{
+        $participante = $this->user_participante_model->getUserParticipanteBanco($this->user_participante_model->getTelefone());
         if($participante != null){
             $id = $participante[0]['id_participante'];
             $telefone = $participante[0]['telefone'];

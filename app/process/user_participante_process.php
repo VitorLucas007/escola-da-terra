@@ -7,7 +7,7 @@
     if($metodo_requisicao === 'POST'){
         $telefone_passado = $_POST['telefone'];
         $user_participante_controler = new UserParticipanteControler($telefone_passado);
-        $user_participante_controler->cadastrarUserParticipante();
+        $participante_existente =  $user_participante_controler->verificarExistenciaUserParticipante();
     }
     else{
         echo "<h1 style='text-align: center;'>Método de requisição inválido</h1>";

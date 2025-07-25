@@ -21,7 +21,7 @@
             2.2.3.2 -> Método para ataulização da coluna de progresso -> OK
             2.2.3.3 -> Método para obtenção do objeto no banco afim de verificar    
                 se o mesmo já existe -> Ok
-            2.2.3.4 -> Função que obtém o usuário do banco e o retorna como objeto -> 
+            2.2.3.4 -> Função que obtém o usuário do banco e o retorna como objeto -> Ok
         2.2.4 -> Implementar verificação de Usuário já existente no momento da requisição -> 
             2.2.4.1 -> Criar método de get com o telefone passado tendo em vista a verificação -> 
             2.2.4.2 -> Redirecionar usuário com base no valor do progesso em casos onde o usuário já é cadastrado -> 

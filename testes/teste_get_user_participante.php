@@ -5,9 +5,9 @@
     $metodo_requisicao = $_SERVER['REQUEST_METHOD'];
     
     if($metodo_requisicao === 'POST'){
-        $telefone = "(86) 99525-420";
-        $user_participante_controler = new UserParticipanteControler();
-        $participante =  $user_participante_controler->getUserParticipante($telefone);
+        $telefone = "(86) 99525-4202";
+        $user_participante_controler = new UserParticipanteControler($telefone);
+        $participante =  $user_participante_controler->getUserParticipante();
         echo "Telefone -> " . $participante->getTelefone();
     }
     else{
