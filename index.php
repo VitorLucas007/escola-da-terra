@@ -4,6 +4,9 @@
     }
     $mensagem_erro_user_participante = $_SESSION['mensagem_erro_user_participante'] ?? '';
     unset($_SESSION['mensagem_erro_user_participante']);
+
+    # Armazenando a ultima página logada para poder rastrear em casos de redirecionamento para página de erro:
+    $_SESSION['ultima_pagina'] = $_SERVER['REQUEST_URI'];
 ?>
 
 <!DOCTYPE html>

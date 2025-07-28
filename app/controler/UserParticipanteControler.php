@@ -14,14 +14,21 @@ class UserParticipanteControler{
     }
 
     public function cadastrarUserParticipante(){
-        $persistencia_banco = $this->user_participante_model->cadastrarUserParticipanteBanco();
-        if($persistencia_banco){
-            header('Location: /pesquisa_educacional/views/formularios/formulario_sobre_cursista.php');
-            exit;
+        try{
+            $persistencia_banco = $this->user_participante_model->cadastrarUserParticipanteBanco();
+            if($persistencia_banco){
+                header('Location: /pesquisa_educacional/views/formularios/formulario_sobre_cursista.php');
+                exit;
+            }
+            else{   
+                $_SESSION['mensagem_erro_user_participante'] = "Ocorreu um erro ao salvar o telefone do participante, tente novamente.";
+                header('Location: /pesquisa_educacional/index.php');
+                exit;
+            }
         }
-        else{   
-            $_SESSION['mensagem_erro_user_participante'] = "Ocorreu um erro ao salvar o telefone do participante, tente novamente.";
-            header('Location: /pesquisa_educacional/index.php');
+        catch(Exception $exception){
+            $_SESSION['mensagem_excecao'] = $exception;
+            header("Location: /pesquisa_educacional/views/erro.php");
             exit;
         }
     }   
