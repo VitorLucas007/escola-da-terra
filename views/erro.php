@@ -2,7 +2,8 @@
     if (session_status() === PHP_SESSION_NONE) {
             session_start();
     }
-
+    $mensagem_excecao = $_SESSION['mensagem_excecao'] ?? '';
+    unset($mensagem_excecao);
 ?>
 
 <!DOCTYPE html>
@@ -25,6 +26,11 @@
         <div class="container-body">
             <div class="fw-bold text-center mb-4">
                 Desculpe, ocorreu um erro interno, tente a ação novamente.
+                <?php if (!empty($mensagem_excecao)): ?>
+                    <div class="alert alert-info">
+                        <?= htmlspecialchars($mensagem_excecao) ?>
+                    </div>    
+                <?php endif; ?>
             </div>
             <a class="btn btn-sm btn-secondary" href="<?=$_SESSION['ultima_pagina']?>">Voltar</a>
         </div>
