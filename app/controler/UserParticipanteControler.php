@@ -17,6 +17,7 @@ class UserParticipanteControler{
         try{
             $persistencia_banco = $this->user_participante_model->cadastrarUserParticipanteBanco();
             if($persistencia_banco){
+                $_SESSION['id_participante'] = # Obter id da última persistência aqui
                 header('Location: /pesquisa_educacional/views/formularios/formulario_sobre_cursista.php');
                 exit;
             }

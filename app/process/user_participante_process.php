@@ -1,7 +1,11 @@
 <?php 
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }   
+
     require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/views/includes/habilitar_debug_erro.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/UserParticipanteControler.php';
-    
+
     $metodo_requisicao = $_SERVER['REQUEST_METHOD'];
     
     if($metodo_requisicao === 'POST'){
@@ -9,6 +13,7 @@
         $user_participante_controler = new UserParticipanteControler($telefone_passado);
         $participante =  $user_participante_controler->getUserParticipante();
         if($participante != null){
+            $_SESSION['id_participante'] = $participante->getIdParticipante();
             $user_participante_controler->redirecionarBaseadoProgressoParticipante($participante->getProgressoParticipante());
         }
         else{
