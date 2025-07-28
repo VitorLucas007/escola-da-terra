@@ -13,7 +13,7 @@ class UserParticipanteControler{
         $this->user_participante_model = new UserParticipanteModel( $telefone_passado, $progresso_participante_passado);
     }
 
-    public function cadastrarUserParticipante(){
+    public function cadastrarUserParticipante() : void{
         try{
             $persistencia_banco = $this->user_participante_model->cadastrarUserParticipanteBanco();
             if($persistencia_banco){

@@ -25,7 +25,7 @@
         2.2.4 -> Implementar verificação de Usuário já existente no momento da requisição -> 
             2.2.4.1 -> Criar método de get com o telefone passado tendo em vista a verificação -> Ok
             2.2.4.2 -> Redirecionar usuário com base no valor do progesso em casos onde o usuário já é cadastrado -> Ok
-        2.2.5 -> Implementar try/catch nos métodos do controller -> 
+        2.2.5 -> Implementar try/catch nos métodos do controller -> Ok
         2.2.6 -> Estabelecer tipo das funções -> 
         2.2.x -> Quais dados preciso armazenar na sessão?
         

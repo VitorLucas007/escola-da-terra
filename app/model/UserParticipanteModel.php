@@ -5,9 +5,9 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/model/BancoD
 class UserParticipanteModel {
 
     private $banco_de_dados;
-    private $id_participante;
-    private $telefone;
-    private $progresso_participante;
+    private int $id_participante;
+    private string $telefone;
+    private int $progresso_participante;
 
     public function __construct($telefone_passado, $progresso_participante_passado){
         $this->banco_de_dados = new BancoDeDados();
@@ -15,27 +15,27 @@ class UserParticipanteModel {
         $this->progresso_participante = $progresso_participante_passado;
     }
 
-    public function setIdParticipante($id) {
+    public function setIdParticipante($id) : void  {
         $this->id_participante = $id;
     }
 
-    public function getIdParticipante() {
+    public function getIdParticipante() : int {
         return $this->id_participante;
     }
 
-    public function setTelefone($telefone) {
+    public function setTelefone($telefone): void {
         $this->telefone = $telefone;
     }
 
-    public function getTelefone() {
+    public function getTelefone(): string {
         return $this->telefone;
     }
 
-    public function setProgressoParticipante($progresso) {
+    public function setProgressoParticipante($progresso): void {
         $this->progresso_participante = $progresso;
     }
 
-    public function getProgressoParticipante() {
+    public function getProgressoParticipante(): int {
         return $this->progresso_participante;
     }
 
@@ -63,7 +63,7 @@ class UserParticipanteModel {
         return $this->banco_de_dados->executar($sql, $parametros_atualizacao);
     }
 
-    public function getUserParticipanteBanco($telefone_participante){
+    public function getUserParticipanteBanco($telefone_participante): array{
         $sql = "SELECT * FROM UserParticipante WHERE telefone = :telefone_participante";
         $parametros_selecao = [
             ':telefone_participante' => $telefone_participante,
