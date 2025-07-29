@@ -49,15 +49,15 @@ class UserParticipanteModel {
         return $this->banco_de_dados->executar($sql, $parametros_insercao);
     }
 
-    public function atualizarProgressoParticipanteBanco($id_usuario_participante, $novo_progresso): bool{
+    public function atualizarProgressoParticipanteBanco($id_participante, $novo_progresso): bool{
         $sql = "UPDATE UserParticipante
             SET progresso_participante = :novo_progresso
-            WHERE id_participante = :id_usuario_participante
+            WHERE id_participante = :id_participante
         ";
 
         $parametros_atualizacao = [
             ':novo_progresso' => $novo_progresso,
-            ':id_usuario_participante' => $id_usuario_participante
+            ':id_participante' => $id_participante
         ];
 
         return $this->banco_de_dados->executar($sql, $parametros_atualizacao);

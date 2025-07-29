@@ -35,9 +35,9 @@ class UserParticipanteControler{
         }
     }   
 
-    public function atualizarProgressoParticipante($id_usuario_participante, $novo_progresso) : bool{
+    public function atualizarProgressoParticipante($id_participante, $novo_progresso) : bool{
         try{
-            $requisicao_atualizacao = $this->user_participante_model->atualizarProgressoParticipanteBanco($id_usuario_participante, $novo_progresso);
+            $requisicao_atualizacao = $this->user_participante_model->atualizarProgressoParticipanteBanco($id_participante, $novo_progresso);
             if($requisicao_atualizacao){
                 return true;
             }

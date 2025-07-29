@@ -49,7 +49,8 @@ class ValidacoesSobreCursista {
       .then(estados => {
         estados.forEach(estado => {
           const option = document.createElement('option');
-          option.value = estado.id;
+          option.id = estado.id
+          option.value = estado.nome;
           option.textContent = estado.nome;
           estado_naturalidade_select.appendChild(option);
           estado_reside_atualmente_select.appendChild(option.cloneNode(true));
@@ -68,7 +69,7 @@ class ValidacoesSobreCursista {
     const municipio_naturalidade_select = document.getElementById('municipio_naturalidade');
 
     estado_naturalidade_select.addEventListener('change', () => {
-      const estadoId = estado_naturalidade_select.value;
+      const estadoId = estado_naturalidade_select.id;
       municipio_naturalidade_select.innerHTML = '<option value="">Carregando cidades...</option>';
       municipio_naturalidade_select.disabled = true;
     
@@ -79,7 +80,8 @@ class ValidacoesSobreCursista {
             municipio_naturalidade_select.innerHTML = '<option value="">Selecione uma cidade</option>';
             cidades.forEach(cidade => {
               const option = document.createElement('option');
-              option.value = cidade.id;
+              option.id = cidade.id
+              option.value = cidade.nome;
               option.textContent = cidade.nome;
               municipio_naturalidade_select.appendChild(option);
             });

@@ -3,14 +3,15 @@
         session_start();
     } 
 
-    if(!isset($_SESSION['id_usuario'])){
+    if(!isset($_SESSION['id_participante'])){
         header("Location: /pesquisa_educacional/index.php");
         exit;
     }
+
+    # Armazenando a ultima página logada para poder rastrear em casos de redirecionamento para página de erro:
+    $_SESSION['ultima_pagina'] = $_SERVER['REQUEST_URI'];
+
 ?>
-
-
-
 
 
 <!DOCTYPE html>
