@@ -16,10 +16,12 @@ class OpiniaoTemaSobreCursistaControler{
 
     public function cadastrarOpiniaoTemaSobreCursista($tema_opiniao, $texto_opiniao): bool{
         try{
-
+            return $this->opiniao_tema_sobre_cursista_model->cadastrarOpiniaoTemaSobreCursistaBanco($tema_opiniao, $texto_opiniao);
         }
         catch(Exception $exception){
-            $exception->getMessage()
+            $_SESSION['mensagem_excecao'] = "Erro ao persistir os dados de opiniões sobre temas.";
+            header("Location: /pesquisa_educacional/views/erro.php");
+            exit;
         }
     }
 

@@ -78,12 +78,17 @@
         ];
 
         foreach($opinoes_temas_sobre_cursista as $tema_opiniao => $texto_opiniao){
-            
+            $persistencia = $opiniao_tema_sobre_cursista_controler->cadastrarOpiniaoTemaSobreCursista($tema_opiniao, $texto_opiniao);
+            if(!$persistencia){
+                $_SESSION['mensagem_excecao'] = "Erro ao cadastrar dados de opiniões sobre temas";
+                header("Location: /pesquisa_educacional/views/erro.php");
+                exit;
+            }
         }
         
+        echo "Dados cadastrados com sucesso";
 
     } else {
-        // Se a requisição não for POST, bloqueia o acesso ou redireciona
         http_response_code(405);
         echo "Método não permitido.";
         exit;
