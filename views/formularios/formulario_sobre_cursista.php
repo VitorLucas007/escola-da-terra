@@ -117,23 +117,23 @@
           <label class="form-label fw-bold">Você vive com:</label>
           
           <div class="form-check ">
-            <input class="form-check-input" type="checkbox" name="vive_com[]" id="sozinho" value="Sozinho(a)" required>
+            <input class="form-check-input" type="checkbox" name="compartilha_com[]" id="sozinho" value="Sozinho(a)" required>
             <label class="form-check-label" for="sozinho">Sozinho(a)</label>
           </div>
 
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="vive_com[]" id="familia" value="Com a família">
+            <input class="form-check-input" type="checkbox" name="compartilha_com[]" id="familia" value="Com a família">
             <label class="form-check-label" for="familia">Com a família</label>
           </div>
           
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="vive_com[]" id="conjuge" value="Com cônjuge">
+            <input class="form-check-input" type="checkbox" name="compartilha_com[]" id="conjuge" value="Com cônjuge">
             <label class="form-check-label" for="conjuge">Com cônjuge</label>
           </div>
           
           <div class="form-check mt-2">
             <label class="form-check-label" for="outro">Outro:</label>
-            <input class="form-control" type="text" name="vive_com[]" id="outro" placeholder="Ex:Com amigo">
+            <input class="form-control" type="text" name="compartilha_com[]" id="outro" placeholder="Ex:Com amigo">
           </div>
 
         </div>

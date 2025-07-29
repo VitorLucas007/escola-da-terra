@@ -13,6 +13,7 @@
         $user_participante_controler = new UserParticipanteControler($telefone_passado);
         $participante =  $user_participante_controler->getUserParticipante();
         if($participante != null){
+            session_regenerate_id(true);
             $_SESSION['id_participante'] = $participante->getIdParticipante();
             $user_participante_controler->redirecionarBaseadoProgressoParticipante($participante->getProgressoParticipante());
         }

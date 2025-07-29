@@ -17,10 +17,10 @@ class UserParticipanteControler{
         try{
             $persistencia_banco = $this->user_participante_model->cadastrarUserParticipanteBanco();
             if($persistencia_banco){
+                session_regenerate_id(true);
                 $_SESSION['id_participante'] = $this->getIdUltimaPersistencia();
-                echo $_SESSION['id_participante'];
-                // header('Location: /pesquisa_educacional/views/formularios/formulario_sobre_cursista.php');
-                // exit;
+                header('Location: /pesquisa_educacional/views/formularios/formulario_sobre_cursista.php');
+                exit;
             }
             else{   
                 $_SESSION['mensagem_erro_user_participante'] = "Ocorreu um erro ao salvar o telefone do participante, tente novamente.";
