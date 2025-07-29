@@ -32,12 +32,12 @@
                 2.2.7.1.1 -> Criar função que chama função relacionada na conexão com o banco -> Ok 
             2.2.7.2 -> Verificar se o ID está definido corretamente em ambos os casos(Login ou cadastro de um novo User) -> Ok
     2.3 -> Persistência dos dados oriúndos dos formulários -> 
-        2.3.1 -> Verificações de integridade das informações -> 
-            2.3.1.1 -> Verificar se o usuário está 'logado' no momento em que o mesmo acessa os formulários ->
-        2.3.2 -> Primeiro formulário ->
-            2.3.2.1 -> Verificar se tenho o id do usuário na sessão -> 
+        2.3.1 -> Verificações de integridade das informações -> ok
+            2.3.1.1 -> Verificar se o usuário está 'logado' no momento em que o mesmo acessa os formulários -> ok
+        2.3.2 -> Primeiro formulário -> 
+            2.3.2.1 -> Verificar se tenho o id do usuário na sessão -> Ok
             2.3.2.1 -> Obter e organizar dados oriúndos da requisição -> 
-            2.3.2.2 -> Criar controllers relacionados
+            2.3.2.2 -> Criar controllers relacionados ->
             2.3.2.3 -> Criar modelos relacionados -> 
         
     2.x -> Tela para login dos pesquisadores que irão aplicar as pesquisas

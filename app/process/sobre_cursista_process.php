@@ -1,8 +1,13 @@
 <?php
-// processa_formulario.php
+    
     if (session_status() === PHP_SESSION_NONE) {
         session_start();
     }   
+
+    if (!isset($_SESSION['id_usuario'])){
+        $_SESSION['mensagem_excecao'] = 'Requisição inválida, tente novamente.';
+        header("Location: /pesquisa_educacional/views/erro.php");
+    }
 
     require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/views/includes/habilitar_debug_erro.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/SobreCursistaControler.php';
@@ -11,35 +16,41 @@
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         # Dados da tabela 'SobreCursista':
         $valores_sobre_cursista = [
-            $participante_id = $_SESSION['id_participante'],
-            $ano_nascimento = $_POST['ano_nascimento'] ?? null,
-            $sexo = $_POST['sexo'] ?? null,
-            $estado_naturalidade = $_POST['estado_naturalidade'] ?? null,
-            $municipio_naturalidade = $_POST['municipio_naturalidade'] ?? null,
-            $estado_reside_atualmente = $_POST['estado_reside_atualmente'] ?? null,
-            $municipio_reside_atualmente = $_POST['municipio_reside_atualmente'] ?? null,
-            $anos_reside_atualmente = $_POST['anos_reside_atualmente'] ?? null,
-            $residencia_propria = $_POST['residencia_propria'] ?? null,
-            $tem_filhos = $_POST['tem_filhos'] ?? null,
-            $quantidade_filhos = $_POST['quantidade_filhos'] ?? null,
-            $vive_com_filhos = $_POST['vive_com_filhos'] ?? null,
-            $filhos_vivem_com = $_POST['filhos_vivem_com'] ?? null,
-            $estado_civil = $_POST['estado_civil'] ?? null,
-            $data_nascimento_conjugue = $_POST['data_nascimento_conjugue'] ?? null,
-            $profissao_conjugue = $_POST['profissao_conjugue'] ?? null,
-            $casou_varias_vezes = $_POST['casou_varias_vezes'] ?? null,
-            $quantidade_casamentos = $_POST['quantidade_casamentos'] ?? null,
-            $sindicalizado = $_POST['sindicalizado'] ?? null,
-            $tempo_sindicalizado = $_POST['tempo_sindicalizado'] ?? null,
-            $transporte_frequentemente_utilizado = $_POST['transporte_frequentemente_utilizado'] ?? null,
-            $tem_religiao = $_POST['tem_religiao'] ?? null,
-            $religiao_praticada = $_POST['religiao_praticada'] ?? null,
-            $tem_opcao_partidaria = $_POST['tem_opcao_partidaria'] ?? null,
-            $opcao_partidaria = $_POST['opcao_partidaria'] ?? null,
-            $partidos_votados_ultimas_eleicoes = $_POST['partidos_votados_ultimas_eleicoes'] ?? null,
-            $escala_politica_esquerda_direita = $_POST['escala_politica_esquerda_direita'] ?? null
+            'participante_id' => $participante_id = $_SESSION['id_participante'],
+            'ano_nascimento' => $ano_nascimento = $_POST['ano_nascimento'] ?? null,
+            'sexo' =>  $sexo = $_POST['sexo'] ?? null,
+            'estado_naturalidade' => $estado_naturalidade = $_POST['estado_naturalidade'] ?? null,
+            'municipio_naturalidade' => $municipio_naturalidade = $_POST['municipio_naturalidade'] ?? null,
+            'estado_reside_atualmente' => $estado_reside_atualmente = $_POST['estado_reside_atualmente'] ?? null,
+            'municipio_reside_atualmente' => $municipio_reside_atualmente = $_POST['municipio_reside_atualmente'] ?? null,
+            'anos_reside_atualmente' => $anos_reside_atualmente = $_POST['anos_reside_atualmente'] ?? null,
+            'residencia_propria' => $residencia_propria = $_POST['residencia_propria'] ?? null,
+            'tem_filhos' => $tem_filhos = $_POST['tem_filhos'] ?? null,
+            'quantidade_filhos' => $quantidade_filhos = $_POST['quantidade_filhos'] ?? null,
+            'vive_com_filhos' => $vive_com_filhos = $_POST['vive_com_filhos'] ?? null,
+            'filhos_vivem_com' => $filhos_vivem_com = $_POST['filhos_vivem_com'] ?? null,
+            'estado_civil' => $estado_civil = $_POST['estado_civil'] ?? null,
+            'data_nascimento_conjugue' => $data_nascimento_conjugue = $_POST['data_nascimento_conjugue'] ?? null,
+            'profissao_conjugue' => $profissao_conjugue = $_POST['profissao_conjugue'] ?? null,
+            'casou_varias_vezes' => $casou_varias_vezes = $_POST['casou_varias_vezes'] ?? null,
+            'quantidade_casamentos' => $quantidade_casamentos = $_POST['quantidade_casamentos'] ?? null,
+            'sindicalizado' => $sindicalizado = $_POST['sindicalizado'] ?? null,
+            'tempo_sindicalizado' => $tempo_sindicalizado = $_POST['tempo_sindicalizado'] ?? null,
+            'transporte_frequentemente_utilizado' => $transporte_frequentemente_utilizado = $_POST['transporte_frequentemente_utilizado'] ?? null,
+            'tem_religiao' => $tem_religiao = $_POST['tem_religiao'] ?? null,
+            'religiao_praticada' => $religiao_praticada = $_POST['religiao_praticada'] ?? null,
+            'tem_opcao_partidaria' => $tem_opcao_partidaria = $_POST['tem_opcao_partidaria'] ?? null,
+            'opcao_partidaria' => $opcao_partidaria = $_POST['opcao_partidaria'] ?? null,
+            'partidos_votados_ultimas_eleicoes' => $partidos_votados_ultimas_eleicoes = $_POST['partidos_votados_ultimas_eleicoes'] ?? null,
+            'escala_politica_esquerda_direita' => $escala_politica_esquerda_direita = $_POST['escala_politica_esquerda_direita'] ?? null
         ];
         
+        # Persistindo dados na tabela:
+        $sobre_cursista_controler = 
+
+
+
+
         # Tabela 'CompartilhamentoResidencia':
         $compartilha_com = $_POST['compartilha_com'] ?? [];
         
