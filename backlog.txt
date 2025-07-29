@@ -28,15 +28,12 @@
         2.2.5 -> Implementar try/catch nos métodos do controller -> Ok
         2.2.6 -> Estabelecer tipo das funções -> Ok
         2.2.7 -> Definir id do usuário participante no momento de login -> 
-            2.2.7.1 -> Obter id no momento da persistência de um novo UserParticipante -> 
-                2.2.7.1.1 -> Criar função que chama função relacionada na conexão com o banco -> 
-            2.2.7.2 -> Verificar se o ID está definido corretamente em ambos os casos(Login ou cadastro de um novo User) ->
-        
-
+            2.2.7.1 -> Obter id no momento da persistência de um novo UserParticipante -> Ok
+                2.2.7.1.1 -> Criar função que chama função relacionada na conexão com o banco -> Ok 
+            2.2.7.2 -> Verificar se o ID está definido corretamente em ambos os casos(Login ou cadastro de um novo User) -> 
     2.3 -> Persistência dos dados oriúndos dos formulários -> 
         2.3.1 -> Primeiro formulário ....
-
-    
+        
     2.x -> Tela para login dos pesquisadores que irão aplicar as pesquisas
         2.3.1 -> Redefinir modelo 'UserAdmin' para estar adequado aos novos requisitos
         2.3.2 -> Tela com escolha entre aplicação de pesquisas ou visualização de dados 

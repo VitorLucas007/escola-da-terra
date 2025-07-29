@@ -71,6 +71,10 @@ class UserParticipanteModel {
         return $this->banco_de_dados->consultar($sql, $parametros_selecao);
     }
 
+    public function getIdUltimaPersistenciaBanco(): string | null{
+        return $this->banco_de_dados->getUltimoIdInsercao();
+    }
+
 
 }
 
