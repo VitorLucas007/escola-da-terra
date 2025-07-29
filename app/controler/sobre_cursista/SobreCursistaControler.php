@@ -12,11 +12,11 @@ class SobreCursistaControler{
         $this->sobre_cursista_model = new SobreCursistaModel($participante_id);
     }
 
-    public function cadastrarDadosSobreCursista($valores_sobre_cursista) : bool {
+    public function cadastrarDadosSobreCursista($valores_sobre_cursista) : void {
         try{
             $persistencia_banco = $this->sobre_cursista_model->cadastrarDadosSobreCursistaBanco($valores_sobre_cursista);
             if($persistencia_banco){
-                return true;
+                return;
             }
             $_SESSION['mensagem_excecao'] = "Ocorreu um erro ao cadastrar os dados do formulário, tente novamente.";
             header("Location: /pesquisa_educacional/views/erro.php");
@@ -27,6 +27,18 @@ class SobreCursistaControler{
             header("Location: /pesquisa_educacional/views/erro.php");
             exit;
         }
+    }
+
+    public function getUltimoIdIsercaoSobreCursista() : string{
+        try{
+            return $this->sobre_cursista_model->getUltimoIdInsercaoSobreCursistaBanco();
+        }
+        catch(Exception $exception){
+            $_SESSION['mensagem_excecao'] = "Erro ao obter o último ID de inserção.";
+            header("Location: /pesquisa_educacional/views/erro.php");
+            exit;
+        }
+        
     }
 
 

@@ -127,7 +127,14 @@ class UserParticipanteControler{
     }
 
     public function getIdUltimaPersistencia() : string | null{
-        return $this->user_participante_model->getIdUltimaPersistenciaBanco();
+        try{
+           return $this->user_participante_model->getIdUltimaPersistenciaBanco();
+        }
+        catch(Exception $exception){
+            $_SESSION['mensagem_excecao'] = "Erro ao obter o último ID de inserção.";
+            header("Location: /pesquisa_educacional/views/erro.php");
+            exit;
+       }
     }
 
 

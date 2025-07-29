@@ -105,6 +105,10 @@ class SobreCursistaModel{
         return $this->banco_de_dados->executar($sql, $parametros);
     }
 
+    public function getUltimoIdInsercaoSobreCursistaBanco() : string{
+        return $this->banco_de_dados->getUltimoIdInsercao();
+    }
+
 
     
 

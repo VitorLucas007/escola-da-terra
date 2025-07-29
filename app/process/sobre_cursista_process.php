@@ -4,7 +4,7 @@
         session_start();
     }   
 
-    if (!isset($_SESSION['id_usuario'])){
+    if (!isset($_SESSION['id_participante'])){
         $_SESSION['mensagem_excecao'] = 'Requisição inválida, tente novamente.';
         header("Location: /pesquisa_educacional/views/erro.php");
     }
@@ -44,16 +44,20 @@
             'partidos_votados_ultimas_eleicoes' => $partidos_votados_ultimas_eleicoes = $_POST['partidos_votados_ultimas_eleicoes'] ?? null,
             'escala_politica_esquerda_direita' => $escala_politica_esquerda_direita = $_POST['escala_politica_esquerda_direita'] ?? null
         ];
+
         
-        # Persistindo dados na tabela:
-        $sobre_cursista_controler = 
-
-
-
-
+        # Persistindo dados na tabela 'SobreCursista':
+        $sobre_cursista_controler = new SobreCursistaControler($_SESSION['id_participante']);
+        $sobre_cursista_controler->cadastrarDadosSobreCursista($valores_sobre_cursista);
+        
         # Tabela 'CompartilhamentoResidencia':
-        $compartilha_com = $_POST['compartilha_com'] ?? [];
+        $valores_compartilhamento_residencia = $_POST['compartilha_com'] ?? [];
+        $compartilhamento_residencia_controler = new CompartilhamentoResidenciaControler();
+        foreach($valor_compartilhamento as $array_valores_compartilhamento){
         
+        }
+
+
         # Tabela 'OpiniaoTemaSobreCursista':
         $posse_de_armas = $_POST['posse_de_armas'] ?? null;
         $migracao = $_POST['migracao'] ?? null;
