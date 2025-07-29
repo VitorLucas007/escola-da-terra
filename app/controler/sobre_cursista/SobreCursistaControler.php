@@ -24,7 +24,7 @@ class SobreCursistaControler{
             exit;
         }
         catch(Exception $exception){
-            $_SESSION['mensagem_excecao'] = $exception;
+            $_SESSION['mensagem_excecao'] = $exception->getMessage();
             header("Location: /pesquisa_educacional/views/erro.php");
             exit;
         }
