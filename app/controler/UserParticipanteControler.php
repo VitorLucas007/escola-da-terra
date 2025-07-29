@@ -134,7 +134,7 @@ class UserParticipanteControler{
             $_SESSION['mensagem_excecao'] = "Erro ao obter o último ID de inserção.";
             header("Location: /pesquisa_educacional/views/erro.php");
             exit;
-       }
+        }
     }
 
 

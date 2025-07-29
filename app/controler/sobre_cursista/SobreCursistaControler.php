@@ -12,11 +12,12 @@ class SobreCursistaControler{
         $this->sobre_cursista_model = new SobreCursistaModel($participante_id);
     }
 
-    public function cadastrarDadosSobreCursista($valores_sobre_cursista) : void {
+    public function cadastrarDadosSobreCursista($valores_sobre_cursista) : string | null {
         try{
             $persistencia_banco = $this->sobre_cursista_model->cadastrarDadosSobreCursistaBanco($valores_sobre_cursista);
             if($persistencia_banco){
-                return;
+                $ultimo_id_insercao = $this->getUltimoIdIsercaoSobreCursista();
+                return $ultimo_id_insercao;
             }
             $_SESSION['mensagem_excecao'] = "Ocorreu um erro ao cadastrar os dados do formulário, tente novamente.";
             header("Location: /pesquisa_educacional/views/erro.php");

@@ -46,31 +46,36 @@
         ];
 
         
-        # Persistindo dados na tabela 'SobreCursista':
+        # Persistindo Tabela 'SobreCursista':
         $sobre_cursista_controler = new SobreCursistaControler($_SESSION['id_participante']);
-        $sobre_cursista_controler->cadastrarDadosSobreCursista($valores_sobre_cursista);
+        $id_insercao_sobre_cursista =  $sobre_cursista_controler->cadastrarDadosSobreCursista($valores_sobre_cursista);
         
-        # Tabela 'CompartilhamentoResidencia':
+        # Persistindo Tabela 'CompartilhamentoResidencia':
         $valores_compartilhamento_residencia = $_POST['compartilha_com'] ?? [];
-        $compartilhamento_residencia_controler = new CompartilhamentoResidenciaControler();
+        $compartilhamento_residencia_controler = new CompartilhamentoResidenciaControler($id_insercao_sobre_cursista);
         foreach($valor_compartilhamento as $array_valores_compartilhamento){
-        
+            $persistencia_compartilhamento_residencia =  $compartilhamento_residencia_controler->cadastrarCompartilhamentoResidencia($valor_compartilhamento);
+            if(!$persistencia_compartilhamento_residencia){
+                $_SESSION['mensagem_excecao'] = "Erro ao cadastrar dados de compartilhamento de residencia.";
+                header("Location: /pesquisa_educacional/views/erro.php");
+                exit;
+            }
         }
 
-
         # Tabela 'OpiniaoTemaSobreCursista':
-        $posse_de_armas = $_POST['posse_de_armas'] ?? null;
-        $migracao = $_POST['migracao'] ?? null;
-        $homossexualismo = $_POST['homossexualismo'] ?? null;
-        $pobreza = $_POST['pobreza'] ?? null;
-        $pena_de_morte = $_POST['pena_de_morte'] ?? null;
-        $sindicatos = $_POST['sindicatos'] ?? null;
-        $criminalidade = $_POST['criminalidade'] ?? null;
-        $adolescentes = $_POST['adolescentes'] ?? null;
-        $drogas = $_POST['drogas'] ?? null;
-        $religiao = $_POST['religiao'] ?? null;
+        $opinoes_temas_sobre_cursista = [
+            $posse_de_armas = $_POST['posse_de_armas'] ?? null,
+            $migracao = $_POST['migracao'] ?? null,
+            $homossexualismo = $_POST['homossexualismo'] ?? null,
+            $pobreza = $_POST['pobreza'] ?? null,
+            $pena_de_morte = $_POST['pena_de_morte'] ?? null,
+            $sindicatos = $_POST['sindicatos'] ?? null,
+            $criminalidade = $_POST['criminalidade'] ?? null,
+            $adolescentes = $_POST['adolescentes'] ?? null,
+            $drogas = $_POST['drogas'] ?? null,
+            $religiao = $_POST['religiao'] ?? null,
+        ];
         
-        echo '<pre>'; print_r($_POST); echo '</pre>';
 
     } else {
         // Se a requisição não for POST, bloqueia o acesso ou redireciona
