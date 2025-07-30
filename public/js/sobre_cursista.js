@@ -69,7 +69,8 @@ class ValidacoesSobreCursista {
     const municipio_naturalidade_select = document.getElementById('municipio_naturalidade');
 
     estado_naturalidade_select.addEventListener('change', () => {
-      const estadoId = estado_naturalidade_select.id;
+      const estado_selecionado = estado_naturalidade_select.options[estado_naturalidade_select.selectedIndex]
+      const estadoId = estado_selecionado.id;
       municipio_naturalidade_select.innerHTML = '<option value="">Carregando cidades...</option>';
       municipio_naturalidade_select.disabled = true;
     
@@ -91,7 +92,8 @@ class ValidacoesSobreCursista {
             console.error('Erro ao carregar as cidades:', error);
             alert('Não foi possível carregar a lista de cidades.');
           });
-      } else {
+      } 
+      else {
         municipio_naturalidade_select.innerHTML = '<option value="">Selecione um estado primeiro</option>';
         municipio_naturalidade_select.disabled = true;
       }
@@ -103,7 +105,8 @@ class ValidacoesSobreCursista {
     const estado_reside_atualmente_select = document.getElementById('estado_reside_atualmente');
     const municipio_reside_atualmente_select = document.getElementById('municipio_reside_atualmente');
     estado_reside_atualmente_select.addEventListener('change', () => {
-      const estadoId = estado_reside_atualmente_select.value;
+      const estado_selecionado = estado_reside_atualmente_select.options[estado_reside_atualmente_select.selectedIndex]
+      const estadoId = estado_selecionado.id;
       municipio_reside_atualmente_select.innerHTML = '<option value="">Carregando cidades...</option>';
       municipio_reside_atualmente_select.disabled = true;
 
@@ -114,7 +117,8 @@ class ValidacoesSobreCursista {
             municipio_reside_atualmente_select.innerHTML = '<option value="">Selecione uma cidade</option>';
             cidades.forEach(cidade => {
               const option = document.createElement('option');
-              option.value = cidade.id;
+              option.id = cidade.id
+              option.value = cidade.nome;
               option.textContent = cidade.nome;
               municipio_reside_atualmente_select.appendChild(option);
             });
