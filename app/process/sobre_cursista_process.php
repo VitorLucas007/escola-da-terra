@@ -4,13 +4,13 @@
         session_start();
     }   
 
-    if (!isset($_SESSION['id_participante'])){
-        $_SESSION['mensagem_excecao'] = 'Requisição inválida, tente novamente.';
-        header("Location: /pesquisa_educacional/views/erro.php");
-    }
+    // if (!isset($_SESSION['id_participante'])){
+    //     $_SESSION['mensagem_excecao'] = 'Requisição inválida, tente novamente.';
+    //     header("Location: /pesquisa_educacional/views/erro.php");
+    // }
 
     require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/views/includes/habilitar_debug_erro.php';
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/SobreCursistaControler.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_cursista/SobreCursistaControler.php';
 
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {

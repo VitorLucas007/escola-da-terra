@@ -258,8 +258,8 @@
           <label class="form-label fw-bold">Se casado ou em união estável:</label>
           
           <div class="mt-2"> 
-            <label class="form-check-label mb-2" for="data_nascimento_conjuge">Data de nascimento do cônjuge(Dia/Mês/Ano) se possível:</label>
-            <input type="date" class="form-control mb-2" id="data_nascimento_conjuge" name="data_nascimento_conjuge" placeholder="Data de nascimento do cônjuge">
+            <label class="form-check-label mb-2" for="data_nascimento_conjuge">Data de nascimento do cônjuge(Mẽs/Dia/Ano) se possível:</label>
+            <input type="date" class="form-control mb-2" id="data_nascimento_conjuge" name="data_nascimento_conjuge">
           </div>
       
           <div class="mt-2">

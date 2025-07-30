@@ -19,13 +19,15 @@ class SobreCursistaControler{
                 $ultimo_id_insercao = $this->getUltimoIdIsercaoSobreCursista();
                 return $ultimo_id_insercao;
             }
-            $_SESSION['mensagem_excecao'] = "Ocorreu um erro ao cadastrar os dados do formulário, tente novamente.";
-            header("Location: /pesquisa_educacional/views/erro.php");
+            // $_SESSION['mensagem_excecao'] = "Ocorreu um erro ao cadastrar os dados do formulário, tente novamente.";
+            // header("Location: /pesquisa_educacional/views/erro.php");
+            echo "Ocorreu um erro ao persistir os valores";
             exit;
         }
         catch(Exception $exception){
-            $_SESSION['mensagem_excecao'] = $exception->getMessage();
-            header("Location: /pesquisa_educacional/views/erro.php");
+            // $_SESSION['mensagem_excecao'] = $exception->getMessage();
+            // header("Location: /pesquisa_educacional/views/erro.php");
+            echo "Exceção encontrada ->" . $exception->getMessage();
             exit;
         }
     }
