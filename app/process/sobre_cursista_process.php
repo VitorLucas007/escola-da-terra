@@ -9,6 +9,8 @@
     //     header("Location: /pesquisa_educacional/views/erro.php");
     // }
 
+    $_SESSION['id_participante'] = 1; # Valor para testes.
+
     require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/views/includes/habilitar_debug_erro.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_cursista/SobreCursistaControler.php';
 
@@ -30,13 +32,13 @@
             'vive_com_filhos' => $_POST['vive_com_filhos'] ?? null,
             'filhos_vivem_com' => $_POST['filhos_vivem_com'] ?? null,
             'estado_civil' => $_POST['estado_civil'] ?? null,
-            'data_nascimento_conjugue' => $_POST['data_nascimento_conjugue'] ?? null,
-            'profissao_conjugue' => $_POST['profissao_conjugue'] ?? null,
+            'data_nascimento_conjuge' => $_POST['data_nascimento_conjuge'] ?? null,
+            'profissao_conjuge' => $_POST['profissao_conjuge'] ?? null,
             'casou_varias_vezes' => $_POST['casou_varias_vezes'] ?? null,
             'quantidade_casamentos' => $_POST['quantidade_casamentos'] ?? null,
             'sindicalizado' => $_POST['sindicalizado'] ?? null,
             'tempo_sindicalizado' => $_POST['tempo_sindicalizado'] ?? null,
-            'transporte_frequentemente_utilizado' => $_POST['transporte_frequentemente_utilizado'] ?? null,
+            'transporte_frequente' => $_POST['transporte_frequente'] ?? null,
             'tem_religiao' =>  $_POST['tem_religiao'] ?? null,
             'religiao_praticada' => $_POST['religiao_praticada'] ?? null,
             'tem_opcao_partidaria' => $_POST['tem_opcao_partidaria'] ?? null,

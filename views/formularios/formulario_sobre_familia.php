@@ -68,7 +68,7 @@
                             
                             <thead class="table-light">
                                 <tr>    
-                                    <th>Nome<br><small>(Mesmo nome indicado anteriormente)</small></th>
+                                    <th>Nome<br><small>(Apenas primeiro nome)</small></th>
                                     <th>Sexo<br><small>(Masc/Fem)</small></th>
                                     <th>Data de nascimento</th>
                                     <th>Vive com você?</th>
@@ -209,7 +209,7 @@
                             
                             <thead class="table-light">
                                 <tr>
-                                    <th>Nome<br><small>(primeiro nome)</small></th>
+                                    <th>Nome<br><small>(Mesmo nome indicado anteriormente)</small></th>
                                     <th>Situacao de vida</th>
                                 </tr>
                             </thead>
@@ -256,7 +256,7 @@
                             
                             <thead class="table-light">
                                 <tr>
-                                    <th>Nome<br><small>(primeiro nome)</small></th>
+                                    <th>Nome<br><small>(Mesmo nome indicado anteriormente)</small></th>
                                     <th>Etapa da educação básica</th>
                                     <th>Durante o período em que o seu filho não se encontra na escola, onde ele fica?</th>
                                     <th>Com quem seu filho fica?</th>

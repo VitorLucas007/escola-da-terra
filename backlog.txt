@@ -40,7 +40,7 @@
             2.3.2.3 -> Criar controllers relacionados -> Ok
             2.3.2.4 -> Criar modelos relacionados -> Ok
             2.3.2.5 -> Testar inserção em todas as tabelas relacionadas -> 
-                2.3.2.5.1 -> Testar inserção de SobreCursista -> 
+                2.3.2.5.1 -> Testar inserção de SobreCursista ->  
                 2.3.2.5.2 -> Testar inserção de CompartilhamentoResidencia -> 
                 2.3.2.5.3 -> Testar inserção de OpiniaoTemaSobreCursista ->  
             2.3.2.6 -> Habilitar logs de erro no arquivo 'erro.php' ->
