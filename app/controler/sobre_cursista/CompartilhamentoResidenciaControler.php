@@ -14,14 +14,16 @@ class CompartilhamentoResidenciaControler{
         $this->compartilhamento_residencia_model = new CompartilhamentoResidenciaModel($sobre_cursista_id);
     }
 
-    public function cadastrarCompartilhamentoResidencia($valor_compartilhamento): bool{
+    public function cadastrarCompartilhamentoResidencia($valor_compartilhamento): bool {
         try{
             return $this->compartilhamento_residencia_model->cadastrarCompartilhamentoResidenciaBanco($valor_compartilhamento);
         }
         catch(Exception $exception){
-            $_SESSION['mensagem_excecao'] = "Erro ao persistir os dados de compartilhamento de residência";
-            header("Location: /pesquisa_educacional/views/erro.php");
+            echo "Erro encontrado -> " . $exception->getMessage();
             exit;
+            // $_SESSION['mensagem_excecao'] = "Erro ao persistir os dados de compartilhamento de residência";
+            // header("Location: /pesquisa_educacional/views/erro.php");
+            // exit;
         }
     }
 
