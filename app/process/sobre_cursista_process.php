@@ -28,14 +28,16 @@
             'anos_reside_atualmente' => $_POST['anos_reside_atualmente'] ?? null,
             'residencia_propria' => $_POST['residencia_propria'] ?? null,
             'tem_filhos' => $_POST['tem_filhos'] ?? null,
-            'quantidade_filhos' => $_POST['quantidade_filhos'] ?? null,
+            'quantidade_filhos' => $_POST['quantidade_filhos'] ?? 0,
             'vive_com_filhos' => $_POST['vive_com_filhos'] ?? null,
             'filhos_vivem_com' => $_POST['filhos_vivem_com'] ?? null,
             'estado_civil' => $_POST['estado_civil'] ?? null,
+            'anos_tempo_casado' => $_POST['anos_tempo_casado'] ?? null,
+            'anos_uniao_estavel' => $_POST['anos_uniao_estavel'] ?? null,
             'data_nascimento_conjuge' => $_POST['data_nascimento_conjuge'] ?? null,
             'profissao_conjuge' => $_POST['profissao_conjuge'] ?? null,
             'casou_varias_vezes' => $_POST['casou_varias_vezes'] ?? null,
-            'quantidade_casamentos' => $_POST['quantidade_casamentos'] ?? null,
+            'quantidade_casamentos' => $_POST['quantidade_casamentos'] ?? 1,
             'sindicalizado' => $_POST['sindicalizado'] ?? null,
             'tempo_sindicalizado' => $_POST['tempo_sindicalizado'] ?? null,
             'transporte_frequente' => $_POST['transporte_frequente'] ?? null,
@@ -47,7 +49,6 @@
             'escala_politica_esquerda_direita' => $_POST['escala_politica_esquerda_direita'] ?? null
         ];
 
-        
         # Persistindo Tabela 'SobreCursista':
         $sobre_cursista_controler = new SobreCursistaControler($_SESSION['id_participante']);
         $id_insercao_sobre_cursista =  $sobre_cursista_controler->cadastrarDadosSobreCursista($valores_sobre_cursista);

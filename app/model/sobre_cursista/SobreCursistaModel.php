@@ -29,6 +29,8 @@ class SobreCursistaModel{
             vive_com_filhos,
             filhos_vivem_com,
             estado_civil,
+            anos_tempo_casado,
+            anos_uniao_estavel,
             data_nascimento_conjuge,
             profissao_conjuge,
             casou_varias_vezes,
