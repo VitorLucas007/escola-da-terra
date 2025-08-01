@@ -35,7 +35,7 @@
         
         <h2 class="text-center mb-4 mt-4 p-2 fw-bold">Informações sobre a familia</h2>
             
-        <form class="form-container" method="post" action="#">
+        <form class="form-container" method="post" action="../../app/process/sobre_familia_process.php">
             
             <div class="row">
 
@@ -96,7 +96,7 @@
                                     <td>
                                         <select name="vive_com_participante[]" class="form-select vive_com_participante_filho" required>
                                             <option value="">Selecione</option>
-                                            <option value="1'">Sim</option>
+                                            <option value="1">Sim</option>
                                             <option value="0">Não</option>
                                         </select>
                                     </td>
