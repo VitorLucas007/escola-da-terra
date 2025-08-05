@@ -32,8 +32,9 @@ class ValidacoesSobreCursista {
           erroSpan.style.display = 'none';
           input.setCustomValidity(""); // Libera envio
         }
-      } else {
-        erroSpan.style.display = 'none';
+      }
+       else {
+        erroSpan.style.display = 'inline';
         input.setCustomValidity("Ano inválido.");
       }
 

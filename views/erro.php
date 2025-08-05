@@ -3,7 +3,7 @@
             session_start();
     }
     $mensagem_excecao = $_SESSION['mensagem_excecao'] ?? '';
-    unset($mensagem_excecao);
+    unset($_SESSION['mensagem_excecao']);
 ?>
 
 <!DOCTYPE html>

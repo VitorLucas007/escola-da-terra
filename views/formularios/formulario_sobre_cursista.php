@@ -1,17 +1,19 @@
 <?php 
-    if (session_status() === PHP_SESSION_NONE) {
-        session_start();
-    } 
+  if (session_status() === PHP_SESSION_NONE) {
+      session_start();
+  } 
 
-    if(!isset($_SESSION['id_participante'])){
-        header("Location: /pesquisa_educacional/index.php");
-        exit;
-    }
+  if(!isset($_SESSION['id_participante'])){
+    header("Location: /pesquisa_educacional/index.php");
+    exit;
+  }
 
-    # Armazenando a ultima página logada para poder rastrear em casos de redirecionamento para página de erro:
-    $_SESSION['ultima_pagina'] = $_SERVER['REQUEST_URI'];
+  # Armazenando a ultima página logada para poder rastrear em casos de redirecionamento para página de erro:
+  $_SESSION['ultima_pagina'] = $_SERVER['REQUEST_URI'];
+
+  $mensagem_erro_processamento_sobre_cursista = $_SESSION['mensagem_erro_processamento_sobre_cursista'];
+  unset($_SESSION['mensagem_erro_processamento_sobre_cursista']);
 ?>
-
 
 
 <!DOCTYPE html>
@@ -23,7 +25,7 @@
     <link rel="stylesheet" href="../../public/css/sobre_cursista.css">
     <link rel="icon" type="image/jpg" href="/pesquisa_educacional/public/assets/logos/favicon.jpg">
     <?php 
-        include $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/views/includes/cdn.php';
+      include $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/views/includes/cdn.php';
     ?>
 </head>
 <body>
@@ -36,7 +38,13 @@
     
     <h2 class="text-center mb-4 mt-4 fw-bold">Informações sobre o cursista</h2>
 
-    <form class="form-container" method="post" action="#">
+    <?php if (!empty($mensagem_erro_processamento_sobre_cursista)): ?>
+      <div class="alert alert-info">
+          <?= htmlspecialchars($mensagem_erro_processamento_sobre_cursista) ?>
+      </div>    
+    <?php endif; ?>
+
+    <form class="form-container" method="POST" action="/pesquisa_educacional/app/process/sobre_cursista_process.php">
 
       <div class="row mb-4">
 
@@ -133,7 +141,7 @@
           <label class="form-label fw-bold">Você vive com:</label>
           
           <div class="form-check ">
-            <input class="form-check-input" type="checkbox" name="compartilha_com[]" id="sozinho" value="Sozinho(a)" required>
+            <input class="form-check-input" type="checkbox" name="compartilha_com[]" id="sozinho" value="Sozinho(a)">
             <label class="form-check-label" for="sozinho">Sozinho(a)</label>
           </div>
 
@@ -149,7 +157,7 @@
           
           <div class="form-check mt-2">
             <label class="form-check-label" for="outro">Outro:</label>
-            <input class="form-control" type="text" name="compartilha_com[]" id="outro" placeholder="Ex:Com amigo">
+            <input class="form-control" type="text" name="compartilha_com[]" id="outro" placeholder="Ex:Com primo">
           </div>
 
         </div>
