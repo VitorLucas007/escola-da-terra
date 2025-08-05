@@ -46,6 +46,8 @@
             2.3.2.6 -> Implementar lógica de mudança de valor da coluna 'progresso_participante' após o mesmo ter sucesso no cadastro
             de dados do primeiro formulário -> Ok
             2.3.2.7 -> Redirecionar usuário para o segundo formulário -> Ok
+            2.3.2.8 -> Implementar validações do campo 'compartilha_com'-> 
+            2.3.2.9 -> Habilitar/Desabilitar o campo 'vive_com_filhos' de acordo com a resposta do campo 'tem_filhos' -> 
         2.3.3 -> Segundo formulário -> Vitor Lucas
         2.3.4 -> Terceiro Formulário -> 
         

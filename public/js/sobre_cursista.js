@@ -14,6 +14,7 @@ class ValidacoesSobreCursista {
     this.ativarEspecificacaoOpcaoPartidaria();
     this.atualizarValorEscalaPolitica();
     this.desabilitarSliderEscalaPolitica();
+    this.validarAusenciaCampoCompartilhaCom();
   }
 
   validarAnoNascimento() {  
@@ -355,8 +356,16 @@ class ValidacoesSobreCursista {
     })
   }
 
-
-
+  validarAusenciaCampoCompartilhaCom(){
+    const formulario = document.getElementById("formulario_sobre_cursista");
+    formulario.addEventListener("submit", () => {
+      const checkboxes_compartilha_com = document.getElementsByName("compartilha_com");
+      if(checkboxes_compartilha_com.length === 0){
+        alert("Alguns valores requeridos não foram enviados, verifique e tente novamente.");
+        event.preventDefault();
+      }
+    })
+  }
 
 }
 

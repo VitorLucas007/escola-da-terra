@@ -44,7 +44,7 @@
       </div>    
     <?php endif; ?>
 
-    <form class="form-container" method="POST" action="/pesquisa_educacional/app/process/sobre_cursista_process.php">
+    <form id="formulario_sobre_cursista" class="form-container" method="POST" action="/pesquisa_educacional/app/process/sobre_cursista_process.php">
 
       <div class="row mb-4">
 
