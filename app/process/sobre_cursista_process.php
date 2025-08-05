@@ -61,12 +61,9 @@
         foreach($valores_compartilhamento_residencia as $valor_compartilhamento){
             $persistencia_compartilhamento_residencia =  $compartilhamento_residencia_controler->cadastrarCompartilhamentoResidencia($valor_compartilhamento);
             if(!$persistencia_compartilhamento_residencia){
-                echo "Erro encontrado.";
+                $_SESSION['mensagem_excecao'] = "Erro ao cadastrar dados de compartilhamento de residencia.";
+                header("Location: /pesquisa_educacional/views/erro.php");
                 exit;
-                // $_SESSION['mensagem_excecao'] = "Erro ao cadastrar dados de compartilhamento de residencia.";
-                // header("Location: /pesquisa_educacional/views/erro.php");
-                // exit;
-            
             }
         }
 
