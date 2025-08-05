@@ -39,11 +39,12 @@
             2.3.2.2 -> Obter e organizar dados oriúndos da requisição -> Ok
             2.3.2.3 -> Criar controllers relacionados -> Ok
             2.3.2.4 -> Criar modelos relacionados -> Ok
-            2.3.2.5 -> Testar inserção em todas as tabelas relacionadas -> 
+            2.3.2.5 -> Testar inserção em todas as tabelas relacionadas -> Ok
                 2.3.2.5.1 -> Testar inserção de SobreCursista ->  Ok
                 2.3.2.5.2 -> Testar inserção de CompartilhamentoResidencia -> Ok
-                2.3.2.5.3 -> Testar inserção de OpiniaoTemaSobreCursista ->  
-            2.3.2.6 -> Habilitar logs de erro no arquivo 'erro.php' ->
+                2.3.2.5.3 -> Testar inserção de OpiniaoTemaSobreCursista ->  Ok
+            2.3.2.5 -> Implementar lógica de mudança de valor da coluna 'progresso_participante' após o mesmo ter sucesso no cadastro
+            de dados do primeiro formulário -> 
         
     2.x -> Tela para login dos pesquisadores que irão aplicar as pesquisas
         2.3.1 -> Redefinir modelo 'UserAdmin' para estar adequado aos novos requisitos

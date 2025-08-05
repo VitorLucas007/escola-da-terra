@@ -15,6 +15,7 @@
     require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_cursista/SobreCursistaControler.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_cursista/CompartilhamentoResidenciaControler.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_cursista/OpiniaoTemaSobreCursistaControler.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/UserParticipanteControler.php';
 
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -89,6 +90,14 @@
                 header("Location: /pesquisa_educacional/views/erro.php");
                 exit;
             }
+        }
+
+        # Mudando o progresso do participante após ter sucesso na inserção de dados:
+        $user_participante_controler = new UserParticipanteControler();
+        $atualizacao_progresso = $user_participante_controler->atualizarProgressoParticipante($_SESSION['id_participante'], 1);
+        if(!$atualizacao_progresso){
+            echo "erro ao atualizar o progresso do participante";
+            exit;
         }
         
         echo "Dados cadastrados com sucesso";

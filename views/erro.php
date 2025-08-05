@@ -17,7 +17,6 @@
     <link rel="icon" type="image/jpg" href="/pesquisa_educacional/public/assets/logos/favicon.jpg"> 
     <?php
         include $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/views/includes/cdn.php';
-        include $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/views/incluedes/habilitar_debug_erro.php'
     ?>
 </head>
 
