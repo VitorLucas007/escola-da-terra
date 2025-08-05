@@ -67,36 +67,36 @@
             }
         }
 
-        // # Tabela 'OpiniaoTemaSobreCursista':
-        // $opiniao_tema_sobre_cursista_controler = new OpiniaoTemaSobreCursistaControler($id_insercao_sobre_cursista);
-        // $opinoes_temas_sobre_cursista = [
-        //     'posse_de_armas' => $_POST['posse_de_armas'] ?? null,
-        //     'migracao' =>  $_POST['migracao'] ?? null,
-        //     'homossexualismo' =>  $_POST['homossexualismo'] ?? null,
-        //     'pobreza' =>  $_POST['pobreza'] ?? null,
-        //     'pena_de_morte' =>  $_POST['pena_de_morte'] ?? null,
-        //     'sindicatos' =>  $_POST['sindicatos'] ?? null,
-        //     'criminalidade' =>  $_POST['criminalidade'] ?? null,
-        //     'adolescentes' =>  $_POST['adolescentes'] ?? null,
-        //     'drogas' =>  $_POST['drogas'] ?? null,
-        //     'religiao' =>  $_POST['religiao'] ?? null,
-        // ];
+        # Tabela 'OpiniaoTemaSobreCursista':
+        $opiniao_tema_sobre_cursista_controler = new OpiniaoTemaSobreCursistaControler($id_insercao_sobre_cursista);
+        $opinoes_temas_sobre_cursista = [
+            'posse_de_armas' => $_POST['posse_de_armas'] ?? null,
+            'migracao' =>  $_POST['migracao'] ?? null,
+            'homossexualismo' =>  $_POST['homossexualismo'] ?? null,
+            'pobreza' =>  $_POST['pobreza'] ?? null,
+            'pena_de_morte' =>  $_POST['pena_de_morte'] ?? null,
+            'sindicatos' =>  $_POST['sindicatos'] ?? null,
+            'criminalidade' =>  $_POST['criminalidade'] ?? null,
+            'adolescentes' =>  $_POST['adolescentes'] ?? null,
+            'drogas' =>  $_POST['drogas'] ?? null,
+            'religiao' =>  $_POST['religiao'] ?? null,
+        ];
 
-        // foreach($opinoes_temas_sobre_cursista as $tema_opiniao => $texto_opiniao){
-        //     $persistencia = $opiniao_tema_sobre_cursista_controler->cadastrarOpiniaoTemaSobreCursista($tema_opiniao, $texto_opiniao);
-        //     if(!$persistencia){
-        //         echo "erro encontrado na persistência.";
-        //         // $_SESSION['mensagem_excecao'] = "Erro ao cadastrar dados de opiniões sobre temas";
-        //         // header("Location: /pesquisa_educacional/views/erro.php");
-        //         // exit;
-        //     }
-        // }
+        foreach($opinoes_temas_sobre_cursista as $tema_opiniao => $texto_opiniao){
+            $persistencia = $opiniao_tema_sobre_cursista_controler->cadastrarOpiniaoTemaSobreCursista($tema_opiniao, $texto_opiniao);
+            if(!$persistencia){
+                $_SESSION['mensagem_excecao'] = "Erro ao cadastrar dados de opiniões sobre temas";
+                header("Location: /pesquisa_educacional/views/erro.php");
+                exit;
+            }
+        }
         
-        // echo "Dados cadastrados com sucesso";
+        echo "Dados cadastrados com sucesso";
 
     } else {
         http_response_code(405);
-        echo "Método não permitido.";
+        $_SESSION['mensagem_excecao'] = "Método não permitido";
+        header("Location: /pesquisa_educacional/views/erro.php");
         exit;
     }
 ?>
