@@ -94,15 +94,16 @@
 
         # Mudando o progresso do participante após ter sucesso na inserção de dados:
         $user_participante_controler = new UserParticipanteControler();
-        $atualizacao_progresso = $user_participante_controler->atualizarProgressoParticipante($_SESSION['id_participante'], 1);
+        $atualizacao_progresso = $user_participante_controler->atualizarProgressoParticipante($_SESSION['id_participante'], 2);
         if(!$atualizacao_progresso){
             echo "erro ao atualizar o progresso do participante";
             exit;
         }
         
-        echo "Dados cadastrados com sucesso";
-
-    } else {
+        // Redirecionando usuário para próximo formulário:
+        header("Location: /pesquisa_educacional/views/formularios/formulario_sobre_familia.php");
+    } 
+    else {
         http_response_code(405);
         $_SESSION['mensagem_excecao'] = "Método não permitido";
         header("Location: /pesquisa_educacional/views/erro.php");

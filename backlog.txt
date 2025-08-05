@@ -43,8 +43,9 @@
                 2.3.2.5.1 -> Testar inserção de SobreCursista ->  Ok
                 2.3.2.5.2 -> Testar inserção de CompartilhamentoResidencia -> Ok
                 2.3.2.5.3 -> Testar inserção de OpiniaoTemaSobreCursista ->  Ok
-            2.3.2.5 -> Implementar lógica de mudança de valor da coluna 'progresso_participante' após o mesmo ter sucesso no cadastro
-            de dados do primeiro formulário -> 
+            2.3.2.6 -> Implementar lógica de mudança de valor da coluna 'progresso_participante' após o mesmo ter sucesso no cadastro
+            de dados do primeiro formulário -> Ok
+            2.3.2.7 -> Redirecionar usuário para o segundo formulário -> 
         
     2.x -> Tela para login dos pesquisadores que irão aplicar as pesquisas
         2.3.1 -> Redefinir modelo 'UserAdmin' para estar adequado aos novos requisitos
