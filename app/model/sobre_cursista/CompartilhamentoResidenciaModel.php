@@ -19,7 +19,7 @@ class CompartilhamentoResidenciaModel{
 
     public function cadastrarCompartilhamentoResidenciaBanco($valor_compartilhamento) : bool{
         $sql = "INSERT INTO CompartilhamentoResidencia(sobre_cursista_id, compartilha_com)
-        VALUES(:participante_id, :compartilha_com)
+        VALUES(:sobre_cursista_id, :compartilha_com)
         ";
         
         $parametros = [

@@ -16,29 +16,35 @@ class InformacaoIrmaoModel
 
     // Funções CRUD para persistência
 
-    function inserirInformacaoIrmao(array $valores_sobre_irmao): bool {
+function inserirInformacaoIrmao(array $valores_sobre_irmao): bool {
         $sql = "INSERT INTO InformacaoIrmao (
-            sobre_irmao_id,
+            sobre_familia_id,
             nome,
             profissao,
             habita_mesma_localidade,
             local_habitacao
         ) VALUES (
-            :sobre_irmao_id,
+            :sobre_familia_id,
             :nome,
             :profissao,
             :habita_mesma_localidade,
             :local_habitacao
         )";
-
+        
+        // CORREÇÃO: Usando sobre_familia_id (nome correto da chave estrangeira)
         $parametros = [
-            ":sobre_irmao_id" => $valores_sobre_irmao['sobre_irmao_id'],
-            ":nome" => $valores_sobre_irmao['nome'],
-            ":profissao" => $valores_sobre_irmao['profissao'],
-            ":habita_mesma_localidade" => $valores_sobre_irmao['habita_mesma_localidade'],
-            ":local_habitacao" => $valores_sobre_irmao['local_habitacao']
+            ":sobre_familia_id" => isset($valores_sobre_irmao['sobre_familia_id']) ? 
+                                  $valores_sobre_irmao['sobre_familia_id'] : null,
+            ":nome" => isset($valores_sobre_irmao['nome']) ? 
+                      $valores_sobre_irmao['nome'] : null,
+            ":profissao" => isset($valores_sobre_irmao['profissao']) ? 
+                           $valores_sobre_irmao['profissao'] : 'Desconhecido',
+            ":habita_mesma_localidade" => isset($valores_sobre_irmao['habita_mesma_localidade']) ? 
+                                         $valores_sobre_irmao['habita_mesma_localidade'] : 0,
+            ":local_habitacao" => isset($valores_sobre_irmao['local_habitacao']) ? 
+                                 $valores_sobre_irmao['local_habitacao'] : null
         ];
-
+        
         return $this->banco_de_dados->executar($sql, $parametros);
     }
 

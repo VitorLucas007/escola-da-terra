@@ -20,10 +20,9 @@ class CompartilhamentoResidenciaControler{
         }
         catch(Exception $exception){
             echo "Erro encontrado -> " . $exception->getMessage();
+            $_SESSION['mensagem_excecao'] = "Erro ao persistir os dados de compartilhamento de residência";
+            header("Location: /pesquisa_educacional/views/erro.php");
             exit;
-            // $_SESSION['mensagem_excecao'] = "Erro ao persistir os dados de compartilhamento de residência";
-            // header("Location: /pesquisa_educacional/views/erro.php");
-            // exit;
         }
     }
 

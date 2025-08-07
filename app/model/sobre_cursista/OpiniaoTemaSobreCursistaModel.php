@@ -14,8 +14,7 @@ class OpiniaoTemaSobreCursistaModel{
 
     public function cadastrarOpiniaoTemaSobreCursistaBanco($tema_opiniao, $texto_opiniao): bool{
         $sql = "INSERT INTO OpiniaoTemaSobreCursista(sobre_cursista_id, tema_opiniao, texto_opiniao)
-        VALUES(:sobre_cursista_id, :tema_opiniao, :texto_opiniao)
-        " ;
+        VALUES(:sobre_cursista_id, :tema_opiniao, :texto_opiniao)";
 
         $parametros = [
             'sobre_cursista_id' => $this->sobre_cursista_id,

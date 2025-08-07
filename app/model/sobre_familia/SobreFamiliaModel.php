@@ -28,8 +28,8 @@ class SobreFamiliaModel {
         
         $params = [
             ':participante_id' => $valores_sobre_familia['participante_id'],
-            ':possui_filhos' => $valores_sobre_familia['possui_filhos'],
-            ':quantidade_irmaos' => $valores_sobre_familia['quantidade_irmaos']
+            ':possui_filhos' => $valores_sobre_familia['possuiFilhos'],
+            ':quantidade_irmaos' => $valores_sobre_familia['quantidadeIrmaos']
         ];
         
         return $this->banco_de_dados->executar($sql, $params);

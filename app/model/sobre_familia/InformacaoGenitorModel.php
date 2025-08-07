@@ -20,37 +20,59 @@ class InformacaoGenitorModel
         return $this->banco_de_dados->consultar($sql);
     }
 
-    function inserirInformacaoGenitor(array $valores_sobre_genitor): bool {
-        $sql = "INSERT INTO InformacaoGenitor (
-            sobre_familia_id,
-            tipo_genitor,
-            escolaridade,
-            naturalidade,
-            religiao,
-            participa_grupo,
-            grupo_participa
-        ) VALUES (
-            :sobre_familia_id,
-            :tipo_genitor,
-            :escolaridade,
-            :naturalidade,
-            :religiao,
-            :participa_grupo,
-            :grupo_participa
-        )";
+   function inserirInformacaoGenitor(array $valores_sobre_genitor): bool {
+    $sql = "INSERT INTO InformacaoGenitor (
+        sobre_familia_id,
+        tipo_genitor,
+        escolaridade,
+        profissao,
+        naturalidade,
+        religiao,
+        participa_grupo,
+        grupos_participacao
+    ) VALUES (
+        :sobre_familia_id,
+        :tipo_genitor,
+        :escolaridade,
+        :profissao,
+        :naturalidade,
+        :religiao,
+        :participa_grupo,
+        :grupos_participacao
+    )";
 
-        $parametros = [
-            ":sobre_familia_id" => $valores_sobre_genitor['sobre_genitor_id'],
-            ":tipo_genitor" => $valores_sobre_genitor['tipo_genitor'],
-            ":escolaridade" => $valores_sobre_genitor['escolaridade'],
-            ":naturalidade" => $valores_sobre_genitor['naturalidade'],
-            ":religiao" => $valores_sobre_genitor['religiao'],
-            ":participa_grupo" => $valores_sobre_genitor['participa_grupo'],
-            ":grupo_participa" => $valores_sobre_genitor['grupo_participa']
-        ];
+    $parametros = [
+        // CORREÇÃO 1: Mapeamento correto da chave estrangeira
+        ":sobre_familia_id" => isset($valores_sobre_genitor['sobre_familia_id']) ? 
+                              $valores_sobre_genitor['sobre_familia_id'] : null,
+        
+        // CORREÇÃO 2: Proteção contra undefined array keys
+        ":tipo_genitor" => isset($valores_sobre_genitor['tipo_genitor']) ? 
+                          $valores_sobre_genitor['tipo_genitor'] : null,
+        
+        ":escolaridade" => isset($valores_sobre_genitor['escolaridade']) ? 
+                          $valores_sobre_genitor['escolaridade'] : null,
+        
+        // CORREÇÃO 3: Adicionada coluna profissao que estava ausente
+        ":profissao" => isset($valores_sobre_genitor['profissao']) ? 
+                       $valores_sobre_genitor['profissao'] : 'Desconhecido',
+        
+        ":naturalidade" => isset($valores_sobre_genitor['naturalidade']) ? 
+                          $valores_sobre_genitor['naturalidade'] : 'Desconhecido',
+        
+        ":religiao" => isset($valores_sobre_genitor['religiao']) ? 
+                      $valores_sobre_genitor['religiao'] : 'Desconhecido',
+        
+        ":participa_grupo" => isset($valores_sobre_genitor['participa_grupo']) ? 
+                             $valores_sobre_genitor['participa_grupo'] : null,
+        
+        // CORREÇÃO 4: Nome correto da coluna
+        ":grupos_participacao" => isset($valores_sobre_genitor['grupos_participacao']) ? 
+                                 $valores_sobre_genitor['grupos_participacao'] : null
+    ];
 
-        return $this->banco_de_dados->executar($sql, $parametros);
-    }
+    return $this->banco_de_dados->executar($sql, $parametros);
+}
 
     public function getUltimoIdInsercaoInformacaoGenitor() : string {
         return $this->banco_de_dados->getUltimoIdInsercao();

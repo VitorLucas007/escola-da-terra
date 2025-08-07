@@ -19,45 +19,65 @@ class InformacaoAvosModel
     function inserirInformacaoAvos($valores_informacao_avos)
     {
         $sql = "INSERT INTO InformacaoAvos (
-            id_informacao_avos,
-            tipo_avos,
-            escolaridade_avo_mascs,
-            escolaridade_avo_fem,
-            profissao_avo_masc,
-            profissao_avo_fem,
-            naturalidade_avo_masc,
-            naturalidade_avo_fem,
-            religiao_avos
-        ) VALUES (
-            :idInformacaoAvos,
-            :tipo_avos,
-            :escolaridade_avo_mascs,
-            :escolaridade_avo_fem,
-            :profissao_avo_masc,
-            :profissao_avo_fem,
-            :naturalidade_avo_masc,
-            :naturalidade_avo_fem,
-            :religiao_avos
-        )";
+        sobre_familia_id,
+        tipo_avos,
+        escolaridade_avo_masc,
+        escolaridade_avo_fem,
+        profissao_avo_masc,
+        profissao_avo_fem,
+        naturalidade_avo_masc,
+        naturalidade_avo_fem,
+        religiao_avos
+    ) VALUES (
+        :sobre_familia_id,
+        :tipo_avos,
+        :escolaridade_avo_masc,
+        :escolaridade_avo_fem,
+        :profissao_avo_masc,
+        :profissao_avo_fem,
+        :naturalidade_avo_masc,
+        :naturalidade_avo_fem,
+        :religiao_avos
+    )";
+
         $parametros = [
-            ':idInformacaoAvos' => $valores_informacao_avos['id_informacao_avos'],
-            ':tipo_avos' => $valores_informacao_avos['tipo_avos'],
-            ':escolaridade_avo_mascs' => $valores_informacao_avos['escolaridade_avo_mascs'],
-            ':escolaridade_avo_fem' => $valores_informacao_avos['escolaridade_avo_fem'],
-            ':profissao_avo_masc' => $valores_informacao_avos['profissao_avo_masc'],
-            ':profissao_avo_fem' => $valores_informacao_avos['profissao_avo_fem'],
-            ':naturalidade_avo_masc' => $valores_informacao_avos['naturalidade_avo_masc'],
-            ':naturalidade_avo_fem' => $valores_informacao_avos['naturalidade_avo_fem'],
-            ':religiao_avos' => $valores_informacao_avos['religiao_avos']
+            ':sobre_familia_id' => isset($valores_informacao_avos['sobre_familia_id']) ?
+                $valores_informacao_avos['sobre_familia_id'] : null,
+
+
+            ':tipo_avos' => isset($valores_informacao_avos['tipo_avos']) ?
+                $valores_informacao_avos['tipo_avos'] : null,
+
+
+            ':escolaridade_avo_masc' => isset($valores_informacao_avos['escolaridade_avo_masc']) ?
+                $valores_informacao_avos['escolaridade_avo_masc'] : null,
+
+            ':escolaridade_avo_fem' => isset($valores_informacao_avos['escolaridade_avo_fem']) ?
+                $valores_informacao_avos['escolaridade_avo_fem'] : null,
+
+            ':profissao_avo_masc' => isset($valores_informacao_avos['profissao_avo_masc']) ?
+                $valores_informacao_avos['profissao_avo_masc'] : 'Desconhecido',
+
+            ':profissao_avo_fem' => isset($valores_informacao_avos['profissao_avo_fem']) ?
+                $valores_informacao_avos['profissao_avo_fem'] : 'Desconhecido',
+
+            ':naturalidade_avo_masc' => isset($valores_informacao_avos['naturalidade_avo_masc']) ?
+                $valores_informacao_avos['naturalidade_avo_masc'] : 'Desconhecido',
+
+            ':naturalidade_avo_fem' => isset($valores_informacao_avos['naturalidade_avo_fem']) ?
+                $valores_informacao_avos['naturalidade_avo_fem'] : 'Desconhecido',
+
+            ':religiao_avos' => isset($valores_informacao_avos['religiao_avos']) ?
+                $valores_informacao_avos['religiao_avos'] : 'Desconhecido'
         ];
 
         return $this->banco_de_dados->executar($sql, $parametros);
-
     }
 
-    public function getUltimoIdInsercaoInformacaoAvos() : string {
+    public function getUltimoIdInsercaoInformacaoAvos(): string
+    {
         return $this->banco_de_dados->getUltimoIdInsercao();
-    }   
+    }
 
     function listarInformacaoAvos()
     {
@@ -66,18 +86,9 @@ class InformacaoAvosModel
     }
 
 
-    function modificarInformacaoAvos()
-    {
+    function modificarInformacaoAvos() {}
 
-    }
+    function excluirInformacaoAvos() {}
 
-    function excluirInformacaoAvos()
-    {
-
-    }
-
-    function buscarInformacaoAvos()
-    {
-
-    }
+    function buscarInformacaoAvos() {}
 }
