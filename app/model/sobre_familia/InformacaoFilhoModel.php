@@ -16,7 +16,7 @@ class InformacaoFilhoModel
 
     // Funções de CRUD para persistência
 
-   function inserirInformacaoFilho(array $valores_informacao_filho)
+    function inserirInformacaoFilho(array $valores_informacao_filho)
     {
         // CORREÇÃO 1: Removida a vírgula após 'idade_saiu_casa'
         // CORREÇÃO 3: Adicionada a coluna sobre_familia_id (chave estrangeira obrigatória)
@@ -39,50 +39,46 @@ class InformacaoFilhoModel
             :solteiro,
             :idade_saiu_casa
         )";
-        
+
         // CORREÇÃO 2: Adicionado verificação para evitar "Undefined array key"
         // CORREÇÃO 3: Adicionado sobre_familia_id nos parâmetros
         $parametros = [
-            ':id_informacao_filho' => isset($valores_informacao_filho['id_informacao_filho']) ? 
-                                      $valores_informacao_filho['id_informacao_filho'] : 
-                                      $this->id_informacao_filho,
-            ':sobre_familia_id' => isset($valores_informacao_filho['sobre_familia_id']) ? 
-                                  $valores_informacao_filho['sobre_familia_id'] : null,
-            ':nome' => isset($valores_informacao_filho['nome']) ? 
-                      $valores_informacao_filho['nome'] : null,
-            ':sexo' => isset($valores_informacao_filho['sexo']) ? 
-                      $valores_informacao_filho['sexo'] : null,
-            ':data_nascimento' => isset($valores_informacao_filho['data_nascimento']) ? 
-                                 $valores_informacao_filho['data_nascimento'] : null,
-            ':vive_com_participante' => isset($valores_informacao_filho['vive_com_participante']) ? 
-                                       $valores_informacao_filho['vive_com_participante'] : null,
-            ':solteiro' => isset($valores_informacao_filho['solteiro']) ? 
-                          $valores_informacao_filho['solteiro'] : null,
-            ':idade_saiu_casa' => isset($valores_informacao_filho['idade_saiu_casa']) ? 
-                                 $valores_informacao_filho['idade_saiu_casa'] : null
+            ':id_informacao_filho' => isset($valores_informacao_filho['id_informacao_filho']) ?
+                $valores_informacao_filho['id_informacao_filho'] :
+                $this->id_informacao_filho,
+            ':sobre_familia_id' => isset($valores_informacao_filho['sobre_familia_id']) ?
+                $valores_informacao_filho['sobre_familia_id'] : null,
+            ':nome' => isset($valores_informacao_filho['nome']) ?
+                $valores_informacao_filho['nome'] : null,
+            ':sexo' => isset($valores_informacao_filho['sexo']) ?
+                $valores_informacao_filho['sexo'] : null,
+            ':data_nascimento' => isset($valores_informacao_filho['data_nascimento']) ?
+                $valores_informacao_filho['data_nascimento'] : null,
+            ':vive_com_participante' => isset($valores_informacao_filho['vive_com_participante']) ?
+                $valores_informacao_filho['vive_com_participante'] : null,
+            ':solteiro' => isset($valores_informacao_filho['solteiro']) ?
+                $valores_informacao_filho['solteiro'] : null,
+            ':idade_saiu_casa' => isset($valores_informacao_filho['idade_saiu_casa']) ?
+                $valores_informacao_filho['idade_saiu_casa'] : null
         ];
-        
+
         return $this->banco_de_dados->executar($sql, $parametros);
     }
 
-    public function getUltimoIdInsercaoInformacaoFilho() : string {
+    public function getUltimoIdInsercaoInformacaoFilho(): string
+    {
         return $this->banco_de_dados->getUltimoIdInsercao();
     }
 
-    function listarInformacaoFilho() {
-     $sql = "SELECT * FROM InformacaoFilho";
+    function listarInformacaoFilho()
+    {
+        $sql = "SELECT * FROM InformacaoFilho";
         return $this->banco_de_dados->consultar($sql);
     }
 
-    function modificarInformacaoFilho() {
+    function modificarInformacaoFilho() {}
 
-    }
+    function excluirInformacaoFilho() {}
 
-    function excluirInformacaoFilho() {
-
-    }
-
-    function buscarSobreInformacaoFilho() {
-
-    }
+    function buscarSobreInformacaoFilho() {}
 }
