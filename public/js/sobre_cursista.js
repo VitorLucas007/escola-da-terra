@@ -15,6 +15,7 @@ class ValidacoesSobreCursista {
     this.atualizarValorEscalaPolitica();
     this.desabilitarSliderEscalaPolitica();
     this.validarAusenciaCampoCompartilhaCom();
+    this.validarCampoViveComFilhos();
   }
 
   validarAnoNascimento() {  
@@ -367,22 +368,37 @@ class ValidacoesSobreCursista {
     })
   }
 
+  validarCampoViveComFilhos(){
+    const inputs_tem_filhos = document.getElementsByName("tem_filhos");
+    const inputs_vive_com_filhos = document.getElementsByName("vive_com_filhos");
+
+    inputs_tem_filhos.forEach(input => {
+      input.addEventListener("change", () => {
+        if(input.checked && input.value === "1"){
+          inputs_vive_com_filhos.forEach(input => {
+            input.disabled = false;
+            input.required = true
+          })
+        }
+        else{
+          inputs_vive_com_filhos.forEach(input => {
+           input.disabled = true;
+           input.required = false;
+          })
+        }
+      })
+    })
+
+    inputs_vive_com_filhos.forEach(input => {
+      input.disabled = true;
+    })
+        
+  }
+
 }
 
 document.addEventListener('DOMContentLoaded', function() {
   new ValidacoesSobreCursista();
 })
 
-
-
-document.addEventListener('DOMContentLoaded', function() {
-});
-
-
-
-// Lógica para ativação e desativação do campo de texto relacionado a coluna 'tem_opcao_partidaria':
-document.addEventListener('DOMContentLoaded', function() {
-});
-
-// Funções usadas no slider da coluna 'escala_politica_esquerda_direita':
 
