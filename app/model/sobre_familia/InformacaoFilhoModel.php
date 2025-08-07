@@ -18,8 +18,7 @@ class InformacaoFilhoModel
 
     function inserirInformacaoFilho(array $valores_informacao_filho)
     {
-        // CORREÇÃO 1: Removida a vírgula após 'idade_saiu_casa'
-        // CORREÇÃO 3: Adicionada a coluna sobre_familia_id (chave estrangeira obrigatória)
+
         $sql = "INSERT INTO InformacaoFilho (
             id_informacao_filho,
             sobre_familia_id,
@@ -40,8 +39,7 @@ class InformacaoFilhoModel
             :idade_saiu_casa
         )";
 
-        // CORREÇÃO 2: Adicionado verificação para evitar "Undefined array key"
-        // CORREÇÃO 3: Adicionado sobre_familia_id nos parâmetros
+
         $parametros = [
             ':id_informacao_filho' => isset($valores_informacao_filho['id_informacao_filho']) ?
                 $valores_informacao_filho['id_informacao_filho'] :
