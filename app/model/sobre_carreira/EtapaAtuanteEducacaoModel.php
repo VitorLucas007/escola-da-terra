@@ -15,7 +15,7 @@ class EtapaAtuanteEducacaoModel {
     }
 
 
-    public function cadastrarEtapaAtuanteEducacao(array $valores_etapa_atuante): bool {
+    public function inserirEtapaAtuanteEducacao(array $valores_etapa_atuante): bool {
         $sql = "INSERT INTO EtapaAtuanteEducacao (
             participante_id,
             estabelecimento_trabalho_id,

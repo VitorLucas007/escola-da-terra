@@ -17,7 +17,7 @@ class TrabalhoAnteriorModel
 
 
     // CRUD
-    public function cadastrarTrabalhoAnterior(array $valores_trabalho_anterior): bool
+    public function inserirTrabalhoAnterior(array $valores_trabalho_anterior): bool
     {
         $sql = "INSERT INTO TrabalhoAnterior (
             participante_id,

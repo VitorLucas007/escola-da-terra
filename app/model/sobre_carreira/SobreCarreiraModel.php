@@ -16,7 +16,7 @@ class SobreCarreiraModel
 
 
     // CRUD
-    public function cadastrarSobreCarreira(array $valores_sobre_carreira): bool
+    public function inserirSobreCarreira(array $valores_sobre_carreira): bool
     {
         $sql = "INSERT INTO SobreCarreira (
             participante_id,

@@ -14,7 +14,7 @@ class EstabelecimenTrabalhoModel
     }
 
     // CRUD
-    public function cadastrarEstabelecimentoTrabalho(array $valores_estabelecimento): bool
+    public function inserirEstabelecimentoTrabalho(array $valores_trabalho_estabelecimento): bool
     {
         $sql = "INSERT INTO EstabelecimentoTrabalho (
             id_estabelecimento_trabalho,
@@ -40,24 +40,24 @@ class EstabelecimenTrabalhoModel
         )";
 
         $params = [
-            ':id_estabelecimento_trabalho' => isset($valores_estabelecimento['id_estabelecimento_trabalho']) ?
-                $valores_estabelecimento['id_estabelecimento_trabalho'] : null,
-            ':sobre_carreira_id' => isset($valores_estabelecimento['sobre_carreira_id']) ?
-                $valores_estabelecimento['sobre_carreira_id'] : null,
-            ':nome_escola' => isset($valores_estabelecimento['nome_escola']) ?
-                $valores_estabelecimento['nome_escola'] : null,
-            ':jornada_trabalho_semanal' => isset($valores_estabelecimento['jornada_trabalho_semanal']) ?
-                $valores_estabelecimento['jornada_trabalho_semanal'] : null,
-            ':situacao_funcional' => isset($valores_estabelecimento['situacao_funcional']) ?
-                $valores_estabelecimento['situacao_funcional'] : null,
-            ':tipo_turma' => isset($valores_estabelecimento['tipo_turma']) ?
-                $valores_estabelecimento['tipo_turma'] : null,
-            ':localizacao_escola' => isset($valores_estabelecimento['localizacao_escola']) ?
-                $valores_estabelecimento['localizacao_escola'] : null,
-            ':dependencia_administrativa' => isset($valores_estabelecimento['dependencia_administrativa']) ?
-                $valores_estabelecimento['dependencia_administrativa'] : null,
-            ':contexto_escolar' => isset($valores_estabelecimento['contexto_escolar']) ?
-                $valores_estabelecimento['contexto_escolar'] : null
+            ':id_estabelecimento_trabalho' => isset($valores_trabalho_estabelecimento['id_estabelecimento_trabalho']) ?
+                $valores_trabalho_estabelecimento['id_estabelecimento_trabalho'] : null,
+            ':sobre_carreira_id' => isset($valores_trabalho_estabelecimento['sobre_carreira_id']) ?
+                $valores_trabalho_estabelecimento['sobre_carreira_id'] : null,
+            ':nome_escola' => isset($valores_trabalho_estabelecimento['nome_escola']) ?
+                $valores_trabalho_estabelecimento['nome_escola'] : null,
+            ':jornada_trabalho_semanal' => isset($valores_trabalho_estabelecimento['jornada_trabalho_semanal']) ?
+                $valores_trabalho_estabelecimento['jornada_trabalho_semanal'] : null,
+            ':situacao_funcional' => isset($valores_trabalho_estabelecimento['situacao_funcional']) ?
+                $valores_trabalho_estabelecimento['situacao_funcional'] : null,
+            ':tipo_turma' => isset($valores_trabalho_estabelecimento['tipo_turma']) ?
+                $valores_trabalho_estabelecimento['tipo_turma'] : null,
+            ':localizacao_escola' => isset($valores_trabalho_estabelecimento['localizacao_escola']) ?
+                $valores_trabalho_estabelecimento['localizacao_escola'] : null,
+            ':dependencia_administrativa' => isset($valores_trabalho_estabelecimento['dependencia_administrativa']) ?
+                $valores_trabalho_estabelecimento['dependencia_administrativa'] : null,
+            ':contexto_escolar' => isset($valores_trabalho_estabelecimento['contexto_escolar']) ?
+                $valores_trabalho_estabelecimento['contexto_escolar'] : null
 
         ];
 
