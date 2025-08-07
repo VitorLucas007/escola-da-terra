@@ -19,15 +19,13 @@ class SobreCursistaControler{
                 $ultimo_id_insercao = $this->getUltimoIdIsercaoSobreCursista();
                 return $ultimo_id_insercao;
             }
-            // $_SESSION['mensagem_excecao'] = "Ocorreu um erro ao cadastrar os dados do formulário, tente novamente.";
-            // header("Location: /pesquisa_educacional/views/erro.php");
-            echo "Ocorreu um erro ao persistir os valores";
+            $_SESSION['mensagem_excecao'] = "Infelizmente não foi possível cadastrar os dados sobre o cursista, tente novamente.";
+            header("Location: /pesquisa_educacional/views/erro.php");
             exit;
         }
         catch(Exception $exception){
-            // $_SESSION['mensagem_excecao'] = $exception->getMessage();
-            // header("Location: /pesquisa_educacional/views/erro.php");
-            echo "Exceção encontrada ->" . $exception->getMessage();
+            $_SESSION['mensagem_excecao'] = "Erro -> " . $exception->getMessage();
+            header("Location: /pesquisa_educacional/views/erro.php");
             exit;
         }
     }
@@ -37,7 +35,7 @@ class SobreCursistaControler{
             return $this->sobre_cursista_model->getUltimoIdInsercaoSobreCursistaBanco();
         }
         catch(Exception $exception){
-            $_SESSION['mensagem_excecao'] = "Erro ao obter o último ID de inserção.";
+            $_SESSION['mensagem_excecao'] = "Infelizmente ocorreu um erro interno ao obter dados auxiliáres de ID.\nErro -> " . $exception->getMessage();
             header("Location: /pesquisa_educacional/views/erro.php");
             exit;
         }

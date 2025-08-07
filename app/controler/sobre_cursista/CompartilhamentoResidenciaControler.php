@@ -19,8 +19,7 @@ class CompartilhamentoResidenciaControler{
             return $this->compartilhamento_residencia_model->cadastrarCompartilhamentoResidenciaBanco($valor_compartilhamento);
         }
         catch(Exception $exception){
-            echo "Erro encontrado -> " . $exception->getMessage();
-            $_SESSION['mensagem_excecao'] = "Erro ao persistir os dados de compartilhamento de residência";
+            $_SESSION['mensagem_excecao'] = "Erro ao persistir os dados de compartilhamento de residência\nErro -> " . $exception->getMessage();
             header("Location: /pesquisa_educacional/views/erro.php");
             exit;
         }

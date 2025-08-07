@@ -90,28 +90,28 @@
 
           <div class="col-md-6 mb-4">
             <label for="estado_naturalidade" class="form-label fw-bold">Estado de naturalidade:</label>
-            <select id="estado_naturalidade" class="form-select" required>
+            <select name="estado_naturalidade" id="estado_naturalidade" class="form-select" required>
               <option value="">Selecione um estado</option>
             </select>    
           </div>
 
           <div class="col-md-6 mb-4">
             <label for="municipio_naturalidade" class="form-label fw-bold">Município de naturalidade:</label>
-            <select id="municipio_naturalidade" class="form-select" required>
+            <select id="municipio_naturalidade" name="municipio_naturalidade" class="form-select" required>
               <option value="">Selecione um estado primeiro</option>
             </select>    
           </div>
 
           <div class="col-md-6 mb-4">
             <label for="estado_reside_atualmente" class="form-label fw-bold">Estado onde reside atualmente:</label>
-            <select id="estado_reside_atualmente" class="form-select" required>
+            <select id="estado_reside_atualmente" name="estado_reside_atualmente" class="form-select" required>
               <option value="">Selecione um estado</option>
             </select>    
           </div>
 
           <div class="col-md-6 mb-4">
             <label for="muncicipio_reside_atualmente" class="form-label fw-bold">Município onde reside atualmente:</label>
-            <select id="municipio_reside_atualmente" class="form-select" required>
+            <select id="municipio_reside_atualmente" name="municipio_reside_atualmente" class="form-select" required>
               <option value="">Selecione um estado primeiro</option>
             </select>    
           </div>

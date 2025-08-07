@@ -23,13 +23,13 @@ class UserParticipanteControler{
                 exit;
             }
             else{   
-                $_SESSION['mensagem_erro_user_participante'] = "Ocorreu um erro ao salvar o telefone do participante, tente novamente.";
+                $_SESSION['mensagem_erro_user_participante'] = "Infelizmente ocorreu um erro ao salvar o telefone do participante, tente novamente.";
                 header('Location: /pesquisa_educacional/index.php');
                 exit;
             }
         }
         catch(Exception $exception){
-            $_SESSION['mensagem_excecao'] = $exception->getMessage();
+            $_SESSION['mensagem_excecao'] = "Infelizmente ocorreu um erro ao cadastrar os dados do participante, tente novamente.\nErro -> " . $exception->getMessage();
             header("Location: /pesquisa_educacional/views/erro.php");
             exit;
         }
@@ -44,7 +44,7 @@ class UserParticipanteControler{
             return false;
         }
         catch(Exception $exception){
-            $_SESSION['mensagem_excecao'] = $exception->getMessage();
+            $_SESSION['mensagem_excecao'] = "Infelizmente ocorreu um erro ao atualizar o progresso do participante\nErro -> " . $exception->getMessage();
             header("Location: /pesquisa_educacional/views/erro.php");
             exit;
         }
@@ -61,7 +61,7 @@ class UserParticipanteControler{
             }
         }
         catch(Exception $exception){
-            $_SESSION['mensagem_excecao'] = $exception->getMessage();
+            $_SESSION['mensagem_excecao'] = "Infelizmente ocorreu um erro ao verificar credênciais do participante, tente novamente.\nErro -> " . $exception->getMessage();
             header("Location: /pesquisa_educacional/views/erro.php");
             exit;
         }
@@ -83,7 +83,7 @@ class UserParticipanteControler{
             }
         }
         catch(Exception $exception){
-            $_SESSION['mensagem_excecao'] = $exception->getMessage();
+            $_SESSION['mensagem_excecao'] = "Infelizmente ocorreu um erro ao obter a credênciais do participante, tente novamente.\nErro -> " . $exception->getMessage();
             header("Location: /pesquisa_educacional/views/erro.php");
             exit;
         }
@@ -120,7 +120,7 @@ class UserParticipanteControler{
             }
         }
         catch(Exception $exception){
-            $_SESSION['mensagem_excecao'] = $exception->getMessage();
+            $_SESSION['mensagem_excecao'] = "Infelizmente ocorreu um erro no redirecianamento ao formulário, tente novamente.\nErro -> " . $exception->getMessage();
             header("Location: /pesquisa_educacional/views/erro.php");
             exit;
         }
@@ -131,7 +131,7 @@ class UserParticipanteControler{
            return $this->user_participante_model->getIdUltimaPersistenciaBanco();
         }
         catch(Exception $exception){
-            $_SESSION['mensagem_excecao'] = "Erro ao obter o último ID de inserção.";
+            $_SESSION['mensagem_excecao'] = "Erro ao obter o último ID de inserção, tente novamente.\nErro -> " . $exception->getMessage();
             header("Location: /pesquisa_educacional/views/erro.php");
             exit;
         }
