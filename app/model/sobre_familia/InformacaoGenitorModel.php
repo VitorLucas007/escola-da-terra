@@ -44,18 +44,17 @@ class InformacaoGenitorModel
     )";
 
         $parametros = [
-            // CORREÇÃO 1: Mapeamento correto da chave estrangeira
+
             ":sobre_familia_id" => isset($valores_sobre_genitor['sobre_familia_id']) ?
                 $valores_sobre_genitor['sobre_familia_id'] : null,
 
-            // CORREÇÃO 2: Proteção contra undefined array keys
             ":tipo_genitor" => isset($valores_sobre_genitor['tipo_genitor']) ?
                 $valores_sobre_genitor['tipo_genitor'] : null,
 
             ":escolaridade" => isset($valores_sobre_genitor['escolaridade']) ?
                 $valores_sobre_genitor['escolaridade'] : null,
 
-            // CORREÇÃO 3: Adicionada coluna profissao que estava ausente
+
             ":profissao" => isset($valores_sobre_genitor['profissao']) ?
                 $valores_sobre_genitor['profissao'] : 'Desconhecido',
 
@@ -68,7 +67,6 @@ class InformacaoGenitorModel
             ":participa_grupo" => isset($valores_sobre_genitor['participa_grupo']) ?
                 $valores_sobre_genitor['participa_grupo'] : null,
 
-            // CORREÇÃO 4: Nome correto da coluna
             ":grupos_participacao" => isset($valores_sobre_genitor['grupos_participacao']) ?
                 $valores_sobre_genitor['grupos_participacao'] : null
         ];

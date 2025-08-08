@@ -32,7 +32,6 @@ class InformacaoIrmaoModel
             :local_habitacao
         )";
 
-        // CORREÇÃO: Usando sobre_familia_id (nome correto da chave estrangeira)
         $parametros = [
             ":sobre_familia_id" => isset($valores_sobre_irmao['sobre_familia_id']) ?
                 $valores_sobre_irmao['sobre_familia_id'] : null,
