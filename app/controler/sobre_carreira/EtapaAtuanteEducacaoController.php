@@ -1,11 +1,11 @@
 <?php 
 
-if (session_start() == PHP_SESSION_NONE) {
+if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/model/sobre_carreira/EtapaAtuanteEducacaoControllerModel.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/model/sobre_carreira/EtapaAtuanteEducacaoModel.php';
 
 
 class EtapaAtuanteEducacaoController {

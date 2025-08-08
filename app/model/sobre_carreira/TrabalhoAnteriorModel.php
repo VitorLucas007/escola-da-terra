@@ -20,20 +20,16 @@ class TrabalhoAnteriorModel
     public function inserirTrabalhoAnterior(array $valores_trabalho_anterior): bool
     {
         $sql = "INSERT INTO TrabalhoAnterior (
-            participante_id,
             sobre_carreira_id,
             nome_profissao,
             como_exercia
         ) VALUES (
-            :participante_id,
             :sobre_carreira_id,
             :nome_profissao,
             :como_exercia
         )";
 
         $params = [
-            ':participante_id' => isset($valores_trabalho_anterior['participante_id']) ?
-                $valores_trabalho_anterior['participante_id'] : null,
             ':sobre_carreira_id' => isset($valores_trabalho_anterior['sobre_carreira_id']) ?
                 $valores_trabalho_anterior['sobre_carreira_id'] : null,
             ':nome_profissao' => isset($valores_trabalho_anterior['nome_profissao']) ?

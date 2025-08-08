@@ -1,10 +1,9 @@
 <?php 
-if (session_start() == PHP_SESSION_NONE) {
+if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/model/sobre_carreira/EstabelecimentoModel.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/model/sobre_carreira/EstabelecimentoTrabalhoModel.php';
 
 
 class EstabelecimentoTrabalhoController {
@@ -12,7 +11,7 @@ class EstabelecimentoTrabalhoController {
 
     public function __construct($id_estabelecimento_trabalho)
     {
-        $this->estabelecimento_trabalho_model = new EstabelecimenTrabalhoModel($id_estabelecimento_trabalho);
+        $this->estabelecimento_trabalho_model = new EstabelecimentoTrabalhoModel($id_estabelecimento_trabalho);
     }
 
     public function cadastrarEstabelecimentoTrabalho($valores_estabelecimento_trabalho) : string | null {

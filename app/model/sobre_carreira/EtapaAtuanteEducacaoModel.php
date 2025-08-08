@@ -17,18 +17,14 @@ class EtapaAtuanteEducacaoModel {
 
     public function inserirEtapaAtuanteEducacao(array $valores_etapa_atuante): bool {
         $sql = "INSERT INTO EtapaAtuanteEducacao (
-            participante_id,
             estabelecimento_trabalho_id,
-            nivel_etapa,
+            nivel_etapa
         ) VALUES (
-            :participante_id,
             :estabelecimento_trabalho_id,
-            :nivel_etapa,
+            :nivel_etapa
         )";
         
         $params = [
-            ':participante_id' => isset($valores_etapa_atuante['participante_id']) ?
-                $valores_etapa_atuante['participante_id'] : null,
             ':estabelecimento_trabalho_id' => isset($valores_etapa_atuante['estabelecimento_trabalho_id']) ?
                 $valores_etapa_atuante['estabelecimento_trabalho_id'] : null,
             ':nivel_etapa' => isset($valores_etapa_atuante['nivel_etapa']) ?

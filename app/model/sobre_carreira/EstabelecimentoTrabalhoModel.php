@@ -2,7 +2,7 @@
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/model/BancoDeDados.php';
 
-class EstabelecimenTrabalhoModel
+class EstabelecimentoTrabalhoModel
 {
     private $banco_de_dados;
     private $id_estabelecimento_trabalho;
@@ -17,7 +17,6 @@ class EstabelecimenTrabalhoModel
     public function inserirEstabelecimentoTrabalho(array $valores_trabalho_estabelecimento): bool
     {
         $sql = "INSERT INTO EstabelecimentoTrabalho (
-            id_estabelecimento_trabalho,
             sobre_carreira_id,
             nome_escola,
             jornada_trabalho_semanal,
@@ -25,10 +24,9 @@ class EstabelecimenTrabalhoModel
             tipo_turma,
             localizacao_escola,
             dependencia_administrativa,
-            contexto_escolar,
+            contexto_escolar
 
         ) VALUES (
-            :participante_id,
             :sobre_carreira_id,
             :nome_escola,
             :jornada_trabalho_semanal,
@@ -40,8 +38,6 @@ class EstabelecimenTrabalhoModel
         )";
 
         $params = [
-            ':id_estabelecimento_trabalho' => isset($valores_trabalho_estabelecimento['id_estabelecimento_trabalho']) ?
-                $valores_trabalho_estabelecimento['id_estabelecimento_trabalho'] : null,
             ':sobre_carreira_id' => isset($valores_trabalho_estabelecimento['sobre_carreira_id']) ?
                 $valores_trabalho_estabelecimento['sobre_carreira_id'] : null,
             ':nome_escola' => isset($valores_trabalho_estabelecimento['nome_escola']) ?
@@ -58,7 +54,6 @@ class EstabelecimenTrabalhoModel
                 $valores_trabalho_estabelecimento['dependencia_administrativa'] : null,
             ':contexto_escolar' => isset($valores_trabalho_estabelecimento['contexto_escolar']) ?
                 $valores_trabalho_estabelecimento['contexto_escolar'] : null
-
         ];
 
         return $this->banco_de_dados->executar($sql, $params);
