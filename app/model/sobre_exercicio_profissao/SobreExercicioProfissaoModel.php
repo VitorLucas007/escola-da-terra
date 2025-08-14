@@ -4,11 +4,11 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/model/BancoD
 
 class SobreExercicioProfissaoModel {
     private $banco_de_dados;
-    private $sobre_exercicio_profissao_id;
+    private $id_informacao_exercicio_profissao;
 
-    public function __construct($sobre_exercicio_profissao_id)
+    public function __construct($id_informacao_exercicio_profissao)
     {
-        $this->sobre_exercicio_profissao_id = $sobre_exercicio_profissao_id;
+        $this->id_informacao_exercicio_profissao = $id_informacao_exercicio_profissao;
         $this->banco_de_dados = new BancoDeDados();
     }
 
