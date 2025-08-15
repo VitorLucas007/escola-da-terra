@@ -13,7 +13,7 @@ class SobreExercicioProfissaoModel {
     }
 
     // CRUD
-    public function cadastrarSobreExercicioProfissaoId(array $valores_sobre_exercicio_profissao) : bool {
+    public function cadastrarSobreExercicioProfissao(array $valores_sobre_exercicio_profissao) : bool {
         $sql = "INSERT INTO SobreExercicioProfissao(
             'participante_id',
             'docencia_como_projeto_vida',
