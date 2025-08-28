@@ -38,7 +38,7 @@
 
         <h2 class="text-center mb-4 mt-4 p-2 fw-bold">Informações sobre o exercicio da Profissão</h2>
 
-        <form class="form-container" action="#" method="post">
+        <form class="form-container"  method="post" action="../../app/process/sobre_exercicio_profissao_process.php">
 
             <div class="row mb-4">
 

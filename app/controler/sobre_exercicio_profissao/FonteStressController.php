@@ -32,7 +32,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/model/sobre_
 
     public function getUltimoIdInsercaoFonteStress(): string {
         try {
-            return $this->fonte_stress_model->getUltimoIdInsercaoFonteStrees();
+            return $this->fonte_stress_model->getUltimoIdInsercaoFonteStress();
         } catch (Exception $excpetion) {
             $_SESSION['mensagem_execao'] = "Erro ao obter o ultimo ID de inserção";
             header("Location: /pesquisa_educacional/views/erro.php");

@@ -4,18 +4,20 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/model/sobre_exercicio_profissao/BeneficioRecebidosSalarioModel.php';
-
+// CORRIGIDO: Nome do arquivo model (remover "s" extra ou verificar nome correto)
+require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/model/sobre_exercicio_profissao/BeneficioRecebidoSalarioModel.php';
 
 class BeneficioRecebidoSalarioController {
     private $beneficio_recebido_salario_model;
 
     public function __construct($id_beneficio_recebido_salario)
     {
+        // CORRIGIDO: Nome da classe model (sem "s")
         $this->beneficio_recebido_salario_model = new BeneficioRecebidoSalarioModel($id_beneficio_recebido_salario);
     }
 
-    public function cadastrarBeneficioSalarioRecebido($valores_beneficio_recebido_salario): string | null {
+    // CORRIGIDO: Nome do método para coincidir com o que está sendo chamado no process
+    public function cadastrarBeneficioRecebidoSalario($valores_beneficio_recebido_salario): string | null {
         try {
             $persistencia_banco = $this->beneficio_recebido_salario_model->cadastrarBeneficioRecebidoSalario($valores_beneficio_recebido_salario);
             if ($persistencia_banco) {
@@ -30,7 +32,6 @@ class BeneficioRecebidoSalarioController {
         }
     }
 
-
     public function getUltimoIdInsercaoBeneficioRecebidoSalario(): string {
         try {
             return $this->beneficio_recebido_salario_model->getUltimoIdInsercaoBeneficioRecebidoSalario();
@@ -41,7 +42,5 @@ class BeneficioRecebidoSalarioController {
         }
     }
 }
-
-
 
 ?>
