@@ -19,20 +19,16 @@ class InformacaoFilhoMenorIdadeModel
     function inserirInformacaoFilhoMenor(array $valores_informacao_filho_menor): bool
     {
         $sql = "INSERT INTO InformacaoFilhoMenorIdade (
-            id_informacao_filho_menor_idade,
             etapa_educacao,
             habitacao_fora_escola,
             acompanhante
         ) VALUES (
-            :id_informacao_filho_menor_idade,
             :etapa_educacao,
             :habitacao_fora_escola,
             :acompanhante
         )";
 
         $parametros = [
-            ':id_informacao_filho_menor_idade' => isset($valores_informacao_filho_menor['id_informacao_filho_menor_idade']) ?
-                $valores_informacao_filho_menor['id_informacao_filho_menor_idade'] : $this->id_informacao_filho_menor_idade,
             ':etapa_educacao' => isset($valores_informacao_filho_menor['etapa_educacao']) ?
                 $valores_informacao_filho_menor['etapa_educacao'] : null,
             ':habitacao_fora_escola' => isset($valores_informacao_filho_menor['habitacao_fora_escola']) ?
