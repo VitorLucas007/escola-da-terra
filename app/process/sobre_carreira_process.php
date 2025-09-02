@@ -1,18 +1,19 @@
-<?php 
+<?php
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-$_SESSION['id_participante'] = 1;
+$_SESSION['id_participante'] = 2;
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_carreira/TrabalhoAnteriorController.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_carreira/EstabelecimentoTrabalhoController.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_carreira/EtapaAtuanteEducacaoController.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_carreira/SobreCarreiraController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/UserParticipanteControler.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    
+
     try {
         # Dados da tabela 'SobreCarreira'
         $valores_sobre_carreira = [
@@ -59,12 +60,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $etapas_cadastradas = 0;
 
         if (is_array($nomes_escolas) && !empty($nomes_escolas)) {
-            
+
             $estabelecimento_trabalho_controller = new EstabelecimentoTrabalhoController($id_insercao_sobre_carreira);
-            
+
             foreach ($nomes_escolas as $index => $nome_escola) {
                 if (!empty($nome_escola)) {
-                    
+
                     # Dados da escola atual
                     $valores_estabelecimento_trabalho = [
                         'sobre_carreira_id' => $id_insercao_sobre_carreira,
@@ -88,14 +89,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                     # Processamento das Etapas/Modalidades de Ensino para esta escola
                     $etapas_escola = $_POST['etapas_modalidades'][$index] ?? [];
-                    
+
                     if (is_array($etapas_escola) && !empty($etapas_escola)) {
-                        
+
                         $etapa_atuante_educacao_controller = new EtapaAtuanteEducacaoController($id_insercao_estabelecimento_trabalho);
-                        
+
                         foreach ($etapas_escola as $nivel_etapa) {
                             if (!empty($nivel_etapa)) {
-                                
+
                                 $valores_etapa_atuante_educacao = [
                                     'estabelecimento_trabalho_id' => $id_insercao_estabelecimento_trabalho,
                                     'nivel_etapa' => $nivel_etapa, # Removido o mapeamento
@@ -114,17 +115,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 }
             }
         }
-        echo "Dados cadastrados com sucesso!";
 
+        # Mudando o progresso do participante após ter sucesso na inserção de dados:
+        $user_participante_controler = new UserParticipanteControler();
+        $atualizacao_progresso = $user_participante_controler->atualizarProgressoParticipante($_SESSION['id_participante'], 4);
+        if (!$atualizacao_progresso) {
+            echo "erro ao atualizar o progresso do participante";
+            exit;
+        }
+
+        echo "Dados cadastrados com sucesso!";
     } catch (Exception $e) {
 
         error_log("Erro no cadastro: " . $e->getMessage());
         echo "Erro ao processar dados: " . $e->getMessage();
     }
-
 } else {
     http_response_code(405);
     echo "Método não permitido";
 }
-
-?>

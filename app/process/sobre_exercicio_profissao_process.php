@@ -3,15 +3,16 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-$_SESSION['id_participante'] = 1; 
+$_SESSION['id_participante'] = 1;
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_exercicio_profissao/SobreExercicioProfissaoController.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_exercicio_profissao/FonteStressController.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_exercicio_profissao/BeneficioRecebidoSalarioController.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_exercicio_profissao/BeneficioOriundoAtividadeDocenciaController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/UserParticipanteControler.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    
+
     try {
         # Dados da tabela 'SobreExercicioProfissao'
         $valores_sobre_exercicio_profissao = [
@@ -59,16 +60,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         # Persistindo Tabela 'FonteStress' - CORRIGIDO
         if (isset($_POST['descricao_fonte']) && is_array($_POST['descricao_fonte']) && !empty($_POST['descricao_fonte'])) {
             $fonte_stress_controller = new FonteStressController($id_insercao_sobre_exercicio_profissao);
-            
+
             foreach ($_POST['descricao_fonte'] as $fonte) {
                 if (!empty(trim($fonte))) {
                     $valores_fonte_stress = [
                         'sobre_exercicio_profissao_id' => $id_insercao_sobre_exercicio_profissao,
                         'descricao_fonte' => trim($fonte),
                     ];
-                    
+
                     $resultado_fonte_stress = $fonte_stress_controller->cadastrarDadosFonteStress($valores_fonte_stress);
-                    
+
                     if (!$resultado_fonte_stress) {
                         throw new Exception("Erro ao cadastrar fonte de stress");
                     }
@@ -80,16 +81,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         # Persistindo Tabela 'BeneficioRecebidoSalario' - CORRIGIDO
         if (isset($_POST['descricao_beneficio']) && is_array($_POST['descricao_beneficio']) && !empty($_POST['descricao_beneficio'])) {
             $beneficio_recebido_salario_controller = new BeneficioRecebidoSalarioController($id_insercao_sobre_exercicio_profissao);
-            
+
             foreach ($_POST['descricao_beneficio'] as $beneficio) {
                 if (!empty(trim($beneficio))) {
                     $valores_beneficio_recebido_salario = [
                         'sobre_exercicio_profissao_id' => $id_insercao_sobre_exercicio_profissao,
                         'descricao_beneficio' => trim($beneficio),
                     ];
-                    
+
                     $resultado_beneficio_salario = $beneficio_recebido_salario_controller->cadastrarBeneficioRecebidoSalario($valores_beneficio_recebido_salario);
-                    
+
                     if (!$resultado_beneficio_salario) {
                         throw new Exception("Erro ao cadastrar benefício recebido além do salário");
                     }
@@ -104,16 +105,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         # Persistindo Tabela 'BeneficioOriundoAtividadeDocencia' - CORRIGIDO
         if (isset($_POST['identificacao_beneficio']) && is_array($_POST['identificacao_beneficio']) && !empty($_POST['identificacao_beneficio'])) {
             $beneficio_oriundo_atividade_docencia_controller = new BeneficioOriundoAtividadeDocenciaController($id_insercao_sobre_exercicio_profissao);
-            
+
             foreach ($_POST['identificacao_beneficio'] as $beneficio) {
                 if (!empty(trim($beneficio))) {
                     $valores_beneficio_oriundo_atividade_docencia = [
                         'sobre_exercicio_profissao_id' => $id_insercao_sobre_exercicio_profissao,
                         'identificacao_beneficio' => trim($beneficio),
                     ];
-                    
+
                     $resultado_beneficio_docencia = $beneficio_oriundo_atividade_docencia_controller->cadastrarBeneficioOriundoAtividadeDocencia($valores_beneficio_oriundo_atividade_docencia);
-                    
+
                     if (!$resultado_beneficio_docencia) {
                         throw new Exception("Erro ao cadastrar benefício oriundo da atividade de docência");
                     }
@@ -122,16 +123,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $registros_secundarios_cadastrados++;
         }
 
+        # Mudando o progresso do participante após ter sucesso na inserção de dados:
+        $user_participante_controler = new UserParticipanteControler();
+        $atualizacao_progresso = $user_participante_controler->atualizarProgressoParticipante($_SESSION['id_participante'], 5);
+        if (!$atualizacao_progresso) {
+            echo "erro ao atualizar o progresso do participante";
+            exit;
+        }
+
         # Mensagem de sucesso
         echo "Todos os dados foram cadastrados com sucesso!";
-
     } catch (Exception $e) {
         error_log("Erro no cadastro de exercício da profissão: " . $e->getMessage());
         echo "Erro ao processar dados: " . $e->getMessage();
     }
-
 } else {
     http_response_code(405);
     echo "Método não permitido";
 }
-?>

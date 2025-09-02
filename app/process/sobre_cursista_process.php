@@ -101,7 +101,7 @@
 
         // # Mudando o progresso do participante após ter sucesso na inserção de dados:
         // $user_participante_controler = new UserParticipanteControler();
-        // $atualizacao_progresso = $user_participante_controler->atualizarProgressoParticipante($_SESSION['id_participante'], 2);
+        // $atualizacao_progresso = $user_participante_controler->atualizarProgressoParticipante($_SESSION['id_participante'], 1);
         // if(!$atualizacao_progresso){
         //     echo "erro ao atualizar o progresso do participante";
         //     exit;

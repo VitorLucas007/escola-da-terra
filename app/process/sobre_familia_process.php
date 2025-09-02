@@ -12,10 +12,14 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/so
 require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_familia/InformacaoIrmaoController.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_familia/InformacaoAvosController.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_familia/InformacaoGenitorController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/UserParticipanteControler.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     try {
+        // Adicionar debug
+        error_log("POST recebido: " . print_r($_POST, true));
+
         # Dados da tabela 'SobreFamilia'
         $valores_sobre_familia = [
             'participante_id' => $_SESSION['id_participante'],
@@ -34,7 +38,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $filhos_cadastrados = 0;
         $irmaos_cadastrados = 0;
 
-        # Persistindo Tabela 'InformacaoFilho' (múltiplos filhos)
+        # Array para armazenar IDs dos filhos por índice
+        $ids_filhos = [];
+
+        # Persistindo Tabela 'InformacaoFilho' - USANDO ÍNDICES
         $nomes_filhos = $_POST['nome_filho'] ?? [];
         if (is_array($nomes_filhos) && !empty($nomes_filhos)) {
             $informacao_filho_controller = new InformacaoFilhoController($id_insercao_sobre_familia);
@@ -57,44 +64,99 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         throw new Exception("Erro ao cadastrar dados do filho: $nome_filho");
                     }
 
+                    # Armazenar ID do filho por ÍNDICE
+                    $ids_filhos[$index] = $id_informacao_filho;
                     $filhos_cadastrados++;
+                }
+            }
+        }
 
-                    # Verificar se é filho maior de idade
-                    if (isset($_POST['situacao_vida'][$index])) {
+        # Persistindo filhos MAIORES de idade - USANDO ÍNDICES
+        $nomes_filhos_maiores = $_POST['nome_filho_maior_idade'] ?? [];
+        if (is_array($nomes_filhos_maiores) && !empty($nomes_filhos_maiores)) {
+            foreach ($nomes_filhos_maiores as $index => $nome_filho_maior) {
+                if (!empty($nome_filho_maior)) {
+                    
+                    # Buscar ID do filho pelo ÍNDICE no array principal
+                    # Assumindo que os índices correspondem entre as tabelas
+                    $informacao_filho_id = null;
+                    
+                    # Procurar o filho pelo nome nos IDs armazenados
+                    foreach ($ids_filhos as $filho_index => $filho_id) {
+                        if (isset($nomes_filhos[$filho_index]) && $nomes_filhos[$filho_index] === $nome_filho_maior) {
+                            $informacao_filho_id = $filho_id;
+                            break;
+                        }
+                    }
+                    
+                    if (!$informacao_filho_id) {
+                        error_log("Filho maior de idade não encontrado: $nome_filho_maior");
+                        continue; // Pula este filho ao invés de parar tudo
+                    }
+                    
+                    $situacao_vida = $_POST['situacao_vida'][$index] ?? null;
+                    if (!empty($situacao_vida)) {
                         $valores_filho_maior = [
-                            'informacao_filho_id' => $id_informacao_filho,
-                            'situacao_vida' => $_POST['situacao_vida'][$index]
+                            'informacao_filho_id' => $informacao_filho_id,
+                            'situacao_vida' => $situacao_vida
                         ];
 
-                        $informacao_filho_maior_controller = new InformacaoFilhoMaiorIdadeController(null);
+                        $informacao_filho_maior_controller = new InformacaoFilhoMaiorIdadeController($informacao_filho_id);
                         $resultado_maior = $informacao_filho_maior_controller->cadastrarDadosInformacaoFilhoMaior($valores_filho_maior);
                         
                         if (!$resultado_maior) {
-                            throw new Exception("Erro ao cadastrar informações do filho maior: $nome_filho");
+                            throw new Exception("Erro ao cadastrar informações do filho maior: $nome_filho_maior");
                         }
                     }
+                }
+            }
+        }
 
-                    # Verificar se é filho menor de idade
-                    if (isset($_POST['etapa_educacao'][$index])) {
+        # Persistindo filhos MENORES de idade - USANDO ÍNDICES
+        $nomes_filhos_menores = $_POST['nome_filho_menor_idade'] ?? [];
+        if (is_array($nomes_filhos_menores) && !empty($nomes_filhos_menores)) {
+            foreach ($nomes_filhos_menores as $index => $nome_filho_menor) {
+                if (!empty($nome_filho_menor)) {
+                    
+                    # Buscar ID do filho pelo nome nos IDs armazenados
+                    $informacao_filho_id = null;
+                    foreach ($ids_filhos as $filho_index => $filho_id) {
+                        if (isset($nomes_filhos[$filho_index]) && $nomes_filhos[$filho_index] === $nome_filho_menor) {
+                            $informacao_filho_id = $filho_id;
+                            break;
+                        }
+                    }
+                    
+                    if (!$informacao_filho_id) {
+                        error_log("Filho menor de idade não encontrado: $nome_filho_menor");
+                        continue; // Pula este filho ao invés de parar tudo
+                    }
+                    
+                    $etapa_educacao = $_POST['etapa_educacao'][$index] ?? null;
+                    $habitacao_fora_escola = $_POST['habitacao_fora_escola'][$index] ?? null;
+                    $acompanhante = $_POST['acompanhante'][$index] ?? null;
+                    
+                    # Validar apenas se todos os campos estão preenchidos
+                    if (!empty($etapa_educacao) && !empty($habitacao_fora_escola) && !empty($acompanhante)) {
                         $valores_filho_menor = [
-                            'informacao_filho_id' => $id_informacao_filho,
-                            'etapa_educacao' => $_POST['etapa_educacao'][$index],
-                            'habitacao_fora_escola' => $_POST['habitacao_fora_escola'][$index] ?? null,
-                            'acompanhante' => $_POST['acompanhante'][$index] ?? null
+                            'informacao_filho_id' => $informacao_filho_id,
+                            'etapa_educacao' => $etapa_educacao,
+                            'habitacao_fora_escola' => $habitacao_fora_escola,
+                            'acompanhante' => $acompanhante
                         ];
 
-                        $informacao_filho_menor_controller = new InformacaoFilhoMenorIdadeController(null);
+                        $informacao_filho_menor_controller = new InformacaoFilhoMenorIdadeController($informacao_filho_id);
                         $resultado_menor = $informacao_filho_menor_controller->cadastrarDadosInformacaoFilhoMenor($valores_filho_menor);
                         
                         if (!$resultado_menor) {
-                            throw new Exception("Erro ao cadastrar informações do filho menor: $nome_filho");
+                            throw new Exception("Erro ao cadastrar informações do filho menor: $nome_filho_menor");
                         }
                     }
                 }
             }
         }
         
-        # Persistindo Tabela 'InformacaoIrmao' (múltiplos irmãos)
+        # Persistindo Tabela 'InformacaoIrmao' - MESMA LÓGICA DO ARQUIVO QUE FUNCIONA
         $nomes_irmaos = $_POST['nome_irmao'] ?? [];
         if (is_array($nomes_irmaos) && !empty($nomes_irmaos)) {
             $informacao_irmao_controller = new InformacaoIrmaoController($id_insercao_sobre_familia);
@@ -203,6 +265,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         if ($irmaos_cadastrados > 0) {
             echo " ($irmaos_cadastrados irmãos cadastrados)";
+        }
+
+        # Mudando o progresso do participante após ter sucesso na inserção de dados:
+        $user_participante_controler = new UserParticipanteControler();       
+        $atualizacao_progresso = $user_participante_controler->atualizarProgressoParticipante($_SESSION['id_participante'], 2);
+        if(!$atualizacao_progresso){
+            echo "erro ao atualizar o progresso do participante";
+            exit;
         }
 
     } catch (Exception $e) {
