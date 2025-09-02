@@ -36,7 +36,7 @@
     
     <h2 class="text-center mb-4 mt-4 fw-bold">Informações sobre o cursista</h2>
 
-    <form class="form-container" method="post" action="#">
+    <form class="form-container" method="post" action="../../app/process/sobre_cursista_process.php">
 
       <div class="row mb-4">
 

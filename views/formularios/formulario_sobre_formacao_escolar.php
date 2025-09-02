@@ -35,7 +35,7 @@
 
         <h2 class="text-center fw-bold mb-4 mt-4 p-2">Informações sobre a formação escolar</h2>
 
-        <form class="form-container" method="post" action="#">
+        <form class="form-container" method="post" action="../../app/process/sobre_formacao_escolar_process.php">
 
           <div class="row container mt-4 border p-3 rounded">
 
