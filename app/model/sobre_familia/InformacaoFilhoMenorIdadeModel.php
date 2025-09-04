@@ -16,29 +16,29 @@ class InformacaoFilhoMenorIdadeModel
 
     // Funções CRUD para persistência
 
-    function inserirInformacaoFilhoMenor(array $valores_informacao_filho_menor): bool
-    {
-        $sql = "INSERT INTO InformacaoFilhoMenorIdade (
-            etapa_educacao,
-            habitacao_fora_escola,
-            acompanhante
-        ) VALUES (
-            :etapa_educacao,
-            :habitacao_fora_escola,
-            :acompanhante
-        )";
+   function inserirInformacaoFilhoMenor(array $valores_informacao_filho_menor_idade): bool
+{
+    $sql = "INSERT INTO InformacaoFilhoMenorIdade (
+        informacao_filho_id,
+        etapa_educacao,
+        habitacao_fora_escola,
+        acompanhante
+    ) VALUES (
+        :informacao_filho_id,
+        :etapa_educacao,
+        :habitacao_fora_escola,
+        :acompanhante
+    )";
 
-        $parametros = [
-            ':etapa_educacao' => isset($valores_informacao_filho_menor['etapa_educacao']) ?
-                $valores_informacao_filho_menor['etapa_educacao'] : null,
-            ':habitacao_fora_escola' => isset($valores_informacao_filho_menor['habitacao_fora_escola']) ?
-                $valores_informacao_filho_menor['habitacao_fora_escola'] : null,
-            ':acompanhante' => isset($valores_informacao_filho_menor['acompanhante']) ?
-                $valores_informacao_filho_menor['acompanhante'] : null
-        ];
+    $parametros = [
+        ':informacao_filho_id' => $valores_informacao_filho_menor_idade['informacao_filho_id'],
+        ':etapa_educacao' => $valores_informacao_filho_menor_idade['etapa_educacao'] ?? null,
+        ':habitacao_fora_escola' => $valores_informacao_filho_menor_idade['habitacao_fora_escola'] ?? null,
+        ':acompanhante' => $valores_informacao_filho_menor_idade['acompanhante'] ?? null
+    ];
 
-        return $this->banco_de_dados->executar($sql, $parametros);
-    }
+    return $this->banco_de_dados->executar($sql, $parametros);
+}
 
     public function getUltimoIdInsercaoInformacaoFilhoMenor(): string
     {

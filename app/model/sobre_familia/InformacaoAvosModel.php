@@ -16,9 +16,9 @@ class InformacaoAvosModel
 
     // Funções CRUD para persistência
 
-    function inserirInformacaoAvos($valores_informacao_avos)
-    {
-        $sql = "INSERT INTO InformacaoAvos (
+    function inserirInformacaoAvos(array $valores_informacao_avos) : bool
+{
+    $sql = "INSERT INTO InformacaoAvos (
         sobre_familia_id,
         tipo_avos,
         escolaridade_avo_masc,
@@ -40,39 +40,20 @@ class InformacaoAvosModel
         :religiao_avos
     )";
 
-        $parametros = [
-            ':sobre_familia_id' => isset($valores_informacao_avos['sobre_familia_id']) ?
-                $valores_informacao_avos['sobre_familia_id'] : null,
+    $parametros = [
+        ':sobre_familia_id' => $valores_informacao_avos['sobre_familia_id'],
+        ':tipo_avos' => $valores_informacao_avos['tipo_avos'],
+        ':escolaridade_avo_masc' => $valores_informacao_avos['escolaridade_avo_masc'] ?? null,
+        ':escolaridade_avo_fem' => $valores_informacao_avos['escolaridade_avo_fem'] ?? null,
+        ':profissao_avo_masc' => $valores_informacao_avos['profissao_avo_masc'] ?? null,
+        ':profissao_avo_fem' => $valores_informacao_avos['profissao_avo_fem'] ?? null,
+        ':naturalidade_avo_masc' => $valores_informacao_avos['naturalidade_avo_masc'] ?? null,
+        ':naturalidade_avo_fem' => $valores_informacao_avos['naturalidade_avo_fem'] ?? null,
+        ':religiao_avos' => $valores_informacao_avos['religiao_avos'] ?? null
+    ];
 
-
-            ':tipo_avos' => isset($valores_informacao_avos['tipo_avos']) ?
-                $valores_informacao_avos['tipo_avos'] : null,
-
-
-            ':escolaridade_avo_masc' => isset($valores_informacao_avos['escolaridade_avo_masc']) ?
-                $valores_informacao_avos['escolaridade_avo_masc'] : null,
-
-            ':escolaridade_avo_fem' => isset($valores_informacao_avos['escolaridade_avo_fem']) ?
-                $valores_informacao_avos['escolaridade_avo_fem'] : null,
-
-            ':profissao_avo_masc' => isset($valores_informacao_avos['profissao_avo_masc']) ?
-                $valores_informacao_avos['profissao_avo_masc'] : 'Desconhecido',
-
-            ':profissao_avo_fem' => isset($valores_informacao_avos['profissao_avo_fem']) ?
-                $valores_informacao_avos['profissao_avo_fem'] : 'Desconhecido',
-
-            ':naturalidade_avo_masc' => isset($valores_informacao_avos['naturalidade_avo_masc']) ?
-                $valores_informacao_avos['naturalidade_avo_masc'] : 'Desconhecido',
-
-            ':naturalidade_avo_fem' => isset($valores_informacao_avos['naturalidade_avo_fem']) ?
-                $valores_informacao_avos['naturalidade_avo_fem'] : 'Desconhecido',
-
-            ':religiao_avos' => isset($valores_informacao_avos['religiao_avos']) ?
-                $valores_informacao_avos['religiao_avos'] : 'Desconhecido'
-        ];
-
-        return $this->banco_de_dados->executar($sql, $parametros);
-    }
+    return $this->banco_de_dados->executar($sql, $parametros);
+}
 
     public function getUltimoIdInsercaoInformacaoAvos(): string
     {

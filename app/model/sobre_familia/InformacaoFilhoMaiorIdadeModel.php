@@ -18,18 +18,16 @@ class InformacaoFilhoMaiorIdadeModel
     function inserirInformacaoFilhoMaiorIdade(array $valores_informacao_filho_maior_idade): bool
     {
         $sql = "INSERT INTO InformacaoFilhoMaiorIdade (
-            id_informacao_filho_menor_idade,
+            informacao_filho_id,
             situacao_vida
         ) VALUES (
-            :idInformacaoFilhoMaior,
+            :informacao_filho_id,
             :situacao_vida
         )";
 
         $parametros = [
-            ':idInformacaoFilhoMaior' => isset($valores_informacao_filho_maior_idade['id_informacao_filho_menor_idade']) ?
-                $valores_informacao_filho_maior_idade['id_informacao_filho_menor_idade'] : $this->id_informacao_filho_maior_idade,
-            ':situacao_vida' => isset($valores_informacao_filho_maior_idade['situacao_vida']) ?
-                $valores_informacao_filho_maior_idade['situacao_vida'] : null
+            ':informacao_filho_id' => $valores_informacao_filho_maior_idade['informacao_filho_id'],
+            ':situacao_vida' => $valores_informacao_filho_maior_idade['situacao_vida']
         ];
 
         return $this->banco_de_dados->executar($sql, $parametros);
