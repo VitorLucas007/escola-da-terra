@@ -6,13 +6,6 @@ if (session_status() === PHP_SESSION_NONE) {
 
 $_SESSION['id_participante'] = 1;
 
-// Verificar se o participante está logado
-// if (!isset($_SESSION['id_participante'])) {
-//     http_response_code(401);
-//     echo "Usuário não autenticado";
-//     exit;
-// }
-
 require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_familia/SobreFamiliaController.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_familia/InformacaoFilhoController.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_familia/InformacaoFilhoMaiorIdadeController.php';
@@ -23,9 +16,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/so
 require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/UserParticipanteControler.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-    // DEBUG: Verificar o que está chegando no POST
-    error_log("Dados recebidos no POST: " . print_r($_POST, true));
     
     try {
         # Dados da tabela 'SobreFamilia'
@@ -43,8 +33,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             throw new Exception("Erro ao cadastrar informações sobre família");
         }
 
-        error_log("ID da família inserida: " . $id_insercao_sobre_familia);
-
         # Processamento de Filhos (se houver)
         if (isset($_POST['possui_filhos']) && $_POST['possui_filhos'] == 1) {
             $nomesFilhos = $_POST['nome_filho'] ?? [];
@@ -53,8 +41,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $viveComParticipante = $_POST['vive_com_participante'] ?? [];
             $solteiros = $_POST['solteiro'] ?? [];
             $idadesSaiuCasa = $_POST['idade_saiu_casa'] ?? [];
-            
-            $filhos_cadastrados = 0;
 
             if (!empty($nomesFilhos)) {
                 $informacao_filho_controller = new InformacaoFilhoController($id_insercao_sobre_familia);
@@ -71,8 +57,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             'solteiro' => isset($solteiros[$index]) ? (int)$solteiros[$index] : 0,
                             'idade_saiu_casa' => isset($idadesSaiuCasa[$index]) ? (int)$idadesSaiuCasa[$index] : null,
                         ];
-
-                        error_log("Tentando inserir filho: " . print_r($valores_filho, true));
                         
                         # Inserir informações do filho
                         $id_insercao_filho = $informacao_filho_controller->cadastrarDadosInformacaoFilho($valores_filho);
@@ -80,8 +64,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         if (!$id_insercao_filho) {
                             throw new Exception("Erro ao cadastrar informações do filho: " . $nome);
                         }
-
-                        error_log("Filho inserido com ID: " . $id_insercao_filho);
 
                         # Processar informações específicas para maiores/menores de idade
                         if (!empty($datasNascimento[$index])) {
@@ -106,9 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         $id_insercao_filho_maior_idade = $filho_maior_idade_controller->cadastrarDadosInformacaoFilhoMaior($valores_filho_maior_idade);
 
                                         if (!$id_insercao_filho_maior_idade) {
-                                            error_log("Erro ao cadastrar informações do filho maior de idade: " . $nome);
-                                        } else {
-                                            error_log("Filho maior de idade inserido com ID: " . $id_insercao_filho_maior_idade);
+                                            throw new Exception("Erro ao cadastrar informações do filho maior de idade: " . $nome);
                                         }
                                         break;
                                     }
@@ -134,17 +114,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         $id_insercao_filho_menor_idade = $filho_menor_idade_controller->cadastrarDadosInformacaoFilhoMenor($valores_filho_menor_idade);
 
                                         if (!$id_insercao_filho_menor_idade) {
-                                            error_log("Erro ao cadastrar informações do filho menor de idade: " . $nome);
-                                        } else {
-                                            error_log("Filho menor de idade inserido com ID: " . $id_insercao_filho_menor_idade);
+                                            throw new Exception("Erro ao cadastrar informações do filho menor de idade: " . $nome);
                                         }
                                         break;
                                     }
                                 }
                             }
                         }
-
-                        $filhos_cadastrados++;
                     }
                 }
             }
@@ -155,8 +131,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $profissoesIrmaos = $_POST['profissao_irmao'] ?? [];
         $habitaMesmaLocalidade = $_POST['habita_mesma_localidade'] ?? [];
         $locaisHabitacao = $_POST['local_habitacao'] ?? [];
-        
-        $irmaos_cadastrados = 0;
 
         if (!empty($nomesIrmaos)) {
             $informacao_irmao_controller = new InformacaoIrmaoController($id_insercao_sobre_familia);
@@ -171,24 +145,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         'habita_mesma_localidade' => isset($habitaMesmaLocalidade[$index]) ? (int)$habitaMesmaLocalidade[$index] : 0,
                         'local_habitacao' => $locaisHabitacao[$index] ?? null,
                     ];
-
-                    error_log("Tentando inserir irmão: " . print_r($valores_irmao, true));
                     
                     # Inserir informações do irmão
                     $id_insercao_irmao = $informacao_irmao_controller->cadastrarDadosInformacaoIrmao($valores_irmao);
 
                     if (!$id_insercao_irmao) {
-                        error_log("Erro ao cadastrar informações do irmão: " . $nome);
-                    } else {
-                        error_log("Irmão inserido com ID: " . $id_insercao_irmao);
-                        $irmaos_cadastrados++;
+                        throw new Exception("Erro ao cadastrar informações do irmão: " . $nome);
                     }
                 }
             }
         }
 
         # Processamento de Genitores (Pai e Mãe)
-        $genitores_cadastrados = 0;
         $informacao_genitor_controller = new InformacaoGenitorController($id_insercao_sobre_familia);
 
         # Processar Pai
@@ -203,16 +171,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 'participa_grupo' => isset($_POST['participa_grupo_pai']) ? (int)$_POST['participa_grupo_pai'] : null,
                 'grupos_participacao' => $_POST['grupo_participacao_pai'] ?? null,
             ];
-
-            error_log("Tentando inserir pai: " . print_r($valores_pai, true));
             
             $id_insercao_pai = $informacao_genitor_controller->cadastrarDadosInformacaoGenitor($valores_pai);
             
             if (!$id_insercao_pai) {
-                error_log("Erro ao cadastrar informações do pai");
-            } else {
-                error_log("Pai inserido com ID: " . $id_insercao_pai);
-                $genitores_cadastrados++;
+                throw new Exception("Erro ao cadastrar informações do pai");
             }
         }
 
@@ -228,21 +191,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 'participa_grupo' => isset($_POST['participa_grupo_mae']) ? (int)$_POST['participa_grupo_mae'] : null,
                 'grupos_participacao' => $_POST['grupo_participacao_mae'] ?? null,
             ];
-
-            error_log("Tentando inserir mãe: " . print_r($valores_mae, true));
             
             $id_insercao_mae = $informacao_genitor_controller->cadastrarDadosInformacaoGenitor($valores_mae);
             
             if (!$id_insercao_mae) {
-                error_log("Erro ao cadastrar informações da mãe");
-            } else {
-                error_log("Mãe inserido com ID: " . $id_insercao_mae);
-                $genitores_cadastrados++;
+                throw new Exception("Erro ao cadastrar informações da mãe");
             }
         }
 
         # Processamento de Avós
-        $avos_cadastrados = 0;
         $informacao_avos_controller = new InformacaoAvosController($id_insercao_sobre_familia);
 
         # Processar Avós Paternos
@@ -258,16 +215,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 'naturalidade_avo_fem' => $_POST['naturalidade_avo_fem_paterno'] ?? 'Desconhecido',
                 'religiao_avos' => $_POST['religiao_avos_paternos'] ?? 'Desconhecido',
             ];
-
-            error_log("Tentando inserir avós paternos: " . print_r($valores_avos_paternos, true));
             
             $id_insercao_avos_paternos = $informacao_avos_controller->cadastrarDadosInformacaoAvos($valores_avos_paternos);
             
             if (!$id_insercao_avos_paternos) {
-                error_log("Erro ao cadastrar informações dos avós paternos");
-            } else {
-                error_log("Avós paternos inseridos com ID: " . $id_insercao_avos_paternos);
-                $avos_cadastrados++;
+                throw new Exception("Erro ao cadastrar informações dos avós paternos");
             }
         }
 
@@ -284,41 +236,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 'naturalidade_avo_fem' => $_POST['naturalidade_avo_fem_materno'] ?? 'Desconhecido',
                 'religiao_avos' => $_POST['religiao_avos_maternos'] ?? 'Desconhecido',
             ];
-
-            error_log("Tentando inserir avós maternos: " . print_r($valores_avos_maternos, true));
             
             $id_insercao_avos_maternos = $informacao_avos_controller->cadastrarDadosInformacaoAvos($valores_avos_maternos);
             
             if (!$id_insercao_avos_maternos) {
-                error_log("Erro ao cadastrar informações dos avós maternos");
-            } else {
-                error_log("Avós maternos inseridos com ID: " . $id_insercao_avos_maternos);
-                $avos_cadastrados++;
+                throw new Exception("Erro ao cadastrar informações dos avós maternos");
             }
         }
 
         # Mudando o progresso do participante após ter sucesso na inserção de dados:
         $user_participante_controler = new UserParticipanteControler();
         $atualizacao_progresso = $user_participante_controler->atualizarProgressoParticipante($_SESSION['id_participante'], 2);
+        
         if (!$atualizacao_progresso) {
-            error_log("Erro ao atualizar o progresso do participante");
+            throw new Exception("Erro ao atualizar o progresso do participante");
         }
 
-        echo "Dados sobre família cadastrados com sucesso!";
-        
-        // Log final
-        error_log("Processamento concluído. Resumo:");
-        error_log("- ID da família: " . $id_insercao_sobre_familia);
-        error_log("- Filhos cadastrados: " . ($filhos_cadastrados ?? 0));
-        error_log("- Irmãos cadastrados: " . $irmaos_cadastrados);
-        error_log("- Genitores cadastrados: " . $genitores_cadastrados);
-        error_log("- Avós cadastrados: " . $avos_cadastrados);
+        # Redirecionamento automático para próximo formulário
+        header("Location: /pesquisa_educacional/views/formularios/formulario_sobre_formacao_escolar.php");
+        exit;
         
     } catch (Exception $e) {
         error_log("Erro no cadastro de informações familiares: " . $e->getMessage());
-        echo "Erro ao processar dados familiares: " . $e->getMessage();
+        $_SESSION['mensagem_erro'] = "Erro ao processar dados familiares: " . $e->getMessage();
+        header("Location: /pesquisa_educacional/views/erro.php");
+        exit;
     }
 } else {
     http_response_code(405);
-    echo "Método não permitido";
+    header("Location: /pesquisa_educacional/views/erro.php");
+    exit;
 }
+?>

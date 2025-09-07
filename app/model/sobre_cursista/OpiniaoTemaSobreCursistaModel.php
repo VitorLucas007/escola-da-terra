@@ -17,7 +17,7 @@ class OpiniaoTemaSobreCursistaModel{
         VALUES(:sobre_cursista_id, :tema_opiniao, :texto_opiniao)";
 
         $parametros = [
-            'sobre_cursista_id' => $this->sobre_cursista_id,
+            ':sobre_cursista_id' => $this->sobre_cursista_id,
             ':tema_opiniao' => $tema_opiniao,
             ':texto_opiniao' => $texto_opiniao,
         ];
