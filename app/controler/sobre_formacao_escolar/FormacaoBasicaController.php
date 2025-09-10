@@ -4,7 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/model/sobre_formacao_escolar/FormacaoBasicarModel.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/model/sobre_formacao_escolar/FormacaoBasicaModel.php';
 
 
 class FormacaoBasicaController {
