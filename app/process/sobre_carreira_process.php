@@ -4,7 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-$_SESSION['id_participante'] = 2;
+$_SESSION['id_participante'] = 1;
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_carreira/TrabalhoAnteriorController.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_carreira/EstabelecimentoTrabalhoController.php';
@@ -88,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $escolas_cadastradas++;
 
                     # Processamento das Etapas/Modalidades de Ensino para esta escola
-                    $etapas_escola = $_POST['etapas_modalidades'][$index] ?? [];
+                    $etapas_escola = $_POST['etapa_atuante_educacao'][$index]['etapas'] ?? [];
 
                     if (is_array($etapas_escola) && !empty($etapas_escola)) {
 
@@ -124,11 +124,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             exit;
         }
 
-        echo "Dados cadastrados com sucesso!";
-    } catch (Exception $e) {
+        # Redirecionamento automático para próximo formulário
+        header("Location: /pesquisa_educacional/views/formularios/formulario_exercicio_profissao.php");
+        exit;
 
+    } catch (Exception $e) {
         error_log("Erro no cadastro: " . $e->getMessage());
         echo "Erro ao processar dados: " . $e->getMessage();
+        header("Location: /pesquisa_educacional/views/erro.php");
+        exit;
     }
 } else {
     http_response_code(405);

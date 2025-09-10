@@ -146,6 +146,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo "erro ao atualizar o progresso do participante";
             exit;
         }
+
+        # Redirecionamento automático para próximo formulário
+        header("Location: /pesquisa_educacional/views/formularios/formulario_sobre_vida_geral.php");
+        exit;
+
     } catch (Exception $e) {
         error_log("Erro no cadastro de condições de estudo: " . $e->getMessage());
         $_SESSION['erro_message'] = "Erro ao processar dados: " . $e->getMessage();

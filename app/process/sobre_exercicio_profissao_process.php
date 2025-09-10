@@ -131,11 +131,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
         }
 
-        # Mensagem de sucesso
-        echo "Todos os dados foram cadastrados com sucesso!";
+        # Redirecionamento automático para próximo formulário
+        header("Location: /pesquisa_educacional/views/formularios/formulario_sobre_condicao_estudo.php");
+        exit;
+
+
     } catch (Exception $e) {
         error_log("Erro no cadastro de exercício da profissão: " . $e->getMessage());
         echo "Erro ao processar dados: " . $e->getMessage();
+        header("Location: /pesquisa_educacional/views/erro.php");
+        exit;
     }
 } else {
     http_response_code(405);
