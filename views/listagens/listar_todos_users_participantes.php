@@ -71,7 +71,7 @@ $total_formularios = 7;
                                 </div>
 
                                 <div class="mt-auto pt-3 text-center">
-                                    <a href="/pesquisa_educacional/views/listagens/listagem_todos_sobre_cursista.php?id=<?php echo htmlspecialchars($participante['id_participante']); ?>" class="btn btn-primary w-100">
+                                    <a href="/pesquisa_educacional/views/listagens/listagem_respostas.php?id=<?php echo htmlspecialchars($participante['id_participante']); ?>" class="btn btn-primary w-100">
                                         <i class="bi bi-eye-fill me-2"></i> Ver Respostas
                                     </a>
                                 </div>
