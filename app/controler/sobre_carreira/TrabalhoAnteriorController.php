@@ -43,4 +43,8 @@ class TrabalhoAnteriorController
             exit;
         }
     }
+
+    public function buscarTrabalhoAnteriorPorCarreiraId($id_sobre_carreira) {
+    return $this->trabalho_anterior_model->buscarPorSobreCarreiraIdBanco($id_sobre_carreira);
+    }   
 }

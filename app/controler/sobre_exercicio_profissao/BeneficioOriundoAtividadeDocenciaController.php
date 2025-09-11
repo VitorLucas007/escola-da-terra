@@ -45,6 +45,10 @@ class BeneficioOriundoAtividadeDocenciaController {
             exit;
         }
     }
+
+    public function buscarBeneficiosDocenciaPorExercicioId($id_exercicio_profissao) {
+    return $this->beneficio_oriundo_atividade_docencia_model->buscarPorExercicioProfissaoIdBanco($id_exercicio_profissao);
+    }
 }
 
 ?>

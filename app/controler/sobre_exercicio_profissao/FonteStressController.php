@@ -39,6 +39,10 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/model/sobre_
             exit;
         }
     }
+
+    public function buscarFontesStressPorExercicioId($id_exercicio_profissao) {
+    return $this->fonte_stress_model->buscarPorExercicioProfissaoIdBanco($id_exercicio_profissao);
+    }
  }
  
  ?>

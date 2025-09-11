@@ -40,6 +40,10 @@ class AcessoInternetController {
         }
     }
 
+    public function buscarAcessoInternetPorCondicaoEstudoId($id_condicao_estudo) {
+    return $this->acesso_internet_model->buscarPorCondicaoEstudoIdBanco($id_condicao_estudo);
+    }
+
 }
 
 ?>

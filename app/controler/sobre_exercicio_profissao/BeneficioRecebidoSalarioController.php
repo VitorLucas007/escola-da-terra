@@ -41,6 +41,10 @@ class BeneficioRecebidoSalarioController {
             exit;
         }
     }
+
+    public function buscarBeneficiosSalarioPorExercicioId($id_exercicio_profissao) {
+    return $this->beneficio_recebido_salario_model->buscarPorExercicioProfissaoIdBanco($id_exercicio_profissao);
+    }
 }
 
 ?>

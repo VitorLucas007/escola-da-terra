@@ -39,6 +39,10 @@ class SobreCondicaoEstudoController {
             exit;
         }
     }
+
+    public function buscarCondicaoEstudoPorParticipanteId($id_participante) {
+    return $this->sobre_condicao_estudo_model->buscarPorParticipanteIdBanco($id_participante);
+    }
 }
 
 ?>

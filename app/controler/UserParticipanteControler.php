@@ -137,6 +137,32 @@ class UserParticipanteControler{
         }
     }
 
+    public function listarTodosUsersParticipantes(): array {
+    try {
+        // 1. Chama o método correspondente que já existe no seu Model
+        $lista_participantes = $this->user_participante_model->listarTodosUsersParticipantes();
+        
+        // 2. Retorna a lista de participantes que o Model encontrou
+        return $lista_participantes;
+
+    } catch (Exception $exception) {
+        // Em caso de erro no banco, redireciona para a página de erro
+        $_SESSION['mensagem_excecao'] = "Erro ao listar participantes: " . $exception->getMessage();
+        header("Location: /pesquisa_educacional/views/erro.php");
+        exit;
+    }
+}
+
+
+public function buscarParticipantePorId($id) {
+    try {
+        return $this->user_participante_model->buscarParticipantePorIdBanco($id);
+    } catch (Exception $e) {
+        // Em caso de erro, pode registar o erro e retornar null
+        error_log("Erro ao buscar participante: " . $e->getMessage());
+        return null;
+    }
+}
 
 }
 

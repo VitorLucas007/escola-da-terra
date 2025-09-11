@@ -8,7 +8,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/model/sobre_
 class SobreCursistaControler{
     private $sobre_cursista_model; 
 
-    public function __construct($participante_id){
+    public function __construct($participante_id = null){
         $this->sobre_cursista_model = new SobreCursistaModel($participante_id);
     }
 
@@ -41,10 +41,15 @@ class SobreCursistaControler{
             header("Location: /pesquisa_educacional/views/erro.php");
             exit;
         }
-        
     }
 
-
+    public function buscarCursistaPorParticipanteId($id_participante) {
+    try {
+        return $this->sobre_cursista_model->buscarDadosPorParticipanteIdBanco($id_participante);
+    } catch (Exception $e) {
+        return null;
+    }
+}
 
 }
 

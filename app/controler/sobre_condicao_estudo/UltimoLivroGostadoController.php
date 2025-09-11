@@ -40,6 +40,10 @@ class UltimoLivroGostadoController {
         }
     }
 
+    public function buscarLivrosPorCondicaoEstudoId($id_condicao_estudo) {
+    return $this->ultimo_livro_gostado_model->buscarPorCondicaoEstudoIdBanco($id_condicao_estudo);
+    }
+
 }
 
 ?>

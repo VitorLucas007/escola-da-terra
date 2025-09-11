@@ -38,6 +38,10 @@ class SobreExercicioProfissaoController {
             exit;
         }
     }
+
+    public function buscarExercicioProfissaoPorParticipanteId($id_participante) {
+    return $this->sobre_exercicio_profissao_model->buscarPorParticipanteIdBanco($id_participante);
+    }
 }
 
 

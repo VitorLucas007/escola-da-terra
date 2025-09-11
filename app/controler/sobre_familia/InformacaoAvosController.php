@@ -38,4 +38,8 @@ class InformacaoAvosController {
             exit;
         }
     }
+
+    public function buscarAvosPorFamiliaId($id_sobre_familia) {
+    return $this->informacao_avos_model->buscarPorSobreFamiliaIdBanco($id_sobre_familia);
+    }
 }

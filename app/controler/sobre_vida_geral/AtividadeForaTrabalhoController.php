@@ -38,6 +38,10 @@ class AtividadeForaTrabalhoController {
             exit;
         }
     }
+
+    public function buscarAtividadesPorVidaGeralId($id_vida_geral) {
+    return $this->atividade_fora_trabalho_model->buscarPorVidaGeralIdBanco($id_vida_geral);
+    }
 }
 
 ?>

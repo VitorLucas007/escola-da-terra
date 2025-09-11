@@ -39,6 +39,11 @@ class LeituraFrequenteController {
             exit;
         }
     }
+
+    public function buscarLeiturasPorCondicaoEstudoId($id_condicao_estudo) {
+    return $this->leitura_frequente_model->buscarPorCondicaoEstudoIdBanco($id_condicao_estudo);
+    }
+    
 }
 
 ?>

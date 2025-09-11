@@ -39,6 +39,10 @@
         }
     }
 
+    public function buscarGenitoresPorFamiliaId($id_sobre_familia) {
+    return $this->informacao_genitor_model->buscarPorSobreFamiliaIdBanco($id_sobre_familia);
+    }
+
 
  }
  

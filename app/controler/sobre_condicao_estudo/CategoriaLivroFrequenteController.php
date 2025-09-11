@@ -40,6 +40,10 @@ class CategoriaLivroFrequenteController {
         }
     }
 
+    public function buscarCategoriasPorCondicaoEstudoId($id_condicao_estudo) {
+    return $this->categoria_livro_frequente_model->buscarPorCondicaoEstudoIdBanco($id_condicao_estudo);
+    }
+
 }
 
 ?>

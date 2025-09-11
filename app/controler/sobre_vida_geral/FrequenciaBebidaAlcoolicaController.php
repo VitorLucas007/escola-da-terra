@@ -38,6 +38,10 @@ class FrequenciaBebidaAlcoolicaController {
             exit;
         }
     }
+
+    public function buscarFrequenciasBebidaPorVidaGeralId($id_vida_geral) {
+    return $this->frequencia_bebida_alcoolica_model->buscarPorVidaGeralIdBanco($id_vida_geral);
+    }
 }
 
 ?>

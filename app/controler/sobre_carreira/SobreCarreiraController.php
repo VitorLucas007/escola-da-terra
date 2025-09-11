@@ -39,6 +39,10 @@ class SobreCarreiraController {
                 exit;
             }
         }
+
+        public function buscarSobreCarreiraPorParticipanteId($id_participante) {
+        return $this->sobre_carreira_model->buscarPorParticipanteIdBanco($id_participante);
+}
 }
 
 

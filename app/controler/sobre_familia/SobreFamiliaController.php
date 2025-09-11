@@ -41,4 +41,8 @@ class SobreFamiliaController
             exit;
         }
     }
+
+    public function buscarSobreFamiliaPorParticipanteId($id_participante) {
+    return $this->sobre_familia_model->buscarPorParticipanteIdBanco($id_participante);
+    }
 }

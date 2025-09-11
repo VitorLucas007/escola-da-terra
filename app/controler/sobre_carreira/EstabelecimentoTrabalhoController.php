@@ -38,6 +38,10 @@ class EstabelecimentoTrabalhoController {
             exit;
         }
     }
+
+    public function buscarEstabelecimentosPorCarreiraId($id_sobre_carreira) {
+    return $this->estabelecimento_trabalho_model->buscarPorSobreCarreiraIdBanco($id_sobre_carreira);
+    }
 }
 
 ?>

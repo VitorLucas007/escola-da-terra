@@ -38,6 +38,10 @@ class ProblemaUltimasSemanasController {
             exit;
         }
     }
+
+    public function buscarProblemasPorVidaGeralId($id_vida_geral) {
+    return $this->problema_ultimas_semanas_model->buscarPorVidaGeralIdBanco($id_vida_geral);
+    }
 }
 
 ?>

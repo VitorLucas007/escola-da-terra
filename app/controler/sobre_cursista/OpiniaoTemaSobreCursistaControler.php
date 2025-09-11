@@ -25,7 +25,13 @@ class OpiniaoTemaSobreCursistaControler{
         }
     }
 
-
+    public function buscarOpinioesPorCursistaId($id_sobre_cursista) {
+    try {
+        return $this->opiniao_tema_sobre_cursista_model->buscarPorCursistaIdBanco($id_sobre_cursista);
+    } catch (Exception $e) {
+        return [];
+    }
+}
 
 }
 

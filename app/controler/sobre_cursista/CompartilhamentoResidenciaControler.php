@@ -26,7 +26,13 @@ class CompartilhamentoResidenciaControler{
         }
     }
 
-
+    public function buscarCompartilhamentosPorCursistaId($id_sobre_cursista) {
+    try {
+        return $this->compartilhamento_residencia_model->buscarPorCursistaIdBanco($id_sobre_cursista);
+    } catch (Exception $e) {
+        return []; 
+    }
+}
 
 }
 

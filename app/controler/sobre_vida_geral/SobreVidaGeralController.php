@@ -38,6 +38,10 @@ class SobreVidaGeralController {
             exit;
         }
     }
+
+    public function buscarSobreVidaGeralPorParticipanteId($id_participante) {
+    return $this->sobre_vida_geral_model->buscarPorParticipanteIdBanco($id_participante);
+    }
 }
 
 ?>

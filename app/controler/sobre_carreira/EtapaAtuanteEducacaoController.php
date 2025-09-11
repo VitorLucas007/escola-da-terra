@@ -39,6 +39,10 @@ class EtapaAtuanteEducacaoController {
             exit;
         }
     }
+
+    public function buscarEtapasPorEstabelecimentoId($id_estabelecimento) {
+    return $this->etapa_atuante_educacao_model->buscarPorEstabelecimentoIdBanco($id_estabelecimento);
+    }
         
 }
 

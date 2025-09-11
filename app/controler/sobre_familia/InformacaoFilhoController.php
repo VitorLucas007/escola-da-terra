@@ -37,4 +37,8 @@ class InformacaoFilhoController {
         }
     }
 
+    public function buscarFilhosComDetalhesPorFamiliaId($id_sobre_familia) {
+    return $this->informacao_filho_model->buscarFilhosComDetalhesPorFamiliaIdBanco($id_sobre_familia);
+    }
+
 }

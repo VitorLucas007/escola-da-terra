@@ -38,6 +38,10 @@ class InformacaoIrmaoController {
         }
     }
 
+    public function buscarIrmaosPorFamiliaId($id_sobre_familia) {
+    return $this->informacao_irmao_model->buscarPorSobreFamiliaIdBanco($id_sobre_familia);
+    }
+
 }
 
 

@@ -38,6 +38,10 @@ class RazaoAlimentacaoDesequilibradaController {
             exit;
         }
     }
+
+    public function buscarRazoesAlimentacaoPorVidaGeralId($id_vida_geral) {
+    return $this->razao_alimentacao_desequilibrada_model->buscarPorVidaGeralIdBanco($id_vida_geral);
+    }
 }
 
 ?>
