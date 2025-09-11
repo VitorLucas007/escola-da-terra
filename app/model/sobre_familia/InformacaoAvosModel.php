@@ -66,10 +66,9 @@ class InformacaoAvosModel
         return $this->banco_de_dados->consultar($sql);
     }
 
-
-    function modificarInformacaoAvos() {}
-
-    function excluirInformacaoAvos() {}
-
-    function buscarInformacaoAvos() {}
+    public function buscarPorSobreFamiliaIdBanco($id_sobre_familia) {
+    $sql = "SELECT * FROM InformacaoAvos WHERE sobre_familia_id = :id";
+    $parametros = [':id' => $id_sobre_familia];
+    return $this->banco_de_dados->consultar($sql, $parametros);
+}
 }

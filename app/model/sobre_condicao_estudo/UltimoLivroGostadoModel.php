@@ -37,4 +37,10 @@ class UltimoLivroGostadoModel {
         return $this->banco_de_dados->getUltimoIdInsercao();
     }
 
+    public function buscarPorCondicaoEstudoIdBanco($id_condicao_estudo) {
+    $sql = "SELECT * FROM UltimoLivroGostado WHERE sobre_condicao_estudo_id = :id ORDER BY ordem_preferencia ASC";
+    $parametros = [':id' => $id_condicao_estudo];
+    return $this->banco_de_dados->consultar($sql, $parametros);
+    }
+
 }

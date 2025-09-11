@@ -34,18 +34,15 @@ class BeneficioRecebidoSalarioModel {
         return $this->banco_de_dados->getUltimoIdInsercao();
     }
 
-    public function atualizarBeneficioRecebidoSalario(){
-    }
-
-    public function excluirBeneficioRecebidoSalario(){
-    }
-
-    public function getBeneficioRecebidoSalarioPorId(){
-    }
-
     public function listarTodos(){
         $sql = "SELECT * FROM BeneficioRecebidoSalario";
         return $this->banco_de_dados->consultar($sql);
+    }
+
+    public function buscarPorExercicioProfissaoIdBanco($id_exercicio_profissao) {
+    $sql = "SELECT * FROM BeneficioRecebidoSalario WHERE sobre_exercicio_profissao_id = :id";
+    $parametros = [':id' => $id_exercicio_profissao];
+    return $this->banco_de_dados->consultar($sql, $parametros);
     }
 }
 

@@ -74,4 +74,11 @@ class SobreVidaGeralModel {
     {
         return $this->banco_de_dados->getUltimoIdInsercao();
     }
+
+    public function buscarPorParticipanteIdBanco($id_participante) {
+    $sql = "SELECT * FROM SobreVidaGeral WHERE participante_id = :id_participante LIMIT 1";
+    $parametros = [':id_participante' => $id_participante];
+    $resultado = $this->banco_de_dados->consultar($sql, $parametros);
+    return $resultado[0] ?? null;
+    }
 }

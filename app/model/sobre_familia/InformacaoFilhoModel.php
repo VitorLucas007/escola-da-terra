@@ -60,9 +60,18 @@ class InformacaoFilhoModel
         return $this->banco_de_dados->consultar($sql);
     }
 
-    function modificarInformacaoFilho() {}
-
-    function excluirInformacaoFilho() {}
-
-    function buscarSobreInformacaoFilho() {}
+    public function buscarFilhosComDetalhesPorFamiliaIdBanco($id_sobre_familia) {
+    $sql = "
+        SELECT 
+            f.*,
+            fm.situacao_vida,
+            fme.etapa_educacao, fme.habitacao_fora_escola, fme.acompanhante
+        FROM InformacaoFilho f
+        LEFT JOIN InformacaoFilhoMaiorIdade fm ON f.id_informacao_filho = fm.informacao_filho_id
+        LEFT JOIN InformacaoFilhoMenorIdade fme ON f.id_informacao_filho = fme.informacao_filho_id
+        WHERE f.sobre_familia_id = :id_sobre_familia
+    ";
+    $parametros = [':id_sobre_familia' => $id_sobre_familia];
+    return $this->banco_de_dados->consultar($sql, $parametros);
+}
 }

@@ -45,4 +45,11 @@ class TrabalhoAnteriorModel
     {
         return $this->banco_de_dados->getUltimoIdInsercao();
     }
+
+    public function buscarPorSobreCarreiraIdBanco($id_sobre_carreira) {
+    $sql = "SELECT * FROM TrabalhoAnterior WHERE sobre_carreira_id = :id_sobre_carreira LIMIT 1";
+    $parametros = [':id_sobre_carreira' => $id_sobre_carreira];
+    $resultado = $this->banco_de_dados->consultar($sql, $parametros);
+    return $resultado[0] ?? null;
+    }
 }

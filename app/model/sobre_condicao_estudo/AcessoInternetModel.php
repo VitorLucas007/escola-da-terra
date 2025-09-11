@@ -33,5 +33,11 @@ class AcessoInternetModel {
     public function getUltimoIdInsercaoAcessoInternet(): string {
         return $this->banco_de_dados->getUltimoIdInsercao();
     }
+
+    public function buscarPorCondicaoEstudoIdBanco($id_condicao_estudo) {
+    $sql = "SELECT * FROM AcessoInternet WHERE sobre_condicao_estudo_id = :id";
+    $parametros = [':id' => $id_condicao_estudo];
+    return $this->banco_de_dados->consultar($sql, $parametros);
+    }
     
 }

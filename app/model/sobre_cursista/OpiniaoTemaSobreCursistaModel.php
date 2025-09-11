@@ -25,8 +25,11 @@ class OpiniaoTemaSobreCursistaModel{
         return $this->banco_de_dados->executar($sql, $parametros);
     }
 
-
-
+    public function buscarPorCursistaIdBanco($id_sobre_cursista) {
+    $sql = "SELECT * FROM OpiniaoTemaSobreCursista WHERE sobre_cursista_id = :id";
+    $parametros = [':id' => $id_sobre_cursista];
+    return $this->banco_de_dados->consultar($sql, $parametros);
+}
 
 }
 

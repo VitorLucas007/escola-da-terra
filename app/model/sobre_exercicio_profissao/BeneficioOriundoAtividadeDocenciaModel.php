@@ -34,18 +34,15 @@ class BeneficioOriundoAtividadeDocenciaModel {
         return $this->banco_de_dados->getUltimoIdInsercao();
     }
 
-    public function atualizarBeneficioOriundoAtividadeDocencia(){
-    }
-
-    public function excluirBeneficioOriundoAtividadeDocencia(){
-    }
-
-    public function getBeneficioOriundoAtividadeDocenciaPorId(){
-    }
-
     public function listarTodos(){
         $sql = "SELECT * FROM BeneficioOriundoAtividadesDocencia";
         return $this->banco_de_dados->consultar($sql);
+    }
+
+    public function buscarPorExercicioProfissaoIdBanco($id_exercicio_profissao) {
+    $sql = "SELECT * FROM BeneficioOriundoAtividadesDocencia WHERE sobre_exercicio_profissao_id = :id";
+    $parametros = [':id' => $id_exercicio_profissao];
+    return $this->banco_de_dados->consultar($sql, $parametros);
     }
 }
 

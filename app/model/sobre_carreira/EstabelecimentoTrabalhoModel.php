@@ -38,21 +38,21 @@ class EstabelecimentoTrabalhoModel
         )";
 
         $params = [
-            ':sobre_carreira_id' => isset($valores_trabalho_estabelecimento['sobre_carreira_id']) ?
+            ':sobre_carreira_id' => $valores_trabalho_estabelecimento['sobre_carreira_id'] ?
                 $valores_trabalho_estabelecimento['sobre_carreira_id'] : null,
-            ':nome_escola' => isset($valores_trabalho_estabelecimento['nome_escola']) ?
+            ':nome_escola' => $valores_trabalho_estabelecimento['nome_escola'] ?
                 $valores_trabalho_estabelecimento['nome_escola'] : null,
-            ':jornada_trabalho_semanal' => isset($valores_trabalho_estabelecimento['jornada_trabalho_semanal']) ?
+            ':jornada_trabalho_semanal' => $valores_trabalho_estabelecimento['jornada_trabalho_semanal'] ?
                 $valores_trabalho_estabelecimento['jornada_trabalho_semanal'] : null,
-            ':situacao_funcional' => isset($valores_trabalho_estabelecimento['situacao_funcional']) ?
+            ':situacao_funcional' => $valores_trabalho_estabelecimento['situacao_funcional'] ?
                 $valores_trabalho_estabelecimento['situacao_funcional'] : null,
-            ':tipo_turma' => isset($valores_trabalho_estabelecimento['tipo_turma']) ?
+            ':tipo_turma' => $valores_trabalho_estabelecimento['tipo_turma'] ?
                 $valores_trabalho_estabelecimento['tipo_turma'] : null,
-            ':localizacao_escola' => isset($valores_trabalho_estabelecimento['localizacao_escola']) ?
+            ':localizacao_escola' => $valores_trabalho_estabelecimento['localizacao_escola'] ?
                 $valores_trabalho_estabelecimento['localizacao_escola'] : null,
-            ':dependencia_administrativa' => isset($valores_trabalho_estabelecimento['dependencia_administrativa']) ?
+            ':dependencia_administrativa' => $valores_trabalho_estabelecimento['dependencia_administrativa'] ?
                 $valores_trabalho_estabelecimento['dependencia_administrativa'] : null,
-            ':contexto_escolar' => isset($valores_trabalho_estabelecimento['contexto_escolar']) ?
+            ':contexto_escolar' => $valores_trabalho_estabelecimento['contexto_escolar'] ?
                 $valores_trabalho_estabelecimento['contexto_escolar'] : null
         ];
 
@@ -62,5 +62,11 @@ class EstabelecimentoTrabalhoModel
     public function getUltimoIdInsercaoEstabelecimento(): string
     {
         return $this->banco_de_dados->getUltimoIdInsercao();
+    }
+
+    public function buscarPorSobreCarreiraIdBanco($id_sobre_carreira) {
+    $sql = "SELECT * FROM EstabelecimentoTrabalho WHERE sobre_carreira_id = :id_sobre_carreira";
+    $parametros = [':id_sobre_carreira' => $id_sobre_carreira];
+    return $this->banco_de_dados->consultar($sql, $parametros);
     }
 }

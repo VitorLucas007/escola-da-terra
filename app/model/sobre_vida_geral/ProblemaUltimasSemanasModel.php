@@ -35,4 +35,10 @@ class ProblemaUltimasSemanasModel {
     {
         return $this->banco_de_dados->getUltimoIdInsercao();
     }
+
+    public function buscarPorVidaGeralIdBanco($id_vida_geral) {
+    $sql = "SELECT * FROM ProblemaUltimasSemanas WHERE sobre_vida_geral_id = :id";
+    $parametros = [':id' => $id_vida_geral];
+    return $this->banco_de_dados->consultar($sql, $parametros);
+    }
 }

@@ -34,18 +34,15 @@ class FonteStressModel {
         return $this->banco_de_dados->getUltimoIdInsercao();
     }
 
-    public function atualizarFonteStress(){
-    }
-
-    public function excluirFonteStress(){
-    }
-
-    public function getFonteStressPorId(){
-    }
-
     public function listarTodos(){
         $sql = "SELECT * FROM FonteStress";
         return $this->banco_de_dados->consultar($sql);
+    }
+
+    public function buscarPorExercicioProfissaoIdBanco($id_exercicio_profissao) {
+    $sql = "SELECT * FROM FonteStress WHERE sobre_exercicio_profissao_id = :id";
+    $parametros = [':id' => $id_exercicio_profissao];
+    return $this->banco_de_dados->consultar($sql, $parametros);
     }
 }
 

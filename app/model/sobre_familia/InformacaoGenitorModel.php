@@ -62,4 +62,10 @@ class InformacaoGenitorModel
     {
         return $this->banco_de_dados->getUltimoIdInsercao();
     }
+
+    public function buscarPorSobreFamiliaIdBanco($id_sobre_familia) {
+    $sql = "SELECT * FROM InformacaoGenitor WHERE sobre_familia_id = :id";
+    $parametros = [':id' => $id_sobre_familia];
+    return $this->banco_de_dados->consultar($sql, $parametros);
+}
 }

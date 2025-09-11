@@ -25,9 +25,9 @@ class EtapaAtuanteEducacaoModel {
         )";
         
         $params = [
-            ':estabelecimento_trabalho_id' => isset($valores_etapa_atuante['estabelecimento_trabalho_id']) ?
+            ':estabelecimento_trabalho_id' => $valores_etapa_atuante['estabelecimento_trabalho_id'] ?
                 $valores_etapa_atuante['estabelecimento_trabalho_id'] : null,
-            ':nivel_etapa' => isset($valores_etapa_atuante['nivel_etapa']) ?
+            ':nivel_etapa' => $valores_etapa_atuante['nivel_etapa'] ?
                 $valores_etapa_atuante['nivel_etapa'] : null
         ];
         
@@ -37,6 +37,12 @@ class EtapaAtuanteEducacaoModel {
     public function getUltimoIdInsercaoEtapaAtuante(): string {
         return $this->banco_de_dados->getUltimoIdInsercao();
     }
+
+    public function buscarPorEstabelecimentoIdBanco($id_estabelecimento) {
+    $sql = "SELECT * FROM EtapaAtuanteEducacao WHERE estabelecimento_trabalho_id = :id_estabelecimento";
+    $parametros = [':id_estabelecimento' => $id_estabelecimento];
+    return $this->banco_de_dados->consultar($sql, $parametros);
+}
 
 }
 

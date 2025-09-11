@@ -76,6 +76,20 @@ class UserParticipanteModel {
     }
 
 
+    public function listarTodosUsersParticipantes(): array {
+        $sql = "SELECT * FROM UserParticipante";
+        return $this->banco_de_dados->consultar($sql);
+    }
+
+    // MÉTODO ADICIONADO AQUI
+    public function buscarParticipantePorIdBanco($id) {
+        $sql = "SELECT * FROM UserParticipante WHERE id_participante = :id";
+        $parametros = [':id' => $id];
+        $resultado = $this->banco_de_dados->consultar($sql, $parametros);
+        // Retorna o primeiro resultado encontrado ou null se não houver
+        return $resultado[0] ?? null;
+    }
+
 }
 
 ?>

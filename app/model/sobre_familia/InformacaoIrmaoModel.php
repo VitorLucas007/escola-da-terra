@@ -34,7 +34,7 @@ class InformacaoIrmaoModel
 
         $parametros = [
             ":sobre_familia_id" => $valores_sobre_irmao['sobre_familia_id'],
-            ":nome" => isset($valores_sobre_irmao['nome']),
+            ":nome" => $valores_sobre_irmao['nome'],
             ":profissao" => $valores_sobre_irmao['profissao'],
             ":habita_mesma_localidade" => $valores_sobre_irmao['habita_mesma_localidade'],
             ":local_habitacao" => $valores_sobre_irmao['local_habitacao'],
@@ -54,9 +54,9 @@ class InformacaoIrmaoModel
         return $this->banco_de_dados->consultar($sql);
     }
 
-    function modificarInformacaoIrmao() {}
-
-    function excluirInformacaoIrmao() {}
-
-    function buscarInformacaoIrmao() {}
+    public function buscarPorSobreFamiliaIdBanco($id_sobre_familia) {
+    $sql = "SELECT * FROM InformacaoIrmao WHERE sobre_familia_id = :id";
+    $parametros = [':id' => $id_sobre_familia];
+    return $this->banco_de_dados->consultar($sql, $parametros);
+}
 }

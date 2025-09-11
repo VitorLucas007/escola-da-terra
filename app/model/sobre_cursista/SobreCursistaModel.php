@@ -7,7 +7,7 @@ class SobreCursistaModel{
     private $banco_de_dados;
     private $participante_id;
 
-    public function __construct($participante_id){
+    public function __construct($participante_id = null){
         $this->participante_id = $participante_id;
         $this->banco_de_dados = new BancoDeDados(); 
     }
@@ -115,9 +115,17 @@ class SobreCursistaModel{
         return $this->banco_de_dados->getUltimoIdInsercao();
     }
 
+    public function listarTodosOsCursistasDoBanco(): array {
+        $sql = "SELECT * FROM SobreCursista";
+        return $this->banco_de_dados->consultar($sql);
+    }
 
-    
-
+    public function buscarDadosPorParticipanteIdBanco($id_participante) {
+    $sql = "SELECT * FROM SobreCursista WHERE participante_id = :id_participante LIMIT 1";
+    $parametros = [':id_participante' => $id_participante];
+    $resultado = $this->banco_de_dados->consultar($sql, $parametros);
+    return $resultado[0] ?? null;
+}
 
 }
 
