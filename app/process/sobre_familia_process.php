@@ -4,7 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-$_SESSION['id_participante'] = 1;
+// $_SESSION['id_participante'] = 1;
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_familia/SobreFamiliaController.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_familia/InformacaoFilhoController.php';
@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             throw new Exception("Erro ao cadastrar informações sobre família");
         }
 
-        # Processamento de Filhos (se houver)
+                # Processamento de Filhos (se houver)
         if (isset($_POST['possui_filhos']) && $_POST['possui_filhos'] == 1) {
             $nomesFilhos = $_POST['nome_filho'] ?? [];
             $sexos = $_POST['sexo'] ?? [];
@@ -47,7 +47,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 foreach ($nomesFilhos as $index => $nome) {
                     if (!empty($nome)) {
-                        # Dados do filho atual
                         $valores_filho = [
                             'sobre_familia_id' => $id_insercao_sobre_familia,
                             'nome' => $nome,
@@ -55,68 +54,57 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             'data_nascimento' => $datasNascimento[$index] ?? null,
                             'vive_com_participante' => isset($viveComParticipante[$index]) ? (int)$viveComParticipante[$index] : 0,
                             'solteiro' => isset($solteiros[$index]) ? (int)$solteiros[$index] : 0,
-                            'idade_saiu_casa' => isset($idadesSaiuCasa[$index]) ? (int)$idadesSaiuCasa[$index] : null,
+                            'idade_saiu_casa' => isset($idadesSaiuCasa[$index]) && $idadesSaiuCasa[$index] !== '' ? (int)$idadesSaiuCasa[$index] : null,
                         ];
                         
-                        # Inserir informações do filho
                         $id_insercao_filho = $informacao_filho_controller->cadastrarDadosInformacaoFilho($valores_filho);
 
                         if (!$id_insercao_filho) {
                             throw new Exception("Erro ao cadastrar informações do filho: " . $nome);
                         }
 
-                        # Processar informações específicas para maiores/menores de idade
                         if (!empty($datasNascimento[$index])) {
-                            $dataNascimento = new DateTime($datasNascimento[$index]);
+                            $dataNascimentoObj = new DateTime($datasNascimento[$index]);
                             $hoje = new DateTime();
-                            $idade = $hoje->diff($dataNascimento)->y;
+                            $idade = $hoje->diff($dataNascimentoObj)->y;
 
                             if ($idade >= 18) {
-                                # Processar informações de filho maior de idade
+                                // ### LÓGICA CORRIGIDA E MAIS ROBUSTA ###
                                 $nomesMaioresIdade = $_POST['nome_filho_maior_idade'] ?? [];
                                 $situacoesVida = $_POST['situacao_vida'] ?? [];
                                 
-                                # Encontrar a informação correspondente pelo nome
-                                foreach ($nomesMaioresIdade as $idx => $nomeMaior) {
-                                    if ($nomeMaior === $nome && !empty($situacoesVida[$idx])) {
-                                        $valores_filho_maior_idade = [
-                                            'informacao_filho_id' => $id_insercao_filho,
-                                            'situacao_vida' => $situacoesVida[$idx],
-                                        ];
+                                // Procura o nome do filho atual na lista de nomes de filhos maiores de idade
+                                $keyMaiorIdade = array_search(trim($nome), array_map('trim', $nomesMaioresIdade));
 
-                                        $filho_maior_idade_controller = new InformacaoFilhoMaiorIdadeController($id_insercao_filho);
-                                        $id_insercao_filho_maior_idade = $filho_maior_idade_controller->cadastrarDadosInformacaoFilhoMaior($valores_filho_maior_idade);
-
-                                        if (!$id_insercao_filho_maior_idade) {
-                                            throw new Exception("Erro ao cadastrar informações do filho maior de idade: " . $nome);
-                                        }
-                                        break;
+                                if ($keyMaiorIdade !== false && isset($situacoesVida[$keyMaiorIdade]) && !empty($situacoesVida[$keyMaiorIdade])) {
+                                    $valores_filho_maior_idade = [
+                                        'informacao_filho_id' => $id_insercao_filho,
+                                        'situacao_vida' => $situacoesVida[$keyMaiorIdade],
+                                    ];
+                                    $filho_maior_idade_controller = new InformacaoFilhoMaiorIdadeController($id_insercao_filho);
+                                    if (!$filho_maior_idade_controller->cadastrarDadosInformacaoFilhoMaior($valores_filho_maior_idade)) {
+                                        throw new Exception("Erro ao cadastrar detalhes do filho maior de idade: " . $nome);
                                     }
                                 }
                             } else {
-                                # Processar informações de filho menor de idade
+                                // Lógica para filhos menores de idade (se necessário, pode ser melhorada da mesma forma)
                                 $nomesMenoresIdade = $_POST['nome_filho_menor_idade'] ?? [];
                                 $etapasEducacao = $_POST['etapa_educacao'] ?? [];
                                 $habitacoesForaEscola = $_POST['habitacao_fora_escola'] ?? [];
                                 $acompanhantes = $_POST['acompanhante'] ?? [];
                                 
-                                # Encontrar a informação correspondente pelo nome
-                                foreach ($nomesMenoresIdade as $idx => $nomeMenor) {
-                                    if ($nomeMenor === $nome && !empty($etapasEducacao[$idx])) {
-                                        $valores_filho_menor_idade = [
-                                            'informacao_filho_id' => $id_insercao_filho,
-                                            'etapa_educacao' => $etapasEducacao[$idx],
-                                            'habitacao_fora_escola' => $habitacoesForaEscola[$idx] ?? null,
-                                            'acompanhante' => $acompanhantes[$idx] ?? null,
-                                        ];
+                                $keyMenorIdade = array_search(trim($nome), array_map('trim', $nomesMenoresIdade));
 
-                                        $filho_menor_idade_controller = new InformacaoFilhoMenorIdadeController($id_insercao_filho);
-                                        $id_insercao_filho_menor_idade = $filho_menor_idade_controller->cadastrarDadosInformacaoFilhoMenor($valores_filho_menor_idade);
-
-                                        if (!$id_insercao_filho_menor_idade) {
-                                            throw new Exception("Erro ao cadastrar informações do filho menor de idade: " . $nome);
-                                        }
-                                        break;
+                                if ($keyMenorIdade !== false) {
+                                     $valores_filho_menor_idade = [
+                                        'informacao_filho_id' => $id_insercao_filho,
+                                        'etapa_educacao' => $etapasEducacao[$keyMenorIdade] ?? null,
+                                        'habitacao_fora_escola' => $habitacoesForaEscola[$keyMenorIdade] ?? null,
+                                        'acompanhante' => $acompanhantes[$keyMenorIdade] ?? null,
+                                    ];
+                                    $filho_menor_idade_controller = new InformacaoFilhoMenorIdadeController($id_insercao_filho);
+                                    if (!$filho_menor_idade_controller->cadastrarDadosInformacaoFilhoMenor($valores_filho_menor_idade)) {
+                                        throw new Exception("Erro ao cadastrar detalhes do filho menor de idade: " . $nome);
                                     }
                                 }
                             }

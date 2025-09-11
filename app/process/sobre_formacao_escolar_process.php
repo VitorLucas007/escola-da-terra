@@ -4,7 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-$_SESSION['id_participante'] = 1; # Valor para testes.
+// $_SESSION['id_participante'] = 1; # Valor para testes.
 // Verificar se existe sessão de participante
 // if (!isset($_SESSION['id_participante'])) {
 //     header("Location: /pesquisa_educacional/views/erro.php");

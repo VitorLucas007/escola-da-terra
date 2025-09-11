@@ -8,7 +8,7 @@ if (session_status() === PHP_SESSION_NONE) {
 //     exit;
 // }
 
-$_SESSION['id_participante'] = 1;
+// $_SESSION['id_participante'] = 1;
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_condicao_estudo/SobreCondicaoEstudoController.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_condicao_estudo/LeituraFrequenteController.php';
