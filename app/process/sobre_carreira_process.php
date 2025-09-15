@@ -125,7 +125,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         # Redirecionamento automático para próximo formulário
-        header("Location: /pesquisa_educacional/views/formularios/formulario_exercicio_profissao.php");
+        header("Location: /pesquisa_educacional/views/formularios/formulario_sobre_exercicio_profissao.php");
         exit;
 
     } catch (Exception $e) {
