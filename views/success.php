@@ -1,39 +1,65 @@
-<!-- success.php -->
 <?php
-// Exemplo: captura de dados do formulário (se necessário)
-// $nome = $_POST['nome'] ?? '';
-// $email = $_POST['email'] ?? '';
+// Bloco para processar o logout
+if (isset($_POST['finalizar_sessao'])) {
+    
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/SucessController.php';
+    
+    $controller = new SuccessController();
+    
+    // Executa as funções de logout e redirecionamento
+    $controller->finalizarSessao();
+    $controller->redirecionarParaInicio();
+    exit;
+}
 ?>
-
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sucesso</title>
-  <!-- Bootstrap 5 -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Bootstrap Icons -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesquisa Concluída</title>
+    
+    <?php include $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/views/includes/cdn.php'; ?>
+    <link rel="icon" type="image/jpg" href="/pesquisa_educacional/public/assets/logos/favicon.jpg">
 </head>
-<body class="bg-light d-flex justify-content-center align-items-center vh-100">
 
-  <div class="card shadow-lg border-0 rounded-4 p-4 text-center" style="max-width: 450px; width: 100%;">
-    <div class="card-body">
-      <div class="mb-4">
-        <i class="bi bi-check-circle-fill text-success" style="font-size: 5rem;"></i>
-      </div>
-      
-      <h3 class="fw-bold text-success">Dados enviados com sucesso!</h3>
-      <p class="text-muted mt-2">Seu formulário foi processado corretamente. O que deseja fazer agora?</p>
-
-      <div class="d-grid gap-3 mt-4">
-        <a href="continuar.php" class="btn btn-primary btn-lg rounded-pill">Continuar</a>
-        <a href="salvar.php" class="btn btn-outline-secondary btn-lg rounded-pill">Salvar progresso</a>
-      </div>
+<body class="bg-light">
+    
+    <?php include $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/views/includes/header.php'; ?>
+    
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card mt-5 shadow">
+                    <div class="card-body text-center p-5">
+                        
+                        <div class="mb-4">
+                            <i class="fas fa-check-circle text-success" style="font-size: 4rem;"></i>
+                        </div>
+                        
+                        <h2 class="card-title text-success mb-4">Pesquisa Concluída!</h2>
+                        
+                        <p class="card-text mb-4 text-muted">
+                            Obrigado por participar da nossa pesquisa educacional. 
+                            Suas respostas são muito importantes para nosso estudo.
+                        </p>
+                        
+                        <form action="" method="POST">
+                            <button type="submit" name="finalizar_sessao" class="btn btn-danger btn-lg">
+                                <i class="fas fa-sign-out-alt me-2"></i>
+                                Finalizar e Sair
+                            </button>
+                        </form>
+                        
+                        <p class="text-muted small mt-3">
+                            Ao clicar em "Finalizar e Sair", sua sessão será encerrada.
+                        </p>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
