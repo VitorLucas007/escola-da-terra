@@ -55,6 +55,12 @@ class FormacaoSuperiorModel {
     public function getUltimoIdInsercaoFormacaoSuperior(): string {
         return $this->banco_de_dados->getUltimoIdInsercao();
     }
+
+    public function buscarPorFormacaoEscolarIdBanco($id_formacao_escolar) {
+    $sql = "SELECT * FROM FormacaoSuperior WHERE sobre_formacao_escolar_id = :id ORDER BY nivel_formacao";
+    $parametros = [':id' => $id_formacao_escolar];
+    return $this->banco_de_dados->consultar($sql, $parametros);
+    }
 }
 
 ?>

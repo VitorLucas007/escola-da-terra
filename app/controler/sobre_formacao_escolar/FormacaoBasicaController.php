@@ -39,6 +39,10 @@ class FormacaoBasicaController {
         }
     }
 
+    public function buscarFormacaoBasicaPorId($id_formacao_escolar) {
+    return $this->formacao_basica_model->buscarPorFormacaoEscolarIdBanco($id_formacao_escolar);
+    }
+
 }
 
 

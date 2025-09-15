@@ -38,6 +38,10 @@ class SobreFormacaoEscolarController {
         }
     }
 
+    public function buscarSobreFormacaoPorParticipanteId($id_participante) {
+    return $this->sobre_formacao_escolar_model->buscarPorParticipanteIdBanco($id_participante);
+    }
+
 }
 
 ?>

@@ -43,6 +43,12 @@ class FormacaoBasicaModel {
     public function getUltimoIdInsercaoFormacaoBasica(): string {
         return $this->banco_de_dados->getUltimoIdInsercao();
     }
+
+    public function buscarPorFormacaoEscolarIdBanco($id_formacao_escolar) {
+    $sql = "SELECT * FROM FormacaoBasica WHERE sobre_formacao_escolar_id = :id";
+    $parametros = [':id' => $id_formacao_escolar];
+    return $this->banco_de_dados->consultar($sql, $parametros);
+    }
 }
 
 

@@ -38,6 +38,10 @@ class FormacaoSuperiorController {
         }
     }
 
+    public function buscarFormacaoSuperiorPorId($id_formacao_escolar) {
+    return $this->formacao_superior_model->buscarPorFormacaoEscolarIdBanco($id_formacao_escolar);
+    }
+
 }
 
 ?>

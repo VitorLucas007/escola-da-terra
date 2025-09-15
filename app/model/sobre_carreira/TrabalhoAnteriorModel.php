@@ -49,7 +49,7 @@ class TrabalhoAnteriorModel
     public function buscarPorSobreCarreiraIdBanco($id_sobre_carreira) {
     $sql = "SELECT * FROM TrabalhoAnterior WHERE sobre_carreira_id = :id_sobre_carreira LIMIT 1";
     $parametros = [':id_sobre_carreira' => $id_sobre_carreira];
-    $resultado = $this->banco_de_dados->consultar($sql, $parametros);
+    $resultado = $this->banco_de_dados->consultar($sql, $parametros, true);
     return $resultado[0] ?? null;
     }
 }
