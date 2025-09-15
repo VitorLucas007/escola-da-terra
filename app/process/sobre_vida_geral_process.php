@@ -173,7 +173,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             exit;
         }
 
-        echo "Dados cadastrados com sucesso!";
+       // Redirecionar para página de sucesso
+        header("Location: /pesquisa_educacional/views/success.php");
+        exit;
     } catch (Exception $e) {
 
         error_log("Erro no cadastro: " . $e->getMessage());
