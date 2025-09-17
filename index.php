@@ -94,6 +94,13 @@
                 <!-- Mensagem informativa: -->
                 <p class="mensagem-informativa-footer">Se você já iniciou anteriormente, não se preocupe, você irá iniciar de onde parou.</p>
 
+                <!-- Botão para ver as respostas do formulario -->
+                <div class="mt-4 text-center">
+                    <a href="/pesquisa_educacional/views/listagens/listar_todos_users_participantes.php" class="btn btn-success">
+                        Acessar Lista de Participantes
+                    </a>
+                </div>
+
             </div>
 
         </div>
