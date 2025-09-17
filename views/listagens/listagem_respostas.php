@@ -44,13 +44,20 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Respostas do Participante</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" type="image/jpg" href="/pesquisa_educacional/public/assets/logos/favicon.jpg">
     <style>
         body { background-color: #f8f9fa; }
         .card-header { background-color: #343a40; color: white; }
     </style>
+
+    
 </head>
 
 <body>
+    <?php
+        include $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/views/includes/header.php';
+    ?>
+
     <div class="container my-5">
         <div class="card shadow-sm mb-5">
             <div class="card-header">

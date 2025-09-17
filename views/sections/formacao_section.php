@@ -54,7 +54,9 @@
                         <li class="list-group-item d-flex justify-content-between"><strong>Foi Bolsista:</strong> <span><?php echo !empty($superior['foi_bolsista']) ? 'Sim' : 'Não'; ?></span></li>
                         <li class="list-group-item d-flex justify-content-between"><strong>Ano de Início:</strong> <span><?php echo htmlspecialchars($superior['ano_inicio'] ?? 'Não informado'); ?></span></li>
                         <li class="list-group-item d-flex justify-content-between"><strong>Ano de Conclusão:</strong> <span><?php echo htmlspecialchars($superior['ano_conclusao'] ?? 'Não informado'); ?></span></li>
+                        <?php if (isset($superior['nivel_formacao']) && $superior['nivel_formacao'] === 'Aperfeicoamento'): ?>
                         <li class="list-group-item d-flex justify-content-between"><strong>Carga Horária:</strong> <span><?php echo htmlspecialchars($superior['carga_horaria'] ?? 'Não informada'); ?> horas</span></li>
+                    <?php endif; ?>
                     </ul>
                 </div>
             <?php endforeach; ?>
