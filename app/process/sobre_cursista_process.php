@@ -79,18 +79,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         # Tabela 'OpiniaoTemaSobreCursista':
         $opiniao_tema_sobre_cursista_controler = new OpiniaoTemaSobreCursistaControler($id_insercao_sobre_cursista);
         
-        // Mapeamento correto dos nomes dos campos HTML para os valores do ENUM do banco
-        $mapeamento_temas = [
-            'posse_de_armas' => 'Posse de armas',
-            'migracao' => 'Migração',
-            'homossexualismo' => 'Homossexualismo',
-            'pobreza' => 'Pobreza',
-            'pena_de_morte' => 'Pena de Morte',
-            'sindicatos' => 'Sindicatos',
-            'criminalidade' => 'Criminalidade',
-            'adolescentes' => 'Adolescentes',
-            'drogas' => 'Drogas',
-            'religiao' => 'Religião'
+      
+    $mapeamento_temas = [
+        'posse_de_armas' => 'posse_de_armas',      
+        'migracao' => 'migracao',                  
+        'homossexualismo' => 'homossexualismo',
+        'pobreza' => 'pobreza',
+        'pena_de_morte' => 'pena_de_morte',        
+        'sindicatos' => 'sindicatos',
+        'criminalidade' => 'criminalidade',
+        'adolescentes' => 'adolescentes',
+        'drogas' => 'drogas',
+        'religiao' => 'religião'                    
         ];
 
         $opinoes_temas_sobre_cursista = [

@@ -90,6 +90,19 @@ class UserParticipanteModel {
         return $resultado[0] ?? null;
     }
 
+    /**
+ * Busca todos os participantes de um pesquisador específico
+ */
+public function buscarParticipantesPorPesquisadorId($id_pesquisador) {
+    $sql = "SELECT * FROM UserParticipante WHERE id_pesquisador_responsavel = :id_pesquisador ORDER BY id_participante DESC";
+    
+    $parametros = [
+        ':id_pesquisador' => $id_pesquisador
+    ];
+
+    return $this->banco_de_dados->consultar($sql, $parametros);
+}
+
 }
 
 ?>

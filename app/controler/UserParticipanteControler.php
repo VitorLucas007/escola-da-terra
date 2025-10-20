@@ -164,6 +164,19 @@ public function buscarParticipantePorId($id) {
     }
 }
 
+
+/**
+ * Lista todos os participantes de um pesquisador específico
+ */
+public function listarParticipantesPorPesquisador($id_pesquisador) {
+    try {
+        return $this->user_participante_model->buscarParticipantesPorPesquisadorId($id_pesquisador);
+    } catch (Exception $e) {
+        error_log("Erro ao listar participantes do pesquisador: " . $e->getMessage());
+        return [];
+    }
+}
+
 }
 
 ?>
