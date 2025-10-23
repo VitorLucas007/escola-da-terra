@@ -10,8 +10,14 @@ class UserParticipanteControler{
     private $user_participante_model;
 
     public function __construct($telefone_passado=0, $progresso_participante_passado=1){
-        $this->user_participante_model = new UserParticipanteModel( $telefone_passado, $progresso_participante_passado);
+
+        // Pesquisador que está logado na sessão
+        $id_pesquisador_logado = $_SESSION['id_pesquisador'] ?? null;
+
+        $this->user_participante_model = new UserParticipanteModel( $telefone_passado, $progresso_participante_passado, $id_pesquisador_logado);
     }
+
+    
 
     public function cadastrarUserParticipante() : void{
         try{
@@ -74,7 +80,8 @@ class UserParticipanteControler{
                 $id = $participante[0]['id_participante'];
                 $telefone = $participante[0]['telefone'];
                 $progresso = $participante[0]['progresso_participante'];
-                $participante_obtido = new UserParticipanteModel($telefone, $progresso);
+                $id_pesquisador = $participante[0]['id_pesquisador_responsavel'] ?? null;
+                $participante_obtido = new UserParticipanteModel($telefone, $progresso, $id_pesquisador);
                 $participante_obtido->setIdParticipante($id);
                 return $participante_obtido;
             }
