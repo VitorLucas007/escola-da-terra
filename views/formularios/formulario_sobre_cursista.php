@@ -132,8 +132,8 @@
           
           <label class="form-label fw-bold">Você vive com:</label>
           
-          <div class="form-check ">
-            <input class="form-check-input" type="checkbox" name="compartilha_com[]" id="sozinho" value="Sozinho(a)" required>
+          <div class="form-check " >
+            <input class="form-check-input" type="checkbox" name="compartilha_com[]" id="sozinho" value="Sozinho(a)">
             <label class="form-check-label" for="sozinho">Sozinho(a)</label>
           </div>
 
@@ -151,6 +151,10 @@
             <label class="form-check-label" for="outro">Outro:</label>
             <input class="form-control" type="text" name="compartilha_com[]" id="outro" placeholder="Ex:Com amigo">
           </div>
+
+          <span id="erro_compartilha_com" style="color: red; display: none;">
+            Por favor, selecione ao menos uma opção.
+          </span>
 
         </div>
 
