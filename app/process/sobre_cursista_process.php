@@ -118,9 +118,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
 
-        # Mudando o progresso do participante após ter sucesso na inserção de dados:
+        # Próximo passo após concluir este bloco: progresso 2 = formulário família (ver redirecionarBaseadoProgressoParticipante)
         $user_participante_controler = new UserParticipanteControler();
-        $atualizacao_progresso = $user_participante_controler->atualizarProgressoParticipante($_SESSION['id_participante'], 1);
+        $atualizacao_progresso = $user_participante_controler->atualizarProgressoParticipante($_SESSION['id_participante'], 2);
         if (!$atualizacao_progresso) {
             throw new Exception("Erro ao atualizar o progresso do participante");
         }

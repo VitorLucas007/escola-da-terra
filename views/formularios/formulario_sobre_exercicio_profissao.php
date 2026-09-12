@@ -212,7 +212,7 @@
                         </label>
 
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="formacao_continuada" name="identificacao_beneficio[]" value="Formação continuada" required>
+                            <input class="form-check-input" type="checkbox" id="formacao_continuada" name="identificacao_beneficio[]" value="Formação continuada">
                             <label class="form-check-label" for="formacao_continuada">Formação continuada</label>
                         </div>
 
@@ -645,7 +645,7 @@
                         </label>
 
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="descricao_fonte[]" id="stress_colegas" value="Com os colegas" required>
+                            <input class="form-check-input" type="checkbox" name="descricao_fonte[]" id="stress_colegas" value="Com os colegas">
                             <label class="form-check-label" for="stress_colegas">Com os colegas</label>
                         </div>
 
@@ -747,7 +747,7 @@
                     <label class="form-label fw-semibold">Benefícios recebidos</label>
 
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="descricao_beneficio[]" id="beneficio1" value="Piso Salarial Profissional" required>
+                        <input class="form-check-input" type="checkbox" name="descricao_beneficio[]" id="beneficio1" value="Piso Salarial Profissional">
                         <label class="form-check-label" for="beneficio1">Piso Salarial Profissional</label>
                     </div>
 

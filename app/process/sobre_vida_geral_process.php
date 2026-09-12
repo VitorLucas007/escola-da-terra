@@ -165,9 +165,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
         }
 
-        # Mudando o progresso do participante após ter sucesso na inserção de dados:
+        # Pesquisa concluída: progresso 8 = ao logar de novo, vai para página de sucesso
         $user_participante_controler = new UserParticipanteControler();
-        $atualizacao_progresso = $user_participante_controler->atualizarProgressoParticipante($_SESSION['id_participante'], 7);
+        $atualizacao_progresso = $user_participante_controler->atualizarProgressoParticipante($_SESSION['id_participante'], 8);
         if (!$atualizacao_progresso) {
             echo "erro ao atualizar o progresso do participante";
             exit;

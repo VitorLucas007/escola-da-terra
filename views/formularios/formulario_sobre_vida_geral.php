@@ -181,7 +181,7 @@
                         <label class="form-label fw-bold">Ao longo das últimas semanas, você diria que:</label>
 
                         <div class="form-check">
-                            <input type="checkbox" name="descricao_problema[]" value="Insônia" class="form-check-input" required> Teve insônia
+                            <input type="checkbox" name="descricao_problema[]" value="Insônia" class="form-check-input"> Teve insônia
                         </div>
                         
                         <div class="form-check">
@@ -373,7 +373,7 @@
                         <label class="form-label fw-bold">Fora do trabalho você faz <small>(mais de uma resposta possível)</small>:</label>
 
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="descricao_atividade[]" value="Esportes" id="atividade_esporte" required>
+                            <input class="form-check-input" type="checkbox" name="descricao_atividade[]" value="Esportes" id="atividade_esporte">
                             <label class="form-check-label" for="atividade_esporte">Esportes</label>
                         </div>
 

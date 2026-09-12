@@ -73,7 +73,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         'jornada_trabalho_semanal' => $_POST['jornada_trabalho_semanal'][$index] ?? null,
                         'situacao_funcional' => $_POST['situacao_funcional'][$index] ?? null,
                         'tipo_turma' => $_POST['tipo_turma'][$index] ?? null,
-                        'localizacao_escola' => $_POST['localizacao_escola'][$index] ?? null,
+                        'localizacao_escola' => $_POST['localizacao_escola'][$index]
+                            ?? $_POST['localizacao'][$index] ?? null,
                         'dependencia_administrativa' => $_POST['dependencia_administrativa'][$index] ?? null,
                         'contexto_escolar' => $_POST['contexto_escolar'][$index] ?? null,
                     ];
@@ -116,9 +117,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
         }
 
-        # Mudando o progresso do participante após ter sucesso na inserção de dados:
+        # Próximo passo: progresso 5 = exercício da profissão
         $user_participante_controler = new UserParticipanteControler();
-        $atualizacao_progresso = $user_participante_controler->atualizarProgressoParticipante($_SESSION['id_participante'], 4);
+        $atualizacao_progresso = $user_participante_controler->atualizarProgressoParticipante($_SESSION['id_participante'], 5);
         if (!$atualizacao_progresso) {
             echo "erro ao atualizar o progresso do participante";
             exit;

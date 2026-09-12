@@ -34,7 +34,7 @@ $total_formularios = 7;
     <title>Meus Participantes</title>
     
     <?php
-        // Inclui o seu arquivo com os links do Bootstrap e seus ícones
+        // Inclui o arquivo com os links do Bootstrap e seus ícones
         include $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/views/includes/cdn.php';
     ?>
     <link rel="icon" type="image/jpg" href="/pesquisa_educacional/public/assets/logos/favicon.jpg">

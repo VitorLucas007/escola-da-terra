@@ -96,9 +96,20 @@ class UserParticipanteControler{
         }
     }
 
+    /**
+     * progresso_participante no banco = próximo formulário a preencher (ou 8 = pesquisa já enviada).
+     * 1=cursista, 2=família, 3=formação, 4=carreira, 5=exercício profissão, 6=condição estudo, 7=vida geral, 8=concluído.
+     */
     public function redirecionarBaseadoProgressoParticipante($progresso) : void{
         try{
-            switch($progresso){
+            $p = (int) $progresso;
+
+            if ($p >= 8) {
+                header('Location: /pesquisa_educacional/views/success.php');
+                exit;
+            }
+
+            switch ($p) {
                 case 1:
                     header('Location: /pesquisa_educacional/views/formularios/formulario_sobre_cursista.php');
                     exit;
@@ -121,9 +132,9 @@ class UserParticipanteControler{
                     header('Location: /pesquisa_educacional/views/formularios/formulario_sobre_vida_geral.php');
                     exit;
                 default:
-                    $_SESSION['mensagem_erro_user_participante'] = "Ocorreu um erro no redirecionamento ao formulário, tente novamente.";
+                    $_SESSION['mensagem_erro_user_participante'] = "Progresso do participante inválido. Entre em contato com o suporte ou tente novamente.";
                     header('Location: /pesquisa_educacional/index.php');
-                    exit;    
+                    exit;
             }
         }
         catch(Exception $exception){
@@ -145,44 +156,35 @@ class UserParticipanteControler{
     }
 
     public function listarTodosUsersParticipantes(): array {
-    try {
-        // 1. Chama o método correspondente que já existe no seu Model
-        $lista_participantes = $this->user_participante_model->listarTodosUsersParticipantes();
-        
-        // 2. Retorna a lista de participantes que o Model encontrou
-        return $lista_participantes;
-
-    } catch (Exception $exception) {
-        // Em caso de erro no banco, redireciona para a página de erro
-        $_SESSION['mensagem_excecao'] = "Erro ao listar participantes: " . $exception->getMessage();
-        header("Location: /pesquisa_educacional/views/erro.php");
-        exit;
+        try {
+            return $this->user_participante_model->listarTodosUsersParticipantes();
+        } catch (Exception $exception) {
+            $_SESSION['mensagem_excecao'] = "Erro ao listar participantes: " . $exception->getMessage();
+            header("Location: /pesquisa_educacional/views/erro.php");
+            exit;
+        }
     }
-}
 
-
-public function buscarParticipantePorId($id) {
-    try {
-        return $this->user_participante_model->buscarParticipantePorIdBanco($id);
-    } catch (Exception $e) {
-        // Em caso de erro, pode registar o erro e retornar null
-        error_log("Erro ao buscar participante: " . $e->getMessage());
-        return null;
+    public function buscarParticipantePorId($id) {
+        try {
+            return $this->user_participante_model->buscarParticipantePorIdBanco($id);
+        } catch (Exception $e) {
+            error_log("Erro ao buscar participante: " . $e->getMessage());
+            return null;
+        }
     }
-}
 
-
-/**
- * Lista todos os participantes de um pesquisador específico
- */
-public function listarParticipantesPorPesquisador($id_pesquisador) {
-    try {
-        return $this->user_participante_model->buscarParticipantesPorPesquisadorId($id_pesquisador);
-    } catch (Exception $e) {
-        error_log("Erro ao listar participantes do pesquisador: " . $e->getMessage());
-        return [];
+    /**
+     * Lista todos os participantes de um pesquisador específico
+     */
+    public function listarParticipantesPorPesquisador($id_pesquisador) {
+        try {
+            return $this->user_participante_model->buscarParticipantesPorPesquisadorId($id_pesquisador);
+        } catch (Exception $e) {
+            error_log("Erro ao listar participantes do pesquisador: " . $e->getMessage());
+            return [];
+        }
     }
-}
 
 }
 

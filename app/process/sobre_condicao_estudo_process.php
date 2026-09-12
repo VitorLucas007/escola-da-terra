@@ -139,9 +139,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $registros_secundarios_cadastrados++;
         }
 
-        # Mudando o progresso do participante após ter sucesso na inserção de dados:
+        # Próximo passo: progresso 7 = vida geral
         $user_participante_controler = new UserParticipanteControler();
-        $atualizacao_progresso = $user_participante_controler->atualizarProgressoParticipante($_SESSION['id_participante'], 6);
+        $atualizacao_progresso = $user_participante_controler->atualizarProgressoParticipante($_SESSION['id_participante'], 7);
         if (!$atualizacao_progresso) {
             echo "erro ao atualizar o progresso do participante";
             exit;

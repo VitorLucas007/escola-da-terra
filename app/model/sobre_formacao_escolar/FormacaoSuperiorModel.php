@@ -46,7 +46,7 @@ class FormacaoSuperiorModel {
             ':foi_bolsista' => $valores_formacao_superior['foi_bolsista'],
             ':ano_inicio' => $valores_formacao_superior['ano_inicio'],
             ':ano_conclusao' => $valores_formacao_superior['ano_conclusao'],
-            'carga_horaria' => $valores_formacao_superior['carga_horaria'],
+            ':carga_horaria' => $valores_formacao_superior['carga_horaria'],
         ];
         
         return $this->banco_de_dados->executar($sql, $params);

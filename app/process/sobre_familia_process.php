@@ -232,9 +232,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
         }
 
-        # Mudando o progresso do participante após ter sucesso na inserção de dados:
+        # Próximo passo: progresso 3 = formação escolar
         $user_participante_controler = new UserParticipanteControler();
-        $atualizacao_progresso = $user_participante_controler->atualizarProgressoParticipante($_SESSION['id_participante'], 2);
+        $atualizacao_progresso = $user_participante_controler->atualizarProgressoParticipante($_SESSION['id_participante'], 3);
         
         if (!$atualizacao_progresso) {
             throw new Exception("Erro ao atualizar o progresso do participante");

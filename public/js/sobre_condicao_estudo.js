@@ -132,53 +132,39 @@ class ValidacoesSobreCondicaoEstudo {
         }
     }
 
-    // Configurar validação para garantir que pelo menos um checkbox seja marcado
+    /**
+     * Pelo menos uma opção por grupo (qualquer checkbox, não só a primeira).
+     * Não use required no HTML num único checkbox do grupo — isso obriga só a 1ª opção.
+     * "Outro" conta como escolha mesmo antes de preencher o texto (o campo vira required via JS).
+     */
     configurarValidacaoCheckboxes() {
         const form = document.querySelector('.form-container');
-        
-        if (form) {
-            form.addEventListener('submit', (e) => {
-                // Validar categorias de livros
-                const categoriasCheckboxes = document.querySelectorAll('input[name="categoria_livro_frequente[]"]');
-                const categoriaOutroCheck = document.getElementById('categoria_livro_frequente_outro');
-                const categoriaOutroTexto = document.getElementById('especificacao_outra_categoria');
-                
-                let algumaMarcada = false;
-                categoriasCheckboxes.forEach(cb => {
-                    if (cb.checked) algumaMarcada = true;
-                });
-                
-                if (categoriaOutroCheck && categoriaOutroCheck.checked && categoriaOutroTexto.value.trim()) {
-                    algumaMarcada = true;
-                }
-                
-                if (!algumaMarcada) {
-                    e.preventDefault();
-                    alert('Por favor, selecione pelo menos uma categoria de livro que você lê com frequência.');
-                    return false;
-                }
-                
-                // Validar locais de acesso à internet
-                const locaisCheckboxes = document.querySelectorAll('input[name="local_acesso_internet[]"]');
-                const localOutroCheck = document.getElementById('local_acesso_outro');
-                const localOutroTexto = document.getElementById('local_acesso_especificacao');
-                
-                let algumLocalMarcado = false;
-                locaisCheckboxes.forEach(cb => {
-                    if (cb.checked) algumLocalMarcado = true;
-                });
-                
-                if (localOutroCheck && localOutroCheck.checked && localOutroTexto.value.trim()) {
-                    algumLocalMarcado = true;
-                }
-                
-                if (!algumLocalMarcado) {
-                    e.preventDefault();
-                    alert('Por favor, selecione pelo menos um local onde você acessa a internet.');
-                    return false;
-                }
-            });
-        }
+        if (!form) return;
+
+        form.addEventListener('submit', (e) => {
+            const algumMarcado = (nome) =>
+                Array.from(document.querySelectorAll('input[type="checkbox"]')).some(
+                    (c) => c.name === nome && c.checked
+                );
+
+            if (
+                !algumMarcado('categoria_livro_frequente[]') &&
+                !document.getElementById('categoria_livro_frequente_outro')?.checked
+            ) {
+                e.preventDefault();
+                alert('Por favor, selecione pelo menos uma categoria de livro que você lê com frequência (incluindo "Outros tipos", se for o caso).');
+                return;
+            }
+
+            if (
+                !algumMarcado('local_acesso_internet[]') &&
+                !document.getElementById('local_acesso_outro')?.checked
+            ) {
+                e.preventDefault();
+                alert('Por favor, selecione pelo menos um local onde você acessa a internet (incluindo "Outro", se for o caso).');
+                return;
+            }
+        });
     }
 }
 

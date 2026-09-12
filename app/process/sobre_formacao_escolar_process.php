@@ -254,9 +254,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
         }
 
-        # Mudando o progresso do participante após ter sucesso na inserção de dados
+        # Próximo passo: progresso 4 = carreira
         $user_participante_controler = new UserParticipanteControler();
-        $atualizacao_progresso = $user_participante_controler->atualizarProgressoParticipante($_SESSION['id_participante'], 3);
+        $atualizacao_progresso = $user_participante_controler->atualizarProgressoParticipante($_SESSION['id_participante'], 4);
         
         if (!$atualizacao_progresso) {
             throw new Exception("Erro ao atualizar o progresso do participante");

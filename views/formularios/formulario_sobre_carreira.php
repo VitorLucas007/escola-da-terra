@@ -370,11 +370,11 @@
 
                                     <div class="mb-4">
                                         <strong>Localização:</strong><br>
-                                        <select class="form-select" name="localizacao[]" >
+                                        <select class="form-select" name="localizacao_escola[]" required>
                                             <option value="">Selecione</option>
-                                            <option>Sede</option>
-                                            <option>Municipio</option>
-                                            <option>Povoado</option>
+                                            <option value="Sede">Sede</option>
+                                            <option value="Municipio">Municipio</option>
+                                            <option value="Povoado">Povoado</option>
                                         </select>
                                     </div>
 
