@@ -5,11 +5,11 @@ if (session_status() === PHP_SESSION_NONE) {
 
 // $_SESSION['id_participante'] = 1;
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_exercicio_profissao/SobreExercicioProfissaoController.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_exercicio_profissao/FonteStressController.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_exercicio_profissao/BeneficioRecebidoSalarioController.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_exercicio_profissao/BeneficioOriundoAtividadeDocenciaController.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/UserParticipanteControler.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/sobre_exercicio_profissao/SobreExercicioProfissaoController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/sobre_exercicio_profissao/FonteStressController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/sobre_exercicio_profissao/BeneficioRecebidoSalarioController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/sobre_exercicio_profissao/BeneficioOriundoAtividadeDocenciaController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/UserParticipanteControler.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -123,23 +123,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $registros_secundarios_cadastrados++;
         }
 
-        # Próximo passo: progresso 6 = condição de estudo
+        # Progresso 5 = 5 formulários concluídos; próximo é condição de estudo
         $user_participante_controler = new UserParticipanteControler();
-        $atualizacao_progresso = $user_participante_controler->atualizarProgressoParticipante($_SESSION['id_participante'], 6);
+        $atualizacao_progresso = $user_participante_controler->atualizarProgressoParticipante($_SESSION['id_participante'], 5);
         if (!$atualizacao_progresso) {
             echo "erro ao atualizar o progresso do participante";
             exit;
         }
 
         # Redirecionamento automático para próximo formulário
-        header("Location: /pesquisa_educacional/views/formularios/formulario_sobre_condicao_estudo.php");
+        header("Location: /views/formularios/formulario_sobre_condicao_estudo.php");
         exit;
 
 
     } catch (Exception $e) {
         error_log("Erro no cadastro de exercício da profissão: " . $e->getMessage());
         echo "Erro ao processar dados: " . $e->getMessage();
-        header("Location: /pesquisa_educacional/views/erro.php");
+        header("Location: /views/erro.php");
         exit;
     }
 } else {

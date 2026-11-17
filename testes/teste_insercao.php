@@ -6,7 +6,7 @@
  */
 
 function enviarDados($url, $dados) {
-    $url_completa = "http://" . $_SERVER['HTTP_HOST'] . "/pesquisa_educacional/app/process/" . $url;
+    $url_completa = "http://" . $_SERVER['HTTP_HOST'] . "/app/process/" . $url;
     
     $ch = curl_init($url_completa);
     curl_setopt($ch, CURLOPT_POST, true);

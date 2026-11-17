@@ -4,7 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/model/sobre_cursista/OpiniaoTemaSobreCursistaModel.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/model/sobre_cursista/OpiniaoTemaSobreCursistaModel.php';
 
 class OpiniaoTemaSobreCursistaControler{
 
@@ -20,7 +20,7 @@ class OpiniaoTemaSobreCursistaControler{
         }
         catch(Exception $exception){
             $_SESSION['mensagem_excecao'] = "Erro ao persistir os dados de opiniões sobre temas.";
-            header("Location: /pesquisa_educacional/views/erro.php");
+            header("Location: /views/erro.php");
             exit;
         }
     }

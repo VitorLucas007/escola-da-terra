@@ -1,6 +1,6 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/config/ConexaoBanco.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/config/ConexaoBanco.php';
 
 class BancoDeDados{
     

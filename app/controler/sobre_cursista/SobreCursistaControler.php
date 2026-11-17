@@ -3,7 +3,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/model/sobre_cursista/SobreCursistaModel.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/model/sobre_cursista/SobreCursistaModel.php';
 
 class SobreCursistaControler{
     private $sobre_cursista_model; 
@@ -20,13 +20,13 @@ class SobreCursistaControler{
                 return $ultimo_id_insercao;
             }
             // $_SESSION['mensagem_excecao'] = "Ocorreu um erro ao cadastrar os dados do formulário, tente novamente.";
-            // header("Location: /pesquisa_educacional/views/erro.php");
+            // header("Location: /views/erro.php");
             echo "Ocorreu um erro ao persistir os valores";
             exit;
         }
         catch(Exception $exception){
             // $_SESSION['mensagem_excecao'] = $exception->getMessage();
-            // header("Location: /pesquisa_educacional/views/erro.php");
+            // header("Location: /views/erro.php");
             echo "Exceção encontrada ->" . $exception->getMessage();
             exit;
         }
@@ -38,7 +38,7 @@ class SobreCursistaControler{
         }
         catch(Exception $exception){
             $_SESSION['mensagem_excecao'] = "Erro ao obter o último ID de inserção.";
-            header("Location: /pesquisa_educacional/views/erro.php");
+            header("Location: /views/erro.php");
             exit;
         }
     }

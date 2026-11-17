@@ -1,7 +1,7 @@
 <?php
 
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/model/BancoDeDados.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/model/BancoDeDados.php';
 
 class TrabalhoAnteriorModel
 {

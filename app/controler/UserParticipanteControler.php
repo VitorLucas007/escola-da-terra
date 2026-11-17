@@ -3,13 +3,13 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/model/UserParticipanteModel.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/model/UserParticipanteModel.php';
 
 class UserParticipanteControler{
 
     private $user_participante_model;
 
-    public function __construct($telefone_passado=0, $progresso_participante_passado=1){
+    public function __construct($telefone_passado=0, $progresso_participante_passado=0){
 
         // Pesquisador que está logado na sessão
         $id_pesquisador_logado = $_SESSION['id_pesquisador'] ?? null;
@@ -25,18 +25,18 @@ class UserParticipanteControler{
             if($persistencia_banco){
                 session_regenerate_id(true);
                 $_SESSION['id_participante'] = $this->getIdUltimaPersistencia();
-                header('Location: /pesquisa_educacional/views/formularios/formulario_sobre_cursista.php');
+                header('Location: /views/formularios/formulario_sobre_cursista.php');
                 exit;
             }
             else{   
                 $_SESSION['mensagem_erro_user_participante'] = "Ocorreu um erro ao salvar o telefone do participante, tente novamente.";
-                header('Location: /pesquisa_educacional/index.php');
+                header('Location: /index.php');
                 exit;
             }
         }
         catch(Exception $exception){
             $_SESSION['mensagem_excecao'] = $exception->getMessage();
-            header("Location: /pesquisa_educacional/views/erro.php");
+            header("Location: /views/erro.php");
             exit;
         }
     }   
@@ -51,7 +51,7 @@ class UserParticipanteControler{
         }
         catch(Exception $exception){
             $_SESSION['mensagem_excecao'] = $exception->getMessage();
-            header("Location: /pesquisa_educacional/views/erro.php");
+            header("Location: /views/erro.php");
             exit;
         }
     }
@@ -68,7 +68,7 @@ class UserParticipanteControler{
         }
         catch(Exception $exception){
             $_SESSION['mensagem_excecao'] = $exception->getMessage();
-            header("Location: /pesquisa_educacional/views/erro.php");
+            header("Location: /views/erro.php");
             exit;
         }
     }
@@ -91,55 +91,56 @@ class UserParticipanteControler{
         }
         catch(Exception $exception){
             $_SESSION['mensagem_excecao'] = $exception->getMessage();
-            header("Location: /pesquisa_educacional/views/erro.php");
+            header("Location: /views/erro.php");
             exit;
         }
     }
 
     /**
-     * progresso_participante no banco = próximo formulário a preencher (ou 8 = pesquisa já enviada).
-     * 1=cursista, 2=família, 3=formação, 4=carreira, 5=exercício profissão, 6=condição estudo, 7=vida geral, 8=concluído.
+     * progresso_participante no banco = quantidade de formulários já concluídos (0 a 7). 7 = pesquisa concluída.
+     * Redireciona para o próximo formulário: 0=cursista, 1=família, 2=formação, 3=carreira,
+     * 4=exercício profissão, 5=condição estudo, 6=vida geral, 7=concluído (página de sucesso).
      */
     public function redirecionarBaseadoProgressoParticipante($progresso) : void{
         try{
             $p = (int) $progresso;
 
-            if ($p >= 8) {
-                header('Location: /pesquisa_educacional/views/success.php');
+            if ($p >= 7) {
+                header('Location: /views/success.php');
                 exit;
             }
 
             switch ($p) {
+                case 0:
+                    header('Location: /views/formularios/formulario_sobre_cursista.php');
+                    exit;
                 case 1:
-                    header('Location: /pesquisa_educacional/views/formularios/formulario_sobre_cursista.php');
+                    header('Location: /views/formularios/formulario_sobre_familia.php');
                     exit;
                 case 2:
-                    header('Location: /pesquisa_educacional/views/formularios/formulario_sobre_familia.php');
+                    header('Location: /views/formularios/formulario_sobre_formacao_escolar.php');
                     exit;
                 case 3:
-                    header('Location: /pesquisa_educacional/views/formularios/formulario_sobre_formacao_escolar.php');
+                    header('Location: /views/formularios/formulario_sobre_carreira.php');
                     exit;
                 case 4:
-                    header('Location: /pesquisa_educacional/views/formularios/formulario_sobre_carreira.php');
+                    header('Location: /views/formularios/formulario_sobre_exercicio_profissao.php');
                     exit;
                 case 5:
-                    header('Location: /pesquisa_educacional/views/formularios/formulario_sobre_exercicio_profissao.php');
+                    header('Location: /views/formularios/formulario_sobre_condicao_estudo.php');
                     exit;
                 case 6:
-                    header('Location: /pesquisa_educacional/views/formularios/formulario_sobre_condicao_estudo.php');
-                    exit;
-                case 7:
-                    header('Location: /pesquisa_educacional/views/formularios/formulario_sobre_vida_geral.php');
+                    header('Location: /views/formularios/formulario_sobre_vida_geral.php');
                     exit;
                 default:
                     $_SESSION['mensagem_erro_user_participante'] = "Progresso do participante inválido. Entre em contato com o suporte ou tente novamente.";
-                    header('Location: /pesquisa_educacional/index.php');
+                    header('Location: /index.php');
                     exit;
             }
         }
         catch(Exception $exception){
             $_SESSION['mensagem_excecao'] = $exception->getMessage();
-            header("Location: /pesquisa_educacional/views/erro.php");
+            header("Location: /views/erro.php");
             exit;
         }
     }
@@ -150,7 +151,7 @@ class UserParticipanteControler{
         }
         catch(Exception $exception){
             $_SESSION['mensagem_excecao'] = "Erro ao obter o último ID de inserção.";
-            header("Location: /pesquisa_educacional/views/erro.php");
+            header("Location: /views/erro.php");
             exit;
         }
     }
@@ -160,7 +161,7 @@ class UserParticipanteControler{
             return $this->user_participante_model->listarTodosUsersParticipantes();
         } catch (Exception $exception) {
             $_SESSION['mensagem_excecao'] = "Erro ao listar participantes: " . $exception->getMessage();
-            header("Location: /pesquisa_educacional/views/erro.php");
+            header("Location: /views/erro.php");
             exit;
         }
     }

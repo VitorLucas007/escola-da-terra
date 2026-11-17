@@ -5,7 +5,7 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/model/sobre_carreira/SobreCarreiraModel.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/model/sobre_carreira/SobreCarreiraModel.php';
 
 class SobreCarreiraController {
     private $sobre_carreira_model;
@@ -35,7 +35,7 @@ class SobreCarreiraController {
                 return $this->sobre_carreira_model->getUltimoIdInsercaoSobreCarreira();
             } catch (Exception $exception) {
                 $_SESSION['mensagem_excecao'] = "Erro ao obter o ultimo ID de inserção";
-                header("Location: /pesquisa_educacional/views/erro.php");
+                header("Location: /views/erro.php");
                 exit;
             }
         }

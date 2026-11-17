@@ -12,15 +12,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Pesquisador - Escola da Terra</title>
-    <link rel="stylesheet" href="/pesquisa_educacional/public/css/index.css">
-    <link rel="icon" type="image/jpg" href="/pesquisa_educacional/public/assets/logos/favicon.jpg">
+    <link rel="stylesheet" href="/public/css/index.css">
+    <link rel="icon" type="image/jpg" href="/public/assets/logos/favicon.jpg">
     <?php
-        include $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/views/includes/cdn.php';
+        include $_SERVER['DOCUMENT_ROOT'] . '/views/includes/cdn.php';
     ?>
 </head>
 <body>
     <?php
-        include $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/views/includes/header.php';
+        include $_SERVER['DOCUMENT_ROOT'] . '/views/includes/header.php';
     ?>
 
     <div class="container d-flex justify-content-center align-items-center" style="min-height: 70vh;">
@@ -34,7 +34,7 @@
                     </div>
                 <?php endif; ?>
 
-                <form action="/pesquisa_educacional/app/process/pesquisador_cadastro_process.php" method="post">
+                <form action="/app/process/pesquisador_cadastro_process.php" method="post">
                     <div class="mb-3">
                         <label for="nome" class="form-label fw-bold">Nome Completo:</label>
                         <input type="text" id="nome" name="nome" class="form-control" required>
@@ -56,7 +56,7 @@
                     </div>
                 </form>
                 <p class="mt-3 text-center">
-                    Já tem uma conta? <a href="/pesquisa_educacional/index.php">Faça o login</a>.
+                    Já tem uma conta? <a href="/index.php">Faça o login</a>.
                 </p>
             </div>
         </div>

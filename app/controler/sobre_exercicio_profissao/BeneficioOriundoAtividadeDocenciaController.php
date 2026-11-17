@@ -5,7 +5,7 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 // CORRIGIDO: Nome do arquivo model (Docencia em vez de Docente)
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/model/sobre_exercicio_profissao/BeneficioOriundoAtividadeDocenciaModel.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/model/sobre_exercicio_profissao/BeneficioOriundoAtividadeDocenciaModel.php';
 
 class BeneficioOriundoAtividadeDocenciaController {
     private $beneficio_oriundo_atividade_docencia_model;
@@ -41,7 +41,7 @@ class BeneficioOriundoAtividadeDocenciaController {
         } catch (Exception $exception) {
             // CORRIGIDO: Nome da variável de sessão (erro de digitação "execessao" -> "excecao")
             $_SESSION['mensagem_excecao'] = "Erro ao obter o ultimo ID de inserção";
-            header("Location: /pesquisa_educacional/views/erro.php");
+            header("Location: /views/erro.php");
             exit;
         }
     }

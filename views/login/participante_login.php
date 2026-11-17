@@ -6,7 +6,7 @@
     // !! IMPORTANTE: Verificação de Segurança !!
     // Redireciona para o login de pesquisador se nenhum pesquisador estiver logado.
     if (!isset($_SESSION['id_pesquisador'])) { // Use aqui o nome da sua variável de sessão do pesquisador
-        header('Location: /pesquisa_educacional/index.php');
+        header('Location: /index.php');
         exit();
     }
 
@@ -20,15 +20,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pesquisa Educacional - Escola da Terra</title>
-    <link rel="stylesheet" href="/pesquisa_educacional/public/css/index.css">
-    <link rel="icon" type="image/jpg" href="/pesquisa_educacional/public/assets/logos/favicon.jpg">
+    <link rel="stylesheet" href="/public/css/index.css">
+    <link rel="icon" type="image/jpg" href="/public/assets/logos/favicon.jpg">
     <?php
-        include $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/views/includes/cdn.php';
+        include $_SERVER['DOCUMENT_ROOT'] . '/views/includes/cdn.php';
     ?>
 </head>
 <body>
     <?php
-        include $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/views/includes/header.php';
+        include $_SERVER['DOCUMENT_ROOT'] . '/views/includes/header.php';
     ?>
 
  <div class="container container-texto">
@@ -69,7 +69,7 @@
                     </div>
                 <?php endif; ?>
 
-                <form action="/pesquisa_educacional/app/process/user_participante_process.php" method="post" class="w-100">
+                <form action="/app/process/user_participante_process.php" method="post" class="w-100">
                     <div class="mt-3 mx-auto" style="max-width: 300px;">
                         <label for="telefone" class="form-label fw-bold">Insira seu número de telefone:</label>
                         <input type="text" id="telefone" name="telefone" class="form-control text-center input-telefone" placeholder="(DDD) 99999-9999" required pattern="\(\d{2}\)\s?\d{4,5}-\d{4}" autocomplete="tel">
@@ -89,6 +89,6 @@
         </div>
     </div>
 
-    <script src="/pesquisa_educacional/public/js/index.js"></script>
+    <script src="/public/js/index.js"></script>
 </body>
 </html>

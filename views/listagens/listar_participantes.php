@@ -6,12 +6,12 @@ if (session_status() === PHP_SESSION_NONE) {
 
 // VERIFICAÇÃO DE SEGURANÇA: Se não houver um pesquisador logado, redireciona para o login
 if (!isset($_SESSION['id_pesquisador'])) {
-    header('Location: /pesquisa_educacional/index.php');
+    header('Location: /index.php');
     exit();
 }
 
 // Inclui o seu Controller
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/UserParticipanteControler.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/UserParticipanteControler.php';
 
 // Pega o ID do pesquisador logado
 $id_pesquisador_logado = $_SESSION['id_pesquisador'];
@@ -35,22 +35,22 @@ $total_formularios = 7;
     
     <?php
         // Inclui o arquivo com os links do Bootstrap e seus ícones
-        include $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/views/includes/cdn.php';
+        include $_SERVER['DOCUMENT_ROOT'] . '/views/includes/cdn.php';
     ?>
-    <link rel="icon" type="image/jpg" href="/pesquisa_educacional/public/assets/logos/favicon.jpg">
+    <link rel="icon" type="image/jpg" href="/public/assets/logos/favicon.jpg">
 </head>
 <body>
 
     <?php
         // Inclui o cabeçalho da sua página
-        include $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/views/includes/header.php';
+        include $_SERVER['DOCUMENT_ROOT'] . '/views/includes/header.php';
     ?>
 
     <div class="container mt-5">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h2 class="fw-bold">Meus Participantes</h2>
             <div>
-                <a href="/pesquisa_educacional/views/pesquisador/pesquisador_dashboard.php" class="btn btn-secondary">
+                <a href="/views/pesquisador/pesquisador_dashboard.php" class="btn btn-secondary">
                     <i class="bi bi-arrow-left me-2"></i>Voltar ao Dashboard
                 </a>
             </div>
@@ -71,7 +71,7 @@ $total_formularios = 7;
                 <?php foreach ($participantes as $participante): ?>
                     <?php
                         // Garante que o progresso não ultrapasse o total
-                        $progresso_atual = min($participante['progresso_participante'], $total_formularios);
+                        $progresso_atual = min((int) $participante['progresso_participante'], $total_formularios);
                         // Calcula a largura da barra em porcentagem
                         $largura_percentual = ($progresso_atual / $total_formularios) * 100;
                         
@@ -115,7 +115,7 @@ $total_formularios = 7;
                                 </div>
 
                                 <div class="mt-auto pt-3">
-                                    <a href="/pesquisa_educacional/views/listagens/listagem_respostas.php?id=<?php echo htmlspecialchars($participante['id_participante']); ?>" class="btn btn-primary w-100">
+                                    <a href="/views/listagens/listagem_respostas.php?id=<?php echo htmlspecialchars($participante['id_participante']); ?>" class="btn btn-primary w-100">
                                         <i class="bi bi-eye-fill me-2"></i> Ver Respostas
                                     </a>
                                 </div>
@@ -129,7 +129,7 @@ $total_formularios = 7;
                 <i class="bi bi-exclamation-triangle-fill me-2"></i>
                 Você ainda não possui participantes cadastrados.
                 <div class="mt-3">
-                    <a href="/pesquisa_educacional/views/pages/participante_login.php" class="btn btn-success">
+                    <a href="/views/pages/participante_login.php" class="btn btn-success">
                         <i class="bi bi-plus-circle me-2"></i>Cadastrar Primeiro Participante
                     </a>
                 </div>

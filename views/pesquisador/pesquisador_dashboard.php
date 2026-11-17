@@ -6,13 +6,13 @@ if (session_status() === PHP_SESSION_NONE) {
 // 1. VERIFICAÇÃO DE SEGURANÇA
 // Se não houver um pesquisador logado, redireciona para a página de login.
 if (!isset($_SESSION['id_pesquisador'])) {
-    header('Location: /pesquisa_educacional/index.php');
+    header('Location: /index.php');
     exit();
 }
 
 // 2. BUSCAR OS DADOS
 // Inclui o Model para podermos usá-lo
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/model/PesquisadorModel.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/model/PesquisadorModel.php';
 
 // Pega o ID do pesquisador da sessão
 $id_pesquisador_logado = $_SESSION['id_pesquisador'];
@@ -26,7 +26,7 @@ $pesquisador = $pesquisadorModel->buscarPorIdBanco($id_pesquisador_logado);
 // Se por algum motivo o pesquisador não for encontrado no banco, desloga por segurança
 if (!$pesquisador) {
     session_destroy();
-    header('Location: /pesquisa_educacional/index.php');
+    header('Location: /index.php');
     exit();
 }
 
@@ -40,8 +40,8 @@ $quantidade_participantes = $pesquisadorModel->contarParticipantesPorPesquisador
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard do Pesquisador</title>
-    <link rel="icon" type="image/jpg" href="/pesquisa_educacional/public/assets/logos/favicon.jpg">
-    <?php include $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/views/includes/cdn.php'; ?>
+    <link rel="icon" type="image/jpg" href="/public/assets/logos/favicon.jpg">
+    <?php include $_SERVER['DOCUMENT_ROOT'] . '/views/includes/cdn.php'; ?>
     <style>
         .dashboard-card {
             background-color: #f8f9fa;
@@ -49,12 +49,12 @@ $quantidade_participantes = $pesquisadorModel->contarParticipantesPorPesquisador
     </style>
 </head>
 <body>
-    <?php include $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/views/includes/header.php'; ?>
+    <?php include $_SERVER['DOCUMENT_ROOT'] . '/views/includes/header.php'; ?>
 
     <div class="container mt-5">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h2>Dashboard do Pesquisador</h2>
-            <a href="/pesquisa_educacional/app/process/logout_process.php" class="btn btn-danger">Sair</a>
+            <a href="/app/process/logout_process.php" class="btn btn-danger">Sair</a>
         </div>
         
         <div class="row">
@@ -83,10 +83,10 @@ $quantidade_participantes = $pesquisadorModel->contarParticipantesPorPesquisador
         <div class="mt-5">
             <h3>Ações</h3>
             <div class="d-grid gap-2 d-md-flex">
-                <a href="/pesquisa_educacional/views/login/participante_login.php" class="btn btn-success btn-lg flex-grow-1">
+                <a href="/views/login/participante_login.php" class="btn btn-success btn-lg flex-grow-1">
                     <i class="bi bi-play-circle-fill me-2"></i> Iniciar Pesquisa com Novo Participante
                 </a>
-                <a href="/pesquisa_educacional/views/listagens/listar_participantes.php" class="btn btn-primary btn-lg flex-grow-1 mt-2 mt-md-0">
+                <a href="/views/listagens/listar_participantes.php" class="btn btn-primary btn-lg flex-grow-1 mt-2 mt-md-0">
                     <i class="bi bi-people-fill me-2"></i> Ver Todos os Meus Participantes
                 </a>
             </div>

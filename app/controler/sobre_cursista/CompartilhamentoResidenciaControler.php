@@ -4,7 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/model/sobre_cursista/CompartilhamentoResidenciaModel.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/model/sobre_cursista/CompartilhamentoResidenciaModel.php';
 
 class CompartilhamentoResidenciaControler{
 
@@ -21,7 +21,7 @@ class CompartilhamentoResidenciaControler{
         catch(Exception $exception){
             echo "Erro encontrado -> " . $exception->getMessage();
             $_SESSION['mensagem_excecao'] = "Erro ao persistir os dados de compartilhamento de residência";
-            header("Location: /pesquisa_educacional/views/erro.php");
+            header("Location: /views/erro.php");
             exit;
         }
     }

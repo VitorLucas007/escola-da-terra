@@ -4,7 +4,7 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/model/sobre_condicao_estudo/UltimoLivroGostadoModel.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/model/sobre_condicao_estudo/UltimoLivroGostadoModel.php';
 
 class UltimoLivroGostadoController {
     private $ultimo_livro_gostado_model;
@@ -35,7 +35,7 @@ class UltimoLivroGostadoController {
             return $this->ultimo_livro_gostado_model->getUltimoIdInsercaoUltimoLivroGostado();
         } catch (Exception $excpetion) {
             $_SESSION['mensagem_execao'] = "Erro ao obter o ultimo ID de inserção";
-            header("Location: /pesquisa_educacional/views/erro.php");
+            header("Location: /views/erro.php");
             exit;
         }
     }

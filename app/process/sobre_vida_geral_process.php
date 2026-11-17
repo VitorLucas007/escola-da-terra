@@ -6,12 +6,12 @@ if (session_status() === PHP_SESSION_NONE) {
 
 // $_SESSION['id_participante'] = 1;
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_vida_geral/SobreVidaGeralController.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_vida_geral/FrequenciaBebidaAlcoolicaController.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_vida_geral/RazaoAlimentacaoDesequilibradaController.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_vida_geral/ProblemaUltimasSemanasController.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_vida_geral/AtividadeForaTrabalhoController.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/UserParticipanteControler.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/sobre_vida_geral/SobreVidaGeralController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/sobre_vida_geral/FrequenciaBebidaAlcoolicaController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/sobre_vida_geral/RazaoAlimentacaoDesequilibradaController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/sobre_vida_geral/ProblemaUltimasSemanasController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/sobre_vida_geral/AtividadeForaTrabalhoController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/UserParticipanteControler.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -165,16 +165,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
         }
 
-        # Pesquisa concluída: progresso 8 = ao logar de novo, vai para página de sucesso
+        # Pesquisa concluída: progresso 7 = 7 formulários concluídos; ao logar de novo, vai para página de sucesso
         $user_participante_controler = new UserParticipanteControler();
-        $atualizacao_progresso = $user_participante_controler->atualizarProgressoParticipante($_SESSION['id_participante'], 8);
+        $atualizacao_progresso = $user_participante_controler->atualizarProgressoParticipante($_SESSION['id_participante'], 7);
         if (!$atualizacao_progresso) {
             echo "erro ao atualizar o progresso do participante";
             exit;
         }
 
        // Redirecionar para página de sucesso
-        header("Location: /pesquisa_educacional/views/success.php");
+        header("Location: /views/success.php");
         exit;
     } catch (Exception $e) {
 

@@ -6,13 +6,13 @@ if (session_status() === PHP_SESSION_NONE) {
 
 // VERIFICAÇÃO INICIAL
 if (!isset($_GET['id']) || empty($_GET['id'])) {
-    header("Location: /pesquisa_educacional/views/listar_participantes.php");
+    header("Location: /views/listar_participantes.php");
     exit;
 }
 $id_participante = $_GET['id'];
 
 // INCLUI O CONTROLLER PRINCIPAL
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/ParticipanteRespostaController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/ParticipanteRespostaController.php';
 
 try {
     // Instancia o controller e obtém todos os dados
@@ -21,7 +21,7 @@ try {
     
     // Verifica se o participante existe
     if (!$dados['participante']) {
-        header("Location: /pesquisa_educacional/views/listar_todos_users_participantes.php");
+        header("Location: /views/listar_todos_users_participantes.php");
         exit;
     }
     
@@ -31,7 +31,7 @@ try {
 } catch (Exception $e) {
     // Log do erro e redirecionamento
     error_log("Erro ao carregar dados do participante {$id_participante}: " . $e->getMessage());
-    header("Location: /pesquisa_educacional/views/listar_todos_users_participantes.php");
+    header("Location: /views/listar_todos_users_participantes.php");
     exit;
 }
 ?>
@@ -44,7 +44,7 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Respostas do Participante</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="icon" type="image/jpg" href="/pesquisa_educacional/public/assets/logos/favicon.jpg">
+    <link rel="icon" type="image/jpg" href="/public/assets/logos/favicon.jpg">
     <style>
         body { background-color: #f8f9fa; }
         .card-header { background-color: #343a40; color: white; }
@@ -55,7 +55,7 @@ try {
 
 <body>
     <?php
-        include $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/views/includes/header.php';
+        include $_SERVER['DOCUMENT_ROOT'] . '/views/includes/header.php';
     ?>
 
     <div class="container my-5">
@@ -71,37 +71,37 @@ try {
 
         <?php 
         $dados_cursista = $dados['cursista'];
-        include $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/views/sections/cursista_section.php'; 
+        include $_SERVER['DOCUMENT_ROOT'] . '/views/sections/cursista_section.php'; 
         ?>
         
         <?php 
         $dados_familia = $dados['familia'];
-        include $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/views/sections/familia_section.php'; 
+        include $_SERVER['DOCUMENT_ROOT'] . '/views/sections/familia_section.php'; 
         ?>
         
         <?php 
         $dados_formacao = $dados['formacao'];
-        include $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/views/sections/formacao_section.php'; 
+        include $_SERVER['DOCUMENT_ROOT'] . '/views/sections/formacao_section.php'; 
         ?>
         
         <?php 
         $dados_carreira = $dados['carreira'];
-        include $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/views/sections/carreira_section.php'; 
+        include $_SERVER['DOCUMENT_ROOT'] . '/views/sections/carreira_section.php'; 
         ?>
         
         <?php 
         $dados_exercicio = $dados['exercicio'];
-        include $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/views/sections/exercicio_section.php'; 
+        include $_SERVER['DOCUMENT_ROOT'] . '/views/sections/exercicio_section.php'; 
         ?>
         
         <?php 
         $dados_condicao_estudo = $dados['condicao_estudo'];
-        include $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/views/sections/condicao_estudo_section.php'; 
+        include $_SERVER['DOCUMENT_ROOT'] . '/views/sections/condicao_estudo_section.php'; 
         ?>
          
         <?php 
         $dados_vida_geral = $dados['vida_geral'];
-        include $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/views/sections/vida_geral_section.php'; 
+        include $_SERVER['DOCUMENT_ROOT'] . '/views/sections/vida_geral_section.php'; 
         ?>
     </div>
 

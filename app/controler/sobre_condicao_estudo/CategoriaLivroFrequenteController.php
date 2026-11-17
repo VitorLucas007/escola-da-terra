@@ -4,7 +4,7 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/model/sobre_condicao_estudo/CategoriaLivroFrequenteModel.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/model/sobre_condicao_estudo/CategoriaLivroFrequenteModel.php';
 
 class CategoriaLivroFrequenteController {
     private $categoria_livro_frequente_model;
@@ -35,7 +35,7 @@ class CategoriaLivroFrequenteController {
             return $this->categoria_livro_frequente_model->getUltimoIdInsercaoCategoriaLivroFrequente();
         } catch (Exception $excpetion) {
             $_SESSION['mensagem_execao'] = "Erro ao obter o ultimo ID de inserção";
-            header("Location: /pesquisa_educacional/views/erro.php");
+            header("Location: /views/erro.php");
             exit;
         }
     }

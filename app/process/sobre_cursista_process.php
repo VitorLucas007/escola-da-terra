@@ -6,10 +6,10 @@ if (session_status() === PHP_SESSION_NONE) {
 
 // $_SESSION['id_participante'] = 1; # Valor para testes.
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_cursista/SobreCursistaControler.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_cursista/CompartilhamentoResidenciaControler.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_cursista/OpiniaoTemaSobreCursistaControler.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/UserParticipanteControler.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/sobre_cursista/SobreCursistaControler.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/sobre_cursista/CompartilhamentoResidenciaControler.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/sobre_cursista/OpiniaoTemaSobreCursistaControler.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/UserParticipanteControler.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
@@ -118,27 +118,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
 
-        # Próximo passo após concluir este bloco: progresso 2 = formulário família (ver redirecionarBaseadoProgressoParticipante)
+        # Progresso 1 = 1 formulário concluído (cursista); próximo é família (ver redirecionarBaseadoProgressoParticipante)
         $user_participante_controler = new UserParticipanteControler();
-        $atualizacao_progresso = $user_participante_controler->atualizarProgressoParticipante($_SESSION['id_participante'], 2);
+        $atualizacao_progresso = $user_participante_controler->atualizarProgressoParticipante($_SESSION['id_participante'], 1);
         if (!$atualizacao_progresso) {
             throw new Exception("Erro ao atualizar o progresso do participante");
         }
         
         # Redirecionamento automático para próximo formulário
-        header("Location: /pesquisa_educacional/views/formularios/formulario_sobre_familia.php");
+        header("Location: /views/formularios/formulario_sobre_familia.php");
         exit;
         
     } catch (Exception $e) {
         error_log("Erro no cadastro sobre cursista: " . $e->getMessage());
         $_SESSION['mensagem_erro'] = "Erro ao processar dados: " . $e->getMessage();
-        header("Location: /pesquisa_educacional/views/erro.php");
+        header("Location: /views/erro.php");
         exit;
     }
     
 } else {
     http_response_code(405);
-    header("Location: /pesquisa_educacional/views/erro.php");
+    header("Location: /views/erro.php");
     exit;
 }
 ?>

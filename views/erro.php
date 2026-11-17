@@ -3,7 +3,7 @@
             session_start();
     }
     $mensagem_excecao = $_SESSION['mensagem_excecao'] ?? '';
-    unset($mensagem_excecao);
+    unset($_SESSION['mensagem_excecao']);
 ?>
 
 <!DOCTYPE html>
@@ -14,10 +14,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Erro encontrado</title>
         <link rel="stylesheet" href="../public/css/erro.css">
-    <link rel="icon" type="image/jpg" href="/pesquisa_educacional/public/assets/logos/favicon.jpg"> 
+    <link rel="icon" type="image/jpg" href="/public/assets/logos/favicon.jpg"> 
     <?php
-        include $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/views/includes/cdn.php';
-        include $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/views/includes/habilitar_debug_erro.php'
+        include $_SERVER['DOCUMENT_ROOT'] . '/views/includes/cdn.php';
+        include $_SERVER['DOCUMENT_ROOT'] . '/views/includes/habilitar_debug_erro.php'
     ?>
 </head>
 

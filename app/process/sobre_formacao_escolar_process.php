@@ -7,14 +7,14 @@ if (session_status() === PHP_SESSION_NONE) {
 // $_SESSION['id_participante'] = 1; # Valor para testes.
 // Verificar se existe sessão de participante
 // if (!isset($_SESSION['id_participante'])) {
-//     header("Location: /pesquisa_educacional/views/erro.php");
+//     header("Location: /views/erro.php");
 //     exit;
 // }
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_formacao_escolar/SobreFormacaoEscolarController.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_formacao_escolar/FormacaoBasicaController.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_formacao_escolar/FormacaoSuperiorController.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/UserParticipanteControler.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/sobre_formacao_escolar/SobreFormacaoEscolarController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/sobre_formacao_escolar/FormacaoBasicaController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/sobre_formacao_escolar/FormacaoSuperiorController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/UserParticipanteControler.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
@@ -254,27 +254,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
         }
 
-        # Próximo passo: progresso 4 = carreira
+        # Progresso 3 = 3 formulários concluídos; próximo é carreira
         $user_participante_controler = new UserParticipanteControler();
-        $atualizacao_progresso = $user_participante_controler->atualizarProgressoParticipante($_SESSION['id_participante'], 4);
+        $atualizacao_progresso = $user_participante_controler->atualizarProgressoParticipante($_SESSION['id_participante'], 3);
         
         if (!$atualizacao_progresso) {
             throw new Exception("Erro ao atualizar o progresso do participante");
         }
 
         # Redirecionamento automático para próximo formulário
-        header("Location: /pesquisa_educacional/views/formularios/formulario_sobre_carreira.php");
+        header("Location: /views/formularios/formulario_sobre_carreira.php");
         exit;
         
     } catch (Exception $e) {
         error_log("Erro no cadastro de informações de formação escolar: " . $e->getMessage());
         $_SESSION['mensagem_erro'] = "Erro ao processar dados de formação escolar: " . $e->getMessage();
-        header("Location: /pesquisa_educacional/views/erro.php");
+        header("Location: /views/erro.php");
         exit;
     }
 } else {
     http_response_code(405);
-    header("Location: /pesquisa_educacional/views/erro.php");
+    header("Location: /views/erro.php");
     exit;
 }
 ?>

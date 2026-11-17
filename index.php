@@ -15,15 +15,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login do Pesquisador - Escola da Terra</title>
-    <link rel="stylesheet" href="/pesquisa_educacional/public/css/index.css">
-    <link rel="icon" type="image/jpg" href="/pesquisa_educacional/public/assets/logos/favicon.jpg">
+    <link rel="stylesheet" href="/public/css/index.css">
+    <link rel="icon" type="image/jpg" href="/public/assets/logos/favicon.jpg">
     <?php
-        include $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/views/includes/cdn.php';
+        include $_SERVER['DOCUMENT_ROOT'] . '/views/includes/cdn.php';
     ?>
 </head>
 <body>
     <?php
-        include $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/views/includes/header.php';
+        include $_SERVER['DOCUMENT_ROOT'] . '/views/includes/header.php';
     ?>
 
     <div class="container d-flex justify-content-center align-items-center" style="min-height: 70vh;">
@@ -37,7 +37,7 @@
                     </div>
                 <?php endif; ?>
 
-                <form action="/pesquisa_educacional/app/process/pesquisador_login_process.php" method="post">
+                <form action="/app/process/pesquisador_login_process.php" method="post">
                     <div class="mb-3">
                         <label for="email" class="form-label fw-bold">Email:</label>
                         <input type="email" id="email" name="email" class="form-control" placeholder="seuemail@exemplo.com" required autocomplete="email">
@@ -51,7 +51,7 @@
                     </div>
                 </form>
                 <p class="mt-3 text-center">
-                    Não tem uma conta? <a href="/pesquisa_educacional/views/login/pesquisador_cadastro.php">Registre-se aqui</a>.
+                    Não tem uma conta? <a href="/views/login/pesquisador_cadastro.php">Registre-se aqui</a>.
                 </p>
             </div>
         </div>

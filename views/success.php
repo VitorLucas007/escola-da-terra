@@ -2,7 +2,7 @@
 // Bloco para processar o logout
 if (isset($_POST['finalizar_sessao'])) {
     
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/SucessController.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/SucessController.php';
     
     $controller = new SuccessController();
     
@@ -19,13 +19,13 @@ if (isset($_POST['finalizar_sessao'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pesquisa Concluída</title>
     
-    <?php include $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/views/includes/cdn.php'; ?>
-    <link rel="icon" type="image/jpg" href="/pesquisa_educacional/public/assets/logos/favicon.jpg">
+    <?php include $_SERVER['DOCUMENT_ROOT'] . '/views/includes/cdn.php'; ?>
+    <link rel="icon" type="image/jpg" href="/public/assets/logos/favicon.jpg">
 </head>
 
 <body class="bg-light">
     
-    <?php include $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/views/includes/header.php'; ?>
+    <?php include $_SERVER['DOCUMENT_ROOT'] . '/views/includes/header.php'; ?>
     
     <div class="container">
         <div class="row justify-content-center">

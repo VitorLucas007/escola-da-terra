@@ -15,6 +15,6 @@ session_destroy();
 
 // Redireciona o usuário para a página de login.
 // O usuário agora está efetivamente deslogado.
-header('Location: /pesquisa_educacional/index.php');
+header('Location: /index.php');
 exit;
 ?>

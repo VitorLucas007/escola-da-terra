@@ -5,7 +5,7 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 // CORRIGIDO: Nome do arquivo model (remover "s" extra ou verificar nome correto)
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/model/sobre_exercicio_profissao/BeneficioRecebidoSalarioModel.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/model/sobre_exercicio_profissao/BeneficioRecebidoSalarioModel.php';
 
 class BeneficioRecebidoSalarioController {
     private $beneficio_recebido_salario_model;
@@ -37,7 +37,7 @@ class BeneficioRecebidoSalarioController {
             return $this->beneficio_recebido_salario_model->getUltimoIdInsercaoBeneficioRecebidoSalario();
         } catch (\Throwable $th) {
             $_SESSION['mensagem_execao'] = "Erro ao obter o ultimo ID de inserção";
-            header("Location: /pesquisa_educacional/views/erro.php");
+            header("Location: /views/erro.php");
             exit;
         }
     }

@@ -5,7 +5,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 // Inclui o seu Controller
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/UserParticipanteControler.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/UserParticipanteControler.php';
 
 // Cria uma instância do seu controller
 $userController = new UserParticipanteControler();
@@ -26,15 +26,15 @@ $total_formularios = 7;
     
     <?php
         // Inclui o seu arquivo com os links do Bootstrap e seus ícones
-        include $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/views/includes/cdn.php';
+        include $_SERVER['DOCUMENT_ROOT'] . '/views/includes/cdn.php';
     ?>
-    <link rel="icon" type="image/jpg" href="/pesquisa_educacional/public/assets/logos/favicon.jpg">
+    <link rel="icon" type="image/jpg" href="/public/assets/logos/favicon.jpg">
 </head>
 <body>
 
     <?php
         // Inclui o cabeçalho da sua página
-        include $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/views/includes/header.php';
+        include $_SERVER['DOCUMENT_ROOT'] . '/views/includes/header.php';
     ?>
 
     <div class="container mt-5">
@@ -71,7 +71,7 @@ $total_formularios = 7;
                                 </div>
 
                                 <div class="mt-auto pt-3 text-center">
-                                    <a href="/pesquisa_educacional/views/listagens/listagem_respostas.php?id=<?php echo htmlspecialchars($participante['id_participante']); ?>" class="btn btn-primary w-100">
+                                    <a href="/views/listagens/listagem_respostas.php?id=<?php echo htmlspecialchars($participante['id_participante']); ?>" class="btn btn-primary w-100">
                                         <i class="bi bi-eye-fill me-2"></i> Ver Respostas
                                     </a>
                                 </div>

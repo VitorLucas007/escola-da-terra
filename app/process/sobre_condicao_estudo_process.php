@@ -4,18 +4,18 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 // if(!isset($_SESSION['id_participante'])){
-//     header("Location: /pesquisa_educacional/index.php");
+//     header("Location: /index.php");
 //     exit;
 // }
 
 // $_SESSION['id_participante'] = 1;
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_condicao_estudo/SobreCondicaoEstudoController.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_condicao_estudo/LeituraFrequenteController.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_condicao_estudo/UltimoLivroGostadoController.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_condicao_estudo/CategoriaLivroFrequenteController.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_condicao_estudo/AcessoInternetController.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/UserParticipanteControler.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/sobre_condicao_estudo/SobreCondicaoEstudoController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/sobre_condicao_estudo/LeituraFrequenteController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/sobre_condicao_estudo/UltimoLivroGostadoController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/sobre_condicao_estudo/CategoriaLivroFrequenteController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/sobre_condicao_estudo/AcessoInternetController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/UserParticipanteControler.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -139,22 +139,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $registros_secundarios_cadastrados++;
         }
 
-        # Próximo passo: progresso 7 = vida geral
+        # Progresso 6 = 6 formulários concluídos; próximo é vida geral
         $user_participante_controler = new UserParticipanteControler();
-        $atualizacao_progresso = $user_participante_controler->atualizarProgressoParticipante($_SESSION['id_participante'], 7);
+        $atualizacao_progresso = $user_participante_controler->atualizarProgressoParticipante($_SESSION['id_participante'], 6);
         if (!$atualizacao_progresso) {
             echo "erro ao atualizar o progresso do participante";
             exit;
         }
 
         # Redirecionamento automático para próximo formulário
-        header("Location: /pesquisa_educacional/views/formularios/formulario_sobre_vida_geral.php");
+        header("Location: /views/formularios/formulario_sobre_vida_geral.php");
         exit;
 
     } catch (Exception $e) {
         error_log("Erro no cadastro de condições de estudo: " . $e->getMessage());
         $_SESSION['erro_message'] = "Erro ao processar dados: " . $e->getMessage();
-        header("Location: /pesquisa_educacional/views/sobre_condicao_estudo.php?erro=1");
+        header("Location: /views/sobre_condicao_estudo.php?erro=1");
         exit;
     }
 } else {

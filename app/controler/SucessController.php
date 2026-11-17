@@ -17,7 +17,7 @@ class SuccessController {
             return null;
         }
         
-        require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/UserParticipanteControler.php';
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/UserParticipanteControler.php';
         
         $userController = new UserParticipanteControler();
         return $userController->buscarParticipantePorId($_SESSION['id_participante']);
@@ -46,7 +46,7 @@ class SuccessController {
     }
     
     public function redirecionarParaInicio() {
-        header("Location: /pesquisa_educacional/index.php");
+        header("Location: /index.php");
         exit;
     }
 }

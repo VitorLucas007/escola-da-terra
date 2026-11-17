@@ -4,7 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/model/sobre_familia/InformacaoAvosModel.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/model/sobre_familia/InformacaoAvosModel.php';
 
 
 class InformacaoAvosController {
@@ -34,7 +34,7 @@ class InformacaoAvosController {
             return $this->informacao_avos_model->getUltimoIdInsercaoInformacaoAvos();
         } catch (Exception $exception) {
             $_SESSION['mensagem_excecao'] = "Erro ao obter o último ID de inserção.";
-            header("Location: /pesquisa_educacional/views/erro.php");
+            header("Location: /views/erro.php");
             exit;
         }
     }

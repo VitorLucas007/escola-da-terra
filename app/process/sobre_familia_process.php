@@ -6,14 +6,14 @@ if (session_status() === PHP_SESSION_NONE) {
 
 // $_SESSION['id_participante'] = 1;
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_familia/SobreFamiliaController.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_familia/InformacaoFilhoController.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_familia/InformacaoFilhoMaiorIdadeController.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_familia/InformacaoFilhoMenorIdadeController.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_familia/InformacaoIrmaoController.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_familia/InformacaoGenitorController.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_familia/InformacaoAvosController.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/UserParticipanteControler.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/sobre_familia/SobreFamiliaController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/sobre_familia/InformacaoFilhoController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/sobre_familia/InformacaoFilhoMaiorIdadeController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/sobre_familia/InformacaoFilhoMenorIdadeController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/sobre_familia/InformacaoIrmaoController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/sobre_familia/InformacaoGenitorController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/sobre_familia/InformacaoAvosController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/UserParticipanteControler.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
@@ -232,27 +232,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
         }
 
-        # Próximo passo: progresso 3 = formação escolar
+        # Progresso 2 = 2 formulários concluídos; próximo é formação escolar
         $user_participante_controler = new UserParticipanteControler();
-        $atualizacao_progresso = $user_participante_controler->atualizarProgressoParticipante($_SESSION['id_participante'], 3);
+        $atualizacao_progresso = $user_participante_controler->atualizarProgressoParticipante($_SESSION['id_participante'], 2);
         
         if (!$atualizacao_progresso) {
             throw new Exception("Erro ao atualizar o progresso do participante");
         }
 
         # Redirecionamento automático para próximo formulário
-        header("Location: /pesquisa_educacional/views/formularios/formulario_sobre_formacao_escolar.php");
+        header("Location: /views/formularios/formulario_sobre_formacao_escolar.php");
         exit;
         
     } catch (Exception $e) {
         error_log("Erro no cadastro de informações familiares: " . $e->getMessage());
         $_SESSION['mensagem_erro'] = "Erro ao processar dados familiares: " . $e->getMessage();
-        header("Location: /pesquisa_educacional/views/erro.php");
+        header("Location: /views/erro.php");
         exit;
     }
 } else {
     http_response_code(405);
-    header("Location: /pesquisa_educacional/views/erro.php");
+    header("Location: /views/erro.php");
     exit;
 }
 ?>

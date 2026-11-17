@@ -4,7 +4,7 @@
     session_start();
 }
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/model/sobre_exercicio_profissao/FonteStressModel.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/model/sobre_exercicio_profissao/FonteStressModel.php';
 
 
  class FonteStressController {
@@ -35,7 +35,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/model/sobre_
             return $this->fonte_stress_model->getUltimoIdInsercaoFonteStress();
         } catch (Exception $excpetion) {
             $_SESSION['mensagem_execao'] = "Erro ao obter o ultimo ID de inserção";
-            header("Location: /pesquisa_educacional/views/erro.php");
+            header("Location: /views/erro.php");
             exit;
         }
     }

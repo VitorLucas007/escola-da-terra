@@ -1,42 +1,42 @@
 <?php
 
 // Inclui todos os controllers necessários para a busca de dados
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/UserParticipanteControler.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/UserParticipanteControler.php';
 // Formulário 1
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_cursista/SobreCursistaControler.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_cursista/CompartilhamentoResidenciaControler.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_cursista/OpiniaoTemaSobreCursistaControler.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/sobre_cursista/SobreCursistaControler.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/sobre_cursista/CompartilhamentoResidenciaControler.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/sobre_cursista/OpiniaoTemaSobreCursistaControler.php';
 // Formulário 2
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_familia/SobreFamiliaController.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_familia/InformacaoFilhoController.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_familia/InformacaoIrmaoController.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_familia/InformacaoGenitorController.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_familia/InformacaoAvosController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/sobre_familia/SobreFamiliaController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/sobre_familia/InformacaoFilhoController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/sobre_familia/InformacaoIrmaoController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/sobre_familia/InformacaoGenitorController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/sobre_familia/InformacaoAvosController.php';
 // Formulário 3
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_formacao_escolar/SobreFormacaoEscolarController.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_formacao_escolar/FormacaoBasicaController.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_formacao_escolar/FormacaoSuperiorController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/sobre_formacao_escolar/SobreFormacaoEscolarController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/sobre_formacao_escolar/FormacaoBasicaController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/sobre_formacao_escolar/FormacaoSuperiorController.php';
 // Formulário 4
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_carreira/SobreCarreiraController.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_carreira/TrabalhoAnteriorController.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_carreira/EstabelecimentoTrabalhoController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/sobre_carreira/SobreCarreiraController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/sobre_carreira/TrabalhoAnteriorController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/sobre_carreira/EstabelecimentoTrabalhoController.php';
 // Formulário 5
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_exercicio_profissao/SobreExercicioProfissaoController.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_exercicio_profissao/FonteStressController.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_exercicio_profissao/BeneficioRecebidoSalarioController.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_exercicio_profissao/BeneficioOriundoAtividadeDocenciaController.php'; 
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/sobre_exercicio_profissao/SobreExercicioProfissaoController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/sobre_exercicio_profissao/FonteStressController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/sobre_exercicio_profissao/BeneficioRecebidoSalarioController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/sobre_exercicio_profissao/BeneficioOriundoAtividadeDocenciaController.php'; 
 // Formulário 6
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_condicao_estudo/SobreCondicaoEstudoController.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_condicao_estudo/LeituraFrequenteController.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_condicao_estudo/UltimoLivroGostadoController.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_condicao_estudo/CategoriaLivroFrequenteController.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_condicao_estudo/AcessoInternetController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/sobre_condicao_estudo/SobreCondicaoEstudoController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/sobre_condicao_estudo/LeituraFrequenteController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/sobre_condicao_estudo/UltimoLivroGostadoController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/sobre_condicao_estudo/CategoriaLivroFrequenteController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/sobre_condicao_estudo/AcessoInternetController.php';
 // Formulário 7
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_vida_geral/SobreVidaGeralController.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_vida_geral/FrequenciaBebidaAlcoolicaController.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_vida_geral/RazaoAlimentacaoDesequilibradaController.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_vida_geral/ProblemaUltimasSemanasController.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/sobre_vida_geral/AtividadeForaTrabalhoController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/sobre_vida_geral/SobreVidaGeralController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/sobre_vida_geral/FrequenciaBebidaAlcoolicaController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/sobre_vida_geral/RazaoAlimentacaoDesequilibradaController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/sobre_vida_geral/ProblemaUltimasSemanasController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/sobre_vida_geral/AtividadeForaTrabalhoController.php';
 
 
 class ParticipanteResponseController {

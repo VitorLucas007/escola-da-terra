@@ -4,7 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/model/sobre_familia/InformacaoIrmaoModel.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/model/sobre_familia/InformacaoIrmaoModel.php';
 
 class InformacaoIrmaoController {
     private $informacao_irmao_model;
@@ -33,7 +33,7 @@ class InformacaoIrmaoController {
             return $this->informacao_irmao_model->getUltimoIdInsercaoInformacaoIrmao();
         } catch (Exception $exception) {
             $_SESSION['mensagem_excecao'] = "Erro ao obter o último ID de inserção.";
-            header("Location: /pesquisa_educacional/views/erro.php");
+            header("Location: /views/erro.php");
             exit;
         }
     }
