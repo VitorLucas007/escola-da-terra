@@ -4,7 +4,7 @@
     } 
 
     if(!isset($_SESSION['id_participante'])){
-        header("Location: /pesquisa_educacional/index.php");
+        header("Location: /index.php");
         exit;
     }
 
@@ -21,23 +21,23 @@
   <title>Informações sobre vida do participante em geral</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../../public/css/sobre_vida_geral.css">
-    <link rel="icon" type="image/jpg" href="/pesquisa_educacional/public/assets/logos/favicon.jpg">
+    <link rel="icon" type="image/jpg" href="/public/assets/logos/favicon.jpg">
     <?php
-        include $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/views/includes/cdn.php';
+        include $_SERVER['DOCUMENT_ROOT'] . '/views/includes/cdn.php';
     ?>
 </head>
 
 <body>
     
     <?php
-        include $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/views/includes/header.php';
+        include $_SERVER['DOCUMENT_ROOT'] . '/views/includes/header.php';
     ?> 
 
     <div class="container">
 
         <h2 class="text-center mb-4 mt-4 p-2 fw-bold">Informações sobre a vida em geral</h2>
 
-        <form class="form-container" action="#" method="post">
+        <form class="form-container" action="../../app/process/sobre_vida_geral_process.php" method="post">
 
             <div class="row mb-4">
                 <div class="col-md-6">
@@ -181,7 +181,7 @@
                         <label class="form-label fw-bold">Ao longo das últimas semanas, você diria que:</label>
 
                         <div class="form-check">
-                            <input type="checkbox" name="descricao_problema[]" value="Insônia" class="form-check-input" required> Teve insônia
+                            <input type="checkbox" name="descricao_problema[]" value="Insônia" class="form-check-input"> Teve insônia
                         </div>
                         
                         <div class="form-check">
@@ -255,51 +255,58 @@
                         
                         <div class="table-responsive">
 
-                            <table class="table table-bordered text-center">
-                                
-                                <thead class="table-light">
-                                    <tr>
-                                        <th></th>
-                                        <th>Todos os dias</th>
-                                        <th>1 a 3 vezes por semana</th>
-                                        <th>2 a 3 vezes por mês</th>
-                                        <th>Raramente</th>
-                                        <th>Jamais</th>
-                                    </tr>
-                                </thead>
-                                
-                                <tbody>
+        <table class="table table-bordered text-center">
+            <thead class="table-light">
+                <tr>
+                    <th></th>
+                    <th>Todos os dias</th>
+                    <th>1 a 3 vezes por semana</th>
+                    <th>2 a 3 vezes por mês</th>
+                    <th>Raramente</th>
+                    <th>Jamais</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Vinho -->
+                <tr>
+                    <td>
+                        Vinho
+                        <input type="hidden" name="bebida[]" value="Vinho">
+                    </td>
+                    <td><input type="radio" name="nivel_frequencia[0]" value="Todos os dias"></td>
+                    <td><input type="radio" name="nivel_frequencia[0]" value="1 a 3 vezes por semana"></td>
+                    <td><input type="radio" name="nivel_frequencia[0]" value="2 a 3 vezes por mês"></td>
+                    <td><input type="radio" name="nivel_frequencia[0]" value="Raramente"></td>
+                    <td><input type="radio" name="nivel_frequencia[0]" value="Jamais"></td>
+                </tr>
 
-                                    <tr>
-                                        <td>Vinho</td>
-                                        <td><input type="radio" id="vinho_todo_dia" name="nivel_frequencia_vinho" value="Todos os dias"></td>
-                                        <td><input type="radio" name="nivel_frequencia_vinho" value="1 a 3 vezes por semana"></td>
-                                        <td><input type="radio" name="nivel_frequencia_vinho" value="2 a 3 vezes por mês"></td>
-                                        <td><input type="radio" name="nivel_frequencia_vinho" value="Raramente"></td>
-                                        <td><input type="radio" name="nivel_frequencia_vinho" value="Jamais"></td>
-                                    </tr>
-                                    
-                                    <tr>
-                                        <td>Cerveja</td>
-                                        <td><input type="radio" id="cerveja_todo_dia" name="nivel_frequencia_cerveja" value="Todos os dias"></td>
-                                        <td><input type="radio" name="nivel_frequencia_cerveja" value="1 a 3 vezes por semana"></td>
-                                        <td><input type="radio" name="nivel_frequencia_cerveja" value="2 a 3 vezes por mês"></td>
-                                        <td><input type="radio" name="nivel_frequencia_cerveja" value="Raramente"></td>
-                                        <td><input type="radio" name="nivel_frequencia_cerveja" value="Jamais"></td>
-                                    </tr>
-            
-                                    <tr>
-                                        <td>Cachaça</td>
-                                        <td><input type="radio" id="cachaca_todo_dia" name="nivel_frequencia_cachaca" value="Todos os dias"></td>
-                                        <td><input type="radio" name="nivel_frequencia_cachaca" value="1 a 3 vezes por semana"></td>
-                                        <td><input type="radio" name="nivel_frequencia_cachaca" value="2 a 3 vezes por mês"></td>
-                                        <td><input type="radio" name="nivel_frequencia_cachaca" value="Raramente"></td>
-                                        <td><input type="radio" name="nivel_frequencia_cachaca" value="Jamais"></td>
-                                    </tr>
-                                
-                                </tbody>
-                            
-                            </table>
+                <!-- Cerveja -->
+                <tr>
+                    <td>
+                        Cerveja
+                        <input type="hidden" name="bebida[]" value="Cerveja">
+                    </td>
+                    <td><input type="radio" name="nivel_frequencia[1]" value="Todos os dias"></td>
+                    <td><input type="radio" name="nivel_frequencia[1]" value="1 a 3 vezes por semana"></td>
+                    <td><input type="radio" name="nivel_frequencia[1]" value="2 a 3 vezes por mês"></td>
+                    <td><input type="radio" name="nivel_frequencia[1]" value="Raramente"></td>
+                    <td><input type="radio" name="nivel_frequencia[1]" value="Jamais"></td>
+                </tr>
+
+                <!-- Cachaça -->
+                <tr>
+                    <td>
+                        Cachaça
+                        <input type="hidden" name="bebida[]" value="Cachaça">
+                    </td>
+                    <td><input type="radio" name="nivel_frequencia[2]" value="Todos os dias"></td>
+                    <td><input type="radio" name="nivel_frequencia[2]" value="1 a 3 vezes por semana"></td>
+                    <td><input type="radio" name="nivel_frequencia[2]" value="2 a 3 vezes por mês"></td>
+                    <td><input type="radio" name="nivel_frequencia[2]" value="Raramente"></td>
+                    <td><input type="radio" name="nivel_frequencia[2]" value="Jamais"></td>
+                </tr>
+            </tbody>
+        </table>
                             
                         </div>
                     
@@ -366,7 +373,7 @@
                         <label class="form-label fw-bold">Fora do trabalho você faz <small>(mais de uma resposta possível)</small>:</label>
 
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="descricao_atividade[]" value="Esportes" id="atividade_esporte" required>
+                            <input class="form-check-input" type="checkbox" name="descricao_atividade[]" value="Esportes" id="atividade_esporte">
                             <label class="form-check-label" for="atividade_esporte">Esportes</label>
                         </div>
 

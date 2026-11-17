@@ -4,7 +4,7 @@
     } 
 
     if(!isset($_SESSION['id_participante'])){
-        header("Location: /pesquisa_educacional/index.php");
+        header("Location: /index.php");
         exit;
     }
 
@@ -22,23 +22,23 @@
   <title>Informações sobre exercicio da profissão</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../../public/css/sobre_carreira.css">
-    <link rel="icon" type="image/jpg" href="/pesquisa_educacional/public/assets/logos/favicon.jpg">
+    <link rel="icon" type="image/jpg" href="/public/assets/logos/favicon.jpg">
     <?php
-        include $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/views/includes/cdn.php';
+        include $_SERVER['DOCUMENT_ROOT'] . '/views/includes/cdn.php';
     ?>
 </head>
 
 <body>
     
     <?php
-        include $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/views/includes/header.php';
+        include $_SERVER['DOCUMENT_ROOT'] . '/views/includes/header.php';
     ?> 
 
     <div class="container">
 
         <h2 class="text-center mb-4 mt-4 p-2 fw-bold">Informações sobre o exercicio da Profissão</h2>
 
-        <form class="form-container" action="#" method="post">
+        <form class="form-container"  method="post" action="../../app/process/sobre_exercicio_profissao_process.php">
 
             <div class="row mb-4">
 
@@ -212,7 +212,7 @@
                         </label>
 
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="formacao_continuada" name="identificacao_beneficio[]" value="Formação continuada" required>
+                            <input class="form-check-input" type="checkbox" id="formacao_continuada" name="identificacao_beneficio[]" value="Formação continuada">
                             <label class="form-check-label" for="formacao_continuada">Formação continuada</label>
                         </div>
 
@@ -645,7 +645,7 @@
                         </label>
 
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="descricao_fonte[]" id="stress_colegas" value="Com os colegas" required>
+                            <input class="form-check-input" type="checkbox" name="descricao_fonte[]" id="stress_colegas" value="Com os colegas">
                             <label class="form-check-label" for="stress_colegas">Com os colegas</label>
                         </div>
 
@@ -747,7 +747,7 @@
                     <label class="form-label fw-semibold">Benefícios recebidos</label>
 
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="descricao_beneficio[]" id="beneficio1" value="Piso Salarial Profissional" required>
+                        <input class="form-check-input" type="checkbox" name="descricao_beneficio[]" id="beneficio1" value="Piso Salarial Profissional">
                         <label class="form-check-label" for="beneficio1">Piso Salarial Profissional</label>
                     </div>
 

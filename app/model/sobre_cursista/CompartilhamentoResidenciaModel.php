@@ -4,7 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/model/BancoDeDados.php';  
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/model/BancoDeDados.php';  
 
 
 class CompartilhamentoResidenciaModel{
@@ -30,8 +30,11 @@ class CompartilhamentoResidenciaModel{
         return $this->banco_de_dados->executar($sql, $parametros);
     }
 
-
-
+    public function buscarPorCursistaIdBanco($id_sobre_cursista) {
+    $sql = "SELECT * FROM CompartilhamentoResidencia WHERE sobre_cursista_id = :id";
+    $parametros = [':id' => $id_sobre_cursista];
+    return $this->banco_de_dados->consultar($sql, $parametros);
+}
 
 }
 

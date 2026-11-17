@@ -4,7 +4,7 @@
     } 
 
     if(!isset($_SESSION['id_participante'])){
-        header("Location: /pesquisa_educacional/index.php");
+        header("Location: /index.php");
         exit;
     }
 
@@ -21,21 +21,21 @@
   <title>Informações sobre a familia</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../../public/css/sobre_familia.css">
-    <link rel="icon" type="image/jpg" href="/pesquisa_educacional/public/assets/logos/favicon.jpg">
+    <link rel="icon" type="image/jpg" href="/public/assets/logos/favicon.jpg">
     <?php 
-        include $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/views/includes/cdn.php';
+        include $_SERVER['DOCUMENT_ROOT'] . '/views/includes/cdn.php';
     ?>
 </head>
 <body>
     <?php 
-        include $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/views/includes/header.php';
+        include $_SERVER['DOCUMENT_ROOT'] . '/views/includes/header.php';
     ?>
 
     <div class="container">
         
         <h2 class="text-center mb-4 mt-4 p-2 fw-bold">Informações sobre a familia</h2>
             
-        <form class="form-container" method="post" action="#">
+        <form class="form-container" method="post" action="../../app/process/sobre_familia_process.php">
             
             <div class="row">
 
@@ -80,7 +80,7 @@
                             
                             <tbody>
                                 <tr>
-                                    <td><input type="text" name="nome_filho[]" class="form-control nome_filho" required></td>
+                                    <td><input type="text" name="nome_filho[]" class="form-control nome_filho" ></td>
     
                                     <td>
                                         <select name="sexo[]" class="form-select sexo_filho" required>
@@ -96,7 +96,7 @@
                                     <td>
                                         <select name="vive_com_participante[]" class="form-select vive_com_participante_filho" required>
                                             <option value="">Selecione</option>
-                                            <option value="1'">Sim</option>
+                                            <option value="1">Sim</option>
                                             <option value="0">Não</option>
                                         </select>
                                     </td>
@@ -143,12 +143,12 @@
                                     
                                     <div class="mb-3">
                                         <label for="nome_filho" class="form-label">Nome (Mesmo nome indicado anteriormente)</label>
-                                        <input type="text" class="form-control nome_filho" name="nome_filho[]" id="nome_filho" required>
+                                        <input type="text" class="form-control nome_filho" name="nome_filho[]" id="nome_filho">
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="sexo_filho" class="form-label">Sexo</label>
-                                        <select class="form-select sexo_filho" name="sexo[]" id="sexo_filho" required>
+                                        <select class="form-select sexo_filho" name="sexo[]" id="sexo_filho">
                                             <option value="">Selecione</option>
                                             <option value="Masculino">Masculino</option>
                                             <option value="Feminino">Feminino</option>
@@ -158,12 +158,12 @@
 
                                     <div class="mb-3">
                                         <label for="data_nascimento" class="form-label">Data de nascimento</label>
-                                        <input type="date" class="form-control data_nascimento_filho" name="data_nascimento[]" id="data_nascimento" required>
+                                        <input type="date" class="form-control data_nascimento_filho" name="data_nascimento[]" id="data_nascimento" >
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="vive_com" class="form-label">Vive com você?</label>
-                                        <select class="form-select vive_com_participante_filho" name="vive_com_participante[]" id="vive_com" required>
+                                        <select class="form-select vive_com_participante_filho" name="vive_com_participante[]" id="vive_com">
                                             <option value="">Selecione</option>
                                             <option value="1">Sim</option>
                                             <option value="0">Não</option>
@@ -172,7 +172,7 @@
 
                                     <div class="mb-3">
                                         <label for="solteiro" class="form-label">É solteiro(a)?</label>
-                                        <select class="form-select solteiro_filho" name="solteiro[]" id="solteiro" required>
+                                        <select class="form-select solteiro_filho" name="solteiro[]" id="solteiro">
                                             <option value="">Selecione</option>
                                             <option value="1">Sim</option>
                                             <option value="0">Não</option>

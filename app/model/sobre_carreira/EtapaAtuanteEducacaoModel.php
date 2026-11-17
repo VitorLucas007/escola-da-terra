@@ -1,0 +1,49 @@
+ <?php 
+
+require_once rtrim($_SERVER['DOCUMENT_ROOT'], '/') . '/app/model/BancoDeDados.php';
+
+
+class EtapaAtuanteEducacaoModel {
+
+    private $banco_de_dados;
+    private $id_etapa_atuante_educacao;
+
+
+    public function __construct($id_etapa_atuante_educacao){
+        $this->id_etapa_atuante_educacao = $id_etapa_atuante_educacao;
+        $this->banco_de_dados = new BancoDeDados();
+    }
+
+
+    public function inserirEtapaAtuanteEducacao(array $valores_etapa_atuante): bool {
+        $sql = "INSERT INTO EtapaAtuanteEducacao (
+            estabelecimento_trabalho_id,
+            nivel_etapa
+        ) VALUES (
+            :estabelecimento_trabalho_id,
+            :nivel_etapa
+        )";
+        
+        $params = [
+            ':estabelecimento_trabalho_id' => $valores_etapa_atuante['estabelecimento_trabalho_id'] ?
+                $valores_etapa_atuante['estabelecimento_trabalho_id'] : null,
+            ':nivel_etapa' => $valores_etapa_atuante['nivel_etapa'] ?
+                $valores_etapa_atuante['nivel_etapa'] : null
+        ];
+        
+        return $this->banco_de_dados->executar($sql, $params);
+    }   
+
+    public function getUltimoIdInsercaoEtapaAtuante(): string {
+        return $this->banco_de_dados->getUltimoIdInsercao();
+    }
+
+    public function buscarPorEstabelecimentoIdBanco($id_estabelecimento) {
+    $sql = "SELECT * FROM EtapaAtuanteEducacao WHERE estabelecimento_trabalho_id = :id_estabelecimento";
+    $parametros = [':id_estabelecimento' => $id_estabelecimento];
+    return $this->banco_de_dados->consultar($sql, $parametros);
+}
+
+}
+
+?>

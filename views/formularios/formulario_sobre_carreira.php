@@ -4,7 +4,7 @@
     } 
 
     if(!isset($_SESSION['id_participante'])){
-        header("Location: /pesquisa_educacional/index.php");
+        header("Location: /index.php");
         exit;
     }
 
@@ -22,23 +22,23 @@
   <title>Informações sobre carreira</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../../public/css/sobre_carreira.css">
-    <link rel="icon" type="image/jpg" href="/pesquisa_educacional/public/assets/logos/favicon.jpg"> 
+    <link rel="icon" type="image/jpg" href="/public/assets/logos/favicon.jpg"> 
     <?php
-        include $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/views/includes/cdn.php';
+        include $_SERVER['DOCUMENT_ROOT'] . '/views/includes/cdn.php';
     ?>
 </head>
 
 <body>
     
     <?php
-        include $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/views/includes/header.php';
+        include $_SERVER['DOCUMENT_ROOT'] . '/views/includes/header.php';
     ?>
 
     <div class="container">
 
         <h2 class="text-center fw-bold mb-4 mt-4 p-2">Informações Sobre Carreira</h2>
 
-        <form class="form-container" method="post" action="#">
+        <form class="form-container" method="post" action="../../app/process/sobre_carreira_process.php">
 
             <div class="mt-4 container border rounded p-4">
 
@@ -163,8 +163,8 @@
                 <div class="col-md-6 mb-4">
                     <label class="form-label fw-bold">Você poderia indicar o número de alunos:</label>
                     <div class="mb-2">
-                        <label for="numero_alunos_menor_turma" class="form-label">Em sua classe mais cheia</label>
-                        <input type="number" class="form-control" name="numero_alunos_menor_turma" id="numero_alunos_menor_turma" min="0">
+                        <label for="numero_alunos_maior_turma" class="form-label">Em sua classe mais cheia</label>
+                        <input type="number" class="form-control" name="numero_alunos_maior_turma" id="numero_alunos_maior_turma" min="0">
                     </div>
                     <div>
                         <label for="numero_alunos_menor_turma" class="form-label">Em sua classe menos cheia</label>
@@ -352,12 +352,12 @@
                                     
                                     <div class="mb-4">
                                         <strong>Nome da Escola:</strong><br>
-                                        <input type="text" class="form-control" name="nome_escola[]" required>
+                                        <input type="text" class="form-control" name="nome_escola[]" >
                                     </div>
 
                                     <div class="mb-4">
                                         <strong>Situação Funcional:</strong><br>
-                                        <select class="form-select" name="situacao_funcional[]" required>
+                                        <select class="form-select" name="situacao_funcional[]" >
                                             <option value="">Selecione</option>
                                             <option>Professor Concursado</option>
                                             <option>Professor contratado (ILT)</option>
@@ -370,11 +370,11 @@
 
                                     <div class="mb-4">
                                         <strong>Localização:</strong><br>
-                                        <select class="form-select" name="localizacao[]" required>
+                                        <select class="form-select" name="localizacao_escola[]" required>
                                             <option value="">Selecione</option>
-                                            <option>Sede</option>
-                                            <option>Municipio</option>
-                                            <option>Povoado</option>
+                                            <option value="Sede">Sede</option>
+                                            <option value="Municipio">Municipio</option>
+                                            <option value="Povoado">Povoado</option>
                                         </select>
                                     </div>
 
@@ -382,7 +382,7 @@
                                         <strong>Etapas/Modalidades:</strong><br>
                                        
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="etapa_atuante_educacao[0][etapas][]" value="Infantil" required>
+                                            <input class="form-check-input" type="checkbox" name="etapa_atuante_educacao[0][etapas][]" value="Infantil" >
                                             <label class="form-check-label">Educação Infantil</label>
                                         </div>
 
@@ -397,7 +397,7 @@
                                         </div>
 
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="etapa_atuante_educacao[0][etapas][]" value="Ensino media">
+                                            <input class="form-check-input" type="checkbox" name="etapa_atuante_educacao[0][etapas][]" value="Ensino Medio">
                                             <label class="form-check-label">Ensino Medio</label>
                                         </div>
 
@@ -420,12 +420,12 @@
 
                                     <div class="mb-4">
                                         <strong>Jornada de Trabalho (Horas):</strong>
-                                        <input type="number" class="form-control" name="jornada_trabalho_semanal[]" required>
+                                        <input type="number" class="form-control" name="jornada_trabalho_semanal[]" >
                                     </div>
 
                                     <div class="mb-4">
                                         <strong>Tipo de Turmas:</strong>
-                                        <select class="form-select" name="tipo_turma[]" required>
+                                        <select class="form-select" name="tipo_turma[]" >
                                             <option value="">Selecione</option>
                                             <option>Seriada</option>
                                             <option>Multiseriada</option>
@@ -435,7 +435,7 @@
                                     <div class="mb-4">
                                         <strong>Dependência Administrativa:</strong>
                                         
-                                        <select class="form-select dependencia_administrativa" name="dependencia_administrativa[]" required>
+                                        <select class="form-select dependencia_administrativa" name="dependencia_administrativa[]" >
                                             <option value="">Selecione</option>
                                             <option>Pública municipal</option>
                                             <option>Pública estadual</option>
@@ -452,7 +452,7 @@
 
                                     <div class="mb-4">
                                         <strong>Tipo de Escola:</strong>
-                                        <select class="form-select contexto_escolar" name="contexto_escolar[]" required>
+                                        <select class="form-select contexto_escolar" name="contexto_escolar[]" >
                                             <option value="">Selecione</option>
                                             <option>Escola de Educação do Campo</option>
                                             <option>Escola de Comunidades Quilombola</option>

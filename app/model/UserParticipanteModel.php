@@ -1,6 +1,6 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/model/BancoDeDados.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/model/BancoDeDados.php';
 
 class UserParticipanteModel {
 
@@ -8,11 +8,13 @@ class UserParticipanteModel {
     private int $id_participante;
     private string $telefone;
     private int $progresso_participante;
+    private int $id_pesquisador_responsavel;
 
-    public function __construct($telefone_passado, $progresso_participante_passado){
+    public function __construct($telefone_passado, $progresso_participante_passado, $id_pesquisador_responsavel){
         $this->banco_de_dados = new BancoDeDados();
         $this->telefone = $telefone_passado;
         $this->progresso_participante = $progresso_participante_passado;
+        $this->id_pesquisador_responsavel = $id_pesquisador_responsavel;
     }
 
     public function setIdParticipante($id) : void  {
@@ -41,10 +43,12 @@ class UserParticipanteModel {
 
     // Métodos de interação com o banco:
     public function cadastrarUserParticipanteBanco() : bool{
-        $sql = "INSERT INTO UserParticipante(telefone, progresso_participante) VALUES(:telefone, :progresso_participante)";
+        $sql = "INSERT INTO UserParticipante (telefone, progresso_participante, id_pesquisador_responsavel) 
+                VALUES (:telefone, :progresso_participante, :id_pesquisador_responsavel)";
         $parametros_insercao = [
             ':telefone' => $this->telefone,
             ':progresso_participante' => $this->progresso_participante,
+            ':id_pesquisador_responsavel' => $this->id_pesquisador_responsavel
         ];
         return $this->banco_de_dados->executar($sql, $parametros_insercao);
     }
@@ -75,6 +79,33 @@ class UserParticipanteModel {
         return $this->banco_de_dados->getUltimoIdInsercao();
     }
 
+
+    public function listarTodosUsersParticipantes(): array {
+        $sql = "SELECT * FROM UserParticipante";
+        return $this->banco_de_dados->consultar($sql);
+    }
+
+    // MÉTODO ADICIONADO AQUI
+    public function buscarParticipantePorIdBanco($id) {
+        $sql = "SELECT * FROM UserParticipante WHERE id_participante = :id";
+        $parametros = [':id' => $id];
+        $resultado = $this->banco_de_dados->consultar($sql, $parametros);
+        // Retorna o primeiro resultado encontrado ou null se não houver
+        return $resultado[0] ?? null;
+    }
+
+    /**
+ * Busca todos os participantes de um pesquisador específico
+ */
+public function buscarParticipantesPorPesquisadorId($id_pesquisador) {
+    $sql = "SELECT * FROM UserParticipante WHERE id_pesquisador_responsavel = :id_pesquisador ORDER BY id_participante DESC";
+    
+    $parametros = [
+        ':id_pesquisador' => $id_pesquisador
+    ];
+
+    return $this->banco_de_dados->consultar($sql, $parametros);
+}
 
 }
 

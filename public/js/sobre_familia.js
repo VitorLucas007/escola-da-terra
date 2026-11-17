@@ -11,19 +11,20 @@ class ValidacoesSobreFamilia{
   }
 
   adicionarEventosBotoes(){
-    botao_adicionar_filho = document.getElementById('botao_adicionar_filho');
-    botao_adicionar_filho_mobile = document.getElementById('botao_adicionar_filho_mobile');
-    botao_remover_filho = document.getElementById('botao_remover_filho');
-    botao_adicionar_filho_maior_idade = document.getElementById('botao_adicionar_filho_maior_idade');
-    botao_remover_filho_maior_idade = document.getElementById('botao_remover_filho_maior_idade');
-    botao_adicionar_filho_menor_idade = document.getElementById('botao_adicionar_filho_menor_idade');
-    botao_remover_filho_menor_idade = document.getElementById('botao_remover_filho_menor_idade');
-    botao_adicionar_situacao_irmao = document.getElementById('botao_adicionar_situacao_irmao');
-    botao_remover_situacao_irmao = document.getElementById('botao_remover_situacao_irmao');
+    const botao_adicionar_filho = document.getElementById('botao_adicionar_filho');
+    const botao_adicionar_filho_mobile = document.getElementById('botao_adicionar_filho_mobile');
+    const botao_remover_filho = document.getElementById('botao_remover_filho');
+    const botao_adicionar_filho_maior_idade = document.getElementById('botao_adicionar_filho_maior_idade');
+    const botao_remover_filho_maior_idade = document.getElementById('botao_remover_filho_maior_idade');
+    const botao_adicionar_filho_menor_idade = document.getElementById('botao_adicionar_filho_menor_idade');
+    const botao_remover_filho_menor_idade = document.getElementById('botao_remover_filho_menor_idade');
+    const botao_adicionar_situacao_irmao = document.getElementById('botao_adicionar_situacao_irmao');
+    const botao_remover_situacao_irmao = document.getElementById('botao_remover_situacao_irmao');
 
 
     if(botao_adicionar_filho && botao_adicionar_filho_mobile && botao_remover_filho && botao_adicionar_filho_maior_idade && botao_remover_filho_maior_idade
       && botao_adicionar_filho_menor_idade && botao_remover_filho_menor_idade
+      && botao_adicionar_situacao_irmao && botao_remover_situacao_irmao
     ){
       botao_adicionar_filho.addEventListener('click', this.adicionarLinhaFilho.bind(this));
       botao_adicionar_filho_mobile.addEventListener('click', this.adicionarLinhaFilhoMobile.bind(this));
@@ -316,70 +317,77 @@ class ValidacoesSobreFamilia{
   }
 
 
-  // Lógica que ativa e desativa os inputs relacionados a tabela de informações dos filhos:
-  modificarInputTabelaFilhos () {
-    const radios = document.getElementsByName('possui_filhos');
-    radios.forEach(radio => {
-      radio.addEventListener('change', () => {
-          const camposTabela = [
-              ...document.querySelectorAll('.nome_filho'),
-              ...document.querySelectorAll('.sexo_filho'),
-              ...document.querySelectorAll('.data_nascimento_filho'),
-              ...document.querySelectorAll('.vive_com_participante_filho'),
-              ...document.querySelectorAll('.solteiro_filho'),
-              ...document.querySelectorAll('.nome_filho_maior_idade'),
-              ...document.querySelectorAll('.situacao_vida'),
-              ...document.querySelectorAll('.nome_filho_menor_idade'),
-              ...document.querySelectorAll('.etapa_educacao'),
-              ...document.querySelectorAll('.habitacao_fora_escola'),
-              ...document.querySelectorAll('.acompanhante'),
-              botao_adicionar_filho = document.getElementById('botao_adicionar_filho'),
-              botao_adicionar_filho_mobile = document.getElementById('botao_adicionar_filho_mobile'),
-              botao_remover_filho = document.getElementById('botao_remover_filho'),
-              botao_adicionar_filho_maior_idade = document.getElementById('botao_adicionar_filho_maior_idade'),
-              botao_remover_filho_maior_idade = document.getElementById('botao_remover_filho_maior_idade'),
-              botao_adicionar_filho_menor_idade = document.getElementById('botao_adicionar_filho_menor_idade'),
-              botao_remover_filho_menor_idade = document.getElementById('botao_remover_filho_menor_idade'),
-          ];
+  /**
+   * Desktop e mobile repetem os mesmos campos (classes .nome_filho etc.).
+   * O bloco oculto pelo Bootstrap fica com display:none; campos required lá
+   * disparam "not focusable" no submit. Só o bloco visível deve ficar habilitado.
+   */
+  sincronizarCamposFilhosResponsivos() {
+    const possuiFilhos = document.querySelector('input[name="possui_filhos"]:checked')?.value === '1';
+    const containerDesktop = document.getElementById('InformacaoFilho')?.closest('.container');
+    const containerMobile = document.getElementById('accordionFilhos')?.closest('.container');
+    const isDesktop = window.matchMedia('(min-width: 992px)').matches;
 
-          if(radio.checked && radio.value === '1') {
-            camposTabela.forEach(campo => {
-              campo.disabled = false;
-            })    
-          } else{
-            camposTabela.forEach(campo => {
-              campo.disabled = true;
-              campo.value = '';
-            })
-          }
+    const setBloco = (container, ativo) => {
+      if (!container) return;
+      container.querySelectorAll('input, select, textarea').forEach((el) => {
+        if (el.type === 'hidden') return;
+        el.disabled = !ativo;
+        if (!ativo) el.value = '';
       });
-    });
+      container.querySelectorAll('button').forEach((btn) => {
+        btn.disabled = !ativo;
+      });
+    };
 
-    const camposTabelaIniciais = [
-      ...document.querySelectorAll('.nome_filho'),
-      ...document.querySelectorAll('.sexo_filho'),
-      ...document.querySelectorAll('.data_nascimento_filho'),
-      ...document.querySelectorAll('.vive_com_participante_filho'),
-      ...document.querySelectorAll('.solteiro_filho'),
+    if (!possuiFilhos) {
+      setBloco(containerDesktop, false);
+      setBloco(containerMobile, false);
+    } else {
+      setBloco(containerDesktop, isDesktop);
+      setBloco(containerMobile, !isDesktop);
+    }
+
+    const camposDemaisTabelas = [
       ...document.querySelectorAll('.nome_filho_maior_idade'),
       ...document.querySelectorAll('.situacao_vida'),
       ...document.querySelectorAll('.nome_filho_menor_idade'),
       ...document.querySelectorAll('.etapa_educacao'),
       ...document.querySelectorAll('.habitacao_fora_escola'),
       ...document.querySelectorAll('.acompanhante'),
-      botao_adicionar_filho = document.getElementById('botao_adicionar_filho'),
-      botao_adicionar_filho_mobile = document.getElementById('botao_adicionar_filho_mobile'),
-      botao_remover_filho = document.getElementById('botao_remover_filho'),
-      botao_adicionar_filho_maior_idade = document.getElementById('botao_adicionar_filho_maior_idade'),
-      botao_remover_filho_maior_idade = document.getElementById('botao_remover_filho_maior_idade'),
-      botao_adicionar_filho_menor_idade = document.getElementById('botao_adicionar_filho_menor_idade'),
-      botao_remover_filho_menor_idade = document.getElementById('botao_remover_filho_menor_idade'),
     ];
+    const botoesMaiorMenor = [
+      document.getElementById('botao_adicionar_filho_maior_idade'),
+      document.getElementById('botao_remover_filho_maior_idade'),
+      document.getElementById('botao_adicionar_filho_menor_idade'),
+      document.getElementById('botao_remover_filho_menor_idade'),
+    ].filter(Boolean);
 
-    camposTabelaIniciais.forEach(campo => {
-      campo.disabled = true;
-    })
+    camposDemaisTabelas.forEach((el) => {
+      el.disabled = !possuiFilhos;
+      if (!possuiFilhos) el.value = '';
+    });
+    botoesMaiorMenor.forEach((btn) => {
+      btn.disabled = !possuiFilhos;
+    });
+  }
 
+  // Lógica que ativa e desativa os inputs relacionados a tabela de informações dos filhos:
+  modificarInputTabelaFilhos () {
+    const radios = document.getElementsByName('possui_filhos');
+    radios.forEach(radio => {
+      radio.addEventListener('change', () => {
+        this.sincronizarCamposFilhosResponsivos();
+      });
+    });
+
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => this.sincronizarCamposFilhosResponsivos(), 150);
+    });
+
+    this.sincronizarCamposFilhosResponsivos();
   }
 
   modificarInputTabelaIrmaos () {
@@ -387,7 +395,7 @@ class ValidacoesSobreFamilia{
     radios.forEach(radio => {
       radio.addEventListener('change', () => {
           const camposTabela = [
-              quantidade_irmaos = document.getElementById('quantidade_irmaos'),
+              document.getElementById('quantidade_irmaos'),
               ...document.querySelectorAll('.nome_irmao'),
               ...document.querySelectorAll('.profissao_irmao'),
               ...document.querySelectorAll('.habita_mesma_localidade'),
@@ -414,7 +422,7 @@ class ValidacoesSobreFamilia{
     });
 
     const camposTabelaIniciais = [
-      quantidade_irmaos = document.getElementById('quantidade_irmaos'),
+      document.getElementById('quantidade_irmaos'),
       ...document.querySelectorAll('.nome_irmao'),
       ...document.querySelectorAll('.profissao_irmao'),
       ...document.querySelectorAll('.habita_mesma_localidade'),

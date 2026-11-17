@@ -1,9 +1,10 @@
 <?php
     
-    if (session_status() === PHP_SESSION_NONE) {
-        session_start();
-    }   
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}   
 
+<<<<<<< HEAD
     if (!isset($_SESSION['id_participante'])){
         $_SESSION['mensagem_excecao'] = 'Requisição inválida, tente novamente.';
         header("Location: /pesquisa_educacional/views/erro.php");
@@ -20,6 +21,19 @@
         # Tabela 'SobreCursista':
         
         # Organizando valores da requisição:
+=======
+// $_SESSION['id_participante'] = 1; # Valor para testes.
+
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/sobre_cursista/SobreCursistaControler.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/sobre_cursista/CompartilhamentoResidenciaControler.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/sobre_cursista/OpiniaoTemaSobreCursistaControler.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/UserParticipanteControler.php';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    
+    try {
+        # Dados da tabela 'SobreCursista':
+>>>>>>> lucas
         $valores_sobre_cursista = [
             'participante_id' => $_SESSION['id_participante'],
             'ano_nascimento' =>  $_POST['ano_nascimento'] ?? null,
@@ -54,8 +68,9 @@
 
         # Persistindo dados na tabela:
         $sobre_cursista_controler = new SobreCursistaControler($_SESSION['id_participante']);
-        $id_insercao_sobre_cursista =  $sobre_cursista_controler->cadastrarDadosSobreCursista($valores_sobre_cursista);
+        $id_insercao_sobre_cursista = $sobre_cursista_controler->cadastrarDadosSobreCursista($valores_sobre_cursista);
 
+<<<<<<< HEAD
         # Tabela 'CompartilhamentoResidencia':
 
         # Verificando o envio dos valores:
@@ -67,17 +82,41 @@
         }
         
         # Fazendo inserção:
+=======
+        if (!$id_insercao_sobre_cursista) {
+            throw new Exception("Erro ao cadastrar dados principais do cursista");
+        }
+
+        # Tabela 'CompartilhamentoResidencia':
+        $valores_compartilhamento_residencia = $_POST['compartilha_com'] ?? [];
+        
+        // Filtrar valores vazios e nulos
+        $valores_compartilhamento_residencia = array_filter($valores_compartilhamento_residencia, function($valor) {
+            return !empty(trim($valor));
+        });
+        
+        if (empty($valores_compartilhamento_residencia)) {
+            throw new Exception("Nenhum valor válido de compartilhamento de residência foi informado");
+        }
+        
+        # Fazendo inserção de compartilhamento:
+>>>>>>> lucas
         $compartilhamento_residencia_controler = new CompartilhamentoResidenciaControler($id_insercao_sobre_cursista);
         foreach($valores_compartilhamento_residencia as $valor_compartilhamento){
-            $persistencia_compartilhamento_residencia =  $compartilhamento_residencia_controler->cadastrarCompartilhamentoResidencia($valor_compartilhamento);
+            $persistencia_compartilhamento_residencia = $compartilhamento_residencia_controler->cadastrarCompartilhamentoResidencia($valor_compartilhamento);
             if(!$persistencia_compartilhamento_residencia){
+<<<<<<< HEAD
                 $_SESSION['mensagem_excecao'] = "Infelizmente ocorreu um erro ao persistir os compartilhamentos de residência, tente novamente.";
                 header("Location: /pesquisa_educacional/views/erro.php");
                 exit;
+=======
+                throw new Exception("Erro ao cadastrar compartilhamento de residência: $valor_compartilhamento");
+>>>>>>> lucas
             }
         }
 
         # Tabela 'OpiniaoTemaSobreCursista':
+<<<<<<< HEAD
 
         # Organizando valores:
         $opinoes_temas_sobre_cursista = [
@@ -119,6 +158,70 @@
         http_response_code(405);
         $_SESSION['mensagem_excecao'] = "Requisição inválida.";
         header("Location: /pesquisa_educacional/views/erro.php");
+=======
+        $opiniao_tema_sobre_cursista_controler = new OpiniaoTemaSobreCursistaControler($id_insercao_sobre_cursista);
+        
+      
+    $mapeamento_temas = [
+        'posse_de_armas' => 'posse_de_armas',      
+        'migracao' => 'migracao',                  
+        'homossexualismo' => 'homossexualismo',
+        'pobreza' => 'pobreza',
+        'pena_de_morte' => 'pena_de_morte',        
+        'sindicatos' => 'sindicatos',
+        'criminalidade' => 'criminalidade',
+        'adolescentes' => 'adolescentes',
+        'drogas' => 'drogas',
+        'religiao' => 'religião'                    
+        ];
+
+        $opinoes_temas_sobre_cursista = [
+            'posse_de_armas' => $_POST['posse_de_armas'] ?? null,
+            'migracao' =>  $_POST['migracao'] ?? null,
+            'homossexualismo' =>  $_POST['homossexualismo'] ?? null,
+            'pobreza' =>  $_POST['pobreza'] ?? null,
+            'pena_de_morte' =>  $_POST['pena_de_morte'] ?? null,
+            'sindicatos' =>  $_POST['sindicatos'] ?? null,
+            'criminalidade' =>  $_POST['criminalidade'] ?? null,
+            'adolescentes' =>  $_POST['adolescentes'] ?? null,
+            'drogas' =>  $_POST['drogas'] ?? null,
+            'religiao' =>  $_POST['religiao'] ?? null,
+        ];
+        
+        foreach($opinoes_temas_sobre_cursista as $tema_campo_html => $texto_opiniao){
+            if ($texto_opiniao !== null) {
+                // Usar o nome correto do ENUM
+                $tema_nome_banco = $mapeamento_temas[$tema_campo_html];
+                
+                $persistencia = $opiniao_tema_sobre_cursista_controler->cadastrarOpiniaoTemaSobreCursista($tema_nome_banco, $texto_opiniao);
+                if(!$persistencia){
+                    throw new Exception("Erro ao cadastrar opinião sobre o tema: $tema_campo_html");
+                }
+            }
+        }
+
+        # Progresso 1 = 1 formulário concluído (cursista); próximo é família (ver redirecionarBaseadoProgressoParticipante)
+        $user_participante_controler = new UserParticipanteControler();
+        $atualizacao_progresso = $user_participante_controler->atualizarProgressoParticipante($_SESSION['id_participante'], 1);
+        if (!$atualizacao_progresso) {
+            throw new Exception("Erro ao atualizar o progresso do participante");
+        }
+        
+        # Redirecionamento automático para próximo formulário
+        header("Location: /views/formularios/formulario_sobre_familia.php");
+        exit;
+        
+    } catch (Exception $e) {
+        error_log("Erro no cadastro sobre cursista: " . $e->getMessage());
+        $_SESSION['mensagem_erro'] = "Erro ao processar dados: " . $e->getMessage();
+        header("Location: /views/erro.php");
+>>>>>>> lucas
         exit;
     }
+    
+} else {
+    http_response_code(405);
+    header("Location: /views/erro.php");
+    exit;
+}
 ?>

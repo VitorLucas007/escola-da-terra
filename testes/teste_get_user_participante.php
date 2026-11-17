@@ -1,6 +1,6 @@
 <?php 
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/views/includes/habilitar_debug_erro.php';
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/controler/UserParticipanteControler.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/views/includes/habilitar_debug_erro.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controler/UserParticipanteControler.php';
     
     $metodo_requisicao = $_SERVER['REQUEST_METHOD'];
     

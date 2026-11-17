@@ -6,6 +6,7 @@ class ValidacoesSobreVidaGeral{
         this.ativarEspecificacaoRazaoAlimentacaoDesequilibrada();
         this.ativarCampoEspecificacaoOutraRazaoAlimentacaoDesequilibrada();
         this.ativarEspecificacaoOutraAtividadeForaTrabalho();
+        this.validarGruposCheckboxMultivalorados();
     }
 
     ativarCampoEspecificacaoPlanoSaude(){
@@ -86,13 +87,11 @@ class ValidacoesSobreVidaGeral{
         const tabela_especificacao = document.getElementById('causaDesequilibrioContainer');
         const inputs_especificacao = document.getElementsByName('descricao_razao[]');
         const inputs_especificacao_outra_razao = document.getElementById('input_outra_razao');
-        const input_requerido_especificacao_razao = document.getElementById('sem_meios_financeiros');
 
         radios.forEach(radio => {
             radio.addEventListener('change', () => {
                 if (radio.checked && radio.value === "0") {
                     tabela_especificacao.style.display = 'block';
-                    input_requerido_especificacao_razao.required = true;
                 } else {
                     tabela_especificacao.style.display = 'none';
                     inputs_especificacao.forEach(input => {
@@ -100,7 +99,6 @@ class ValidacoesSobreVidaGeral{
                     })
                     inputs_especificacao_outra_razao.checked = false;
                     this.mudarAtributosCampoEspecificacaoOutraRazaoAlimentacaoDesequilibrada();
-                    input_requerido_especificacao_razao.required = false;
                 }
             });
         });
@@ -141,6 +139,46 @@ class ValidacoesSobreVidaGeral{
                 campoTexto.style.display = 'none';
                 campoTexto.value = '';
                 campoTexto.required = false;
+            }
+        });
+    }
+
+    validarGruposCheckboxMultivalorados(){
+        const form = document.querySelector('form.form-container');
+        if (!form) return;
+
+        form.addEventListener('submit', (e) => {
+            const problemaMarcado = Array.from(
+                document.querySelectorAll('input[type="checkbox"][name="descricao_problema[]"]')
+            ).some(cb => cb.checked);
+
+            const atividadeMarcada = Array.from(
+                document.querySelectorAll('input[type="checkbox"][name="descricao_atividade[]"]')
+            ).some(cb => cb.checked) || document.getElementById('outra_atividade')?.checked;
+
+            if (!problemaMarcado) {
+                e.preventDefault();
+                alert('Selecione ao menos uma opção em "Ao longo das últimas semanas, você diria que...".');
+                return;
+            }
+
+            if (!atividadeMarcada) {
+                e.preventDefault();
+                alert('Selecione ao menos uma opção em "Fora do trabalho você faz...".');
+                return;
+            }
+
+            const alimentacaoNao = document.querySelector('input[type="radio"][name="tem_alimentacao_equilibrada"]:checked')?.value === '0';
+            if (alimentacaoNao) {
+                const razaoMarcada = Array.from(
+                    document.querySelectorAll('input[type="checkbox"][name="descricao_razao[]"]')
+                ).some(cb => cb.checked) || document.getElementById('input_outra_razao')?.checked;
+
+                if (!razaoMarcada) {
+                    e.preventDefault();
+                    alert('Selecione ao menos uma opção em "Por qual razão?" (alimentação não equilibrada).');
+                    return;
+                }
             }
         });
     }

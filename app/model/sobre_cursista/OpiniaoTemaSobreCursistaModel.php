@@ -1,6 +1,10 @@
 <?php 
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/app/model/BancoDeDados.php';    
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/model/BancoDeDados.php';    
 
 class OpiniaoTemaSobreCursistaModel{
 
@@ -17,7 +21,7 @@ class OpiniaoTemaSobreCursistaModel{
         VALUES(:sobre_cursista_id, :tema_opiniao, :texto_opiniao)";
 
         $parametros = [
-            'sobre_cursista_id' => $this->sobre_cursista_id,
+            ':sobre_cursista_id' => $this->sobre_cursista_id,
             ':tema_opiniao' => $tema_opiniao,
             ':texto_opiniao' => $texto_opiniao,
         ];
@@ -25,8 +29,11 @@ class OpiniaoTemaSobreCursistaModel{
         return $this->banco_de_dados->executar($sql, $parametros);
     }
 
-
-
+    public function buscarPorCursistaIdBanco($id_sobre_cursista) {
+    $sql = "SELECT * FROM OpiniaoTemaSobreCursista WHERE sobre_cursista_id = :id";
+    $parametros = [':id' => $id_sobre_cursista];
+    return $this->banco_de_dados->consultar($sql, $parametros);
+}
 
 }
 

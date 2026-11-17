@@ -13,8 +13,8 @@ class ConexaoBanco {
     public function __construct() {
         $this->host = "127.0.0.1";
         $this->db = "pesquisa_educacional";
-        $this->user = "luisfl04";
-        $this->pass = "Lf13052004@";
+        $this->user = "root";
+        $this->pass = "";
         $this->charset = "utf8mb4";
         $this->informacoes_banco = "mysql:host=$this->host;dbname=$this->db;charset=$this->charset";
         $this->opcoes_conexao = [ 

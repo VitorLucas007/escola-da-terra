@@ -8,6 +8,55 @@ class ValidacoesSobreExercicioProfissao{
         this.ativarCampoEspecificacaoOutraFonteStress();
         this.ativarCampoEspecificacaoOutraBeneficioRecebidoSalario();
         this.ativarCampoEspecificacaoProfissaoMudanca();
+        this.validarGruposCheckboxMultivalorados();
+    }
+
+    /**
+     * required num único checkbox obriga só essa opção. Aqui exige ao menos uma
+     * opção por grupo (inclui "Outra" com name separado quando existir).
+     */
+    validarGruposCheckboxMultivalorados() {
+        const form = document.querySelector('form.form-container');
+        if (!form) return;
+        form.addEventListener('submit', (e) => {
+            const algumMarcado = (nome) =>
+                Array.from(document.querySelectorAll('input[type="checkbox"]')).some(
+                    (c) => c.name === nome && c.checked
+                );
+
+            if (
+                !algumMarcado('identificacao_beneficio[]') &&
+                !document.getElementById('outra_formacao')?.checked
+            ) {
+                e.preventDefault();
+                alert(
+                    'Marque ao menos uma opção em: benefícios desde o início da docência (incluindo "Outra", se for o caso).'
+                );
+                return;
+            }
+
+            if (
+                !algumMarcado('descricao_fonte[]') &&
+                !document.getElementById('stress_outro')?.checked
+            ) {
+                e.preventDefault();
+                alert(
+                    'Marque ao menos uma opção em: fontes de stress no ambiente profissional (incluindo "Outro", se for o caso).'
+                );
+                return;
+            }
+
+            if (
+                !algumMarcado('descricao_beneficio[]') &&
+                !document.getElementById('beneficio_outro')?.checked
+            ) {
+                e.preventDefault();
+                alert(
+                    'Marque ao menos uma opção em: benefícios recebidos (incluindo "Outro", se for o caso).'
+                );
+                return;
+            }
+        });
     }
     
     ativarCampoEspecificacaoDoencaOriundaDocenca(){

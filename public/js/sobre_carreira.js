@@ -8,6 +8,79 @@ class ValidacoesSobreCarreira {
         this.adicionarEventosBotoesRemocaoLinhaTabelaEstabelecimentoEscolar();
         this.adicionarEventoBotaoAdicionarLinhaTabelaEstabelecimentoEscolarMobile();
         this.validacaoCampoEquipamentosDesejados();
+        this.sincronizarEstabelecimentosResponsivos();
+        this.validarEtapasModalidadesNoSubmit();
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => this.sincronizarEstabelecimentosResponsivos(), 150);
+        });
+    }
+
+    /**
+     * Tabela desktop e accordion mobile repetem os mesmos names (nome_escola[] etc.).
+     * O bloco oculto (Bootstrap) mantém campos required e gera "not focusable" no submit.
+     */
+    sincronizarEstabelecimentosResponsivos() {
+        const wrapperDesktop = document.getElementById('tabelaEscolas')?.closest('.table-responsive');
+        const wrapperMobile = document.getElementById('accordionEscolas')?.parentElement;
+        const isDesktop = window.matchMedia('(min-width: 992px)').matches;
+
+        const setBloco = (container, ativo) => {
+            if (!container) return;
+            container.querySelectorAll('input, select, textarea, button').forEach((el) => {
+                if (el.type === 'hidden') return;
+                el.disabled = !ativo;
+                if (!ativo) {
+                    if (el.type === 'checkbox' || el.type === 'radio') {
+                        el.checked = false;
+                    } else if (el.tagName !== 'BUTTON' && el.type !== 'button' && el.type !== 'submit') {
+                        el.value = '';
+                    }
+                }
+            });
+        };
+
+        if (wrapperDesktop && wrapperMobile) {
+            setBloco(wrapperDesktop, isDesktop);
+            setBloco(wrapperMobile, !isDesktop);
+        }
+    }
+
+    /** Pelo menos uma etapa/modalidade por estabelecimento (required no 1º checkbox obrigava só Infantil). */
+    validarEtapasModalidadesNoSubmit() {
+        const form = document.querySelector('form.form-container');
+        if (!form) return;
+        form.addEventListener('submit', (e) => {
+            const isDesktop = window.matchMedia('(min-width: 992px)').matches;
+
+            const grupoInvalido = (container) => {
+                const boxes = container.querySelectorAll(
+                    'input[type="checkbox"][name*="etapa_atuante_educacao"]'
+                );
+                if (boxes.length === 0) return false;
+                if (boxes[0].disabled) return false;
+                return !Array.from(boxes).some((cb) => cb.checked);
+            };
+
+            if (isDesktop) {
+                for (const tr of document.querySelectorAll('#tabelaEscolas tbody tr')) {
+                    if (grupoInvalido(tr)) {
+                        e.preventDefault();
+                        alert('Selecione ao menos uma etapa/modalidade em cada estabelecimento de ensino.');
+                        return;
+                    }
+                }
+            } else {
+                for (const body of document.querySelectorAll('#accordionEscolas .accordion-body')) {
+                    if (grupoInvalido(body)) {
+                        e.preventDefault();
+                        alert('Selecione ao menos uma etapa/modalidade em cada estabelecimento de ensino.');
+                        return;
+                    }
+                }
+            }
+        });
     }
 
     adicionarEventoBotaoAdicionarLinhaTabelaEstabelecimentoEscolarMobile(){
@@ -160,7 +233,7 @@ class ValidacoesSobreCarreira {
             <td>
                 <div class="text-start text-wrap" style="min-width: 180px;">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="etapa_atuante_educacao[${indice}][etapas][]" value="Infantil" id="etapa_infantil" required>
+                        <input class="form-check-input" type="checkbox" name="etapa_atuante_educacao[${indice}][etapas][]" value="Infantil" id="etapa_infantil">
                         <label class="form-check-label" for="etapa_infantil">Educação Infantil</label>
                     </div>
 
@@ -240,6 +313,7 @@ class ValidacoesSobreCarreira {
         this.adicionarEventosBotoesRemocaoLinhaTabelaEstabelecimentoEscolar();
         this.ativarInputEspecificacaoOutraDependenciaAdministrativa();
         this.ativarInputEspecificacaoOutroContextoEscolar();
+        this.sincronizarEstabelecimentosResponsivos();
     }
 
     removerLinhaTabelaEstabelecimentoTrabalho(){
@@ -291,11 +365,11 @@ class ValidacoesSobreCarreira {
 
                         <div class="mb-2">
                             <strong>Localização:</strong><br>
-                            <select class="form-select" name="localizacao[]" required>
+                            <select class="form-select" name="localizacao_escola[]" required>
                                 <option value="">Selecione</option>
-                                <option>Sede</option>
-                                <option>Municipio</option>
-                                <option>Povoado</option>
+                                <option value="Sede">Sede</option>
+                                <option value="Municipio">Municipio</option>
+                                <option value="Povoado">Povoado</option>
                             </select>
                         </div>
 
@@ -303,7 +377,7 @@ class ValidacoesSobreCarreira {
                             <strong>Etapas/Modalidades:</strong><br>
                             
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="etapa_atuante_educacao[${id}][etapas][]" value="Infantil" required>
+                                <input class="form-check-input" type="checkbox" name="etapa_atuante_educacao[${id}][etapas][]" value="Infantil">
                                 <label class="form-check-label">Educação Infantil</label>
                             </div>
 
@@ -394,6 +468,7 @@ class ValidacoesSobreCarreira {
         this.adicionarEventosBotoesRemocaoLinhaTabelaEstabelecimentoEscolarMobile();
         this.ativarInputEspecificacaoOutraDependenciaAdministrativa();
         this.ativarInputEspecificacaoOutroContextoEscolar();
+        this.sincronizarEstabelecimentosResponsivos();
     }
 
     validacaoCampoEquipamentosDesejados(){

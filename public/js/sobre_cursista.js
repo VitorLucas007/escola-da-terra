@@ -14,8 +14,14 @@ class ValidacoesSobreCursista {
     this.ativarEspecificacaoOpcaoPartidaria();
     this.atualizarValorEscalaPolitica();
     this.desabilitarSliderEscalaPolitica();
+<<<<<<< HEAD
     this.validarAusenciaCampoCompartilhaCom();
     this.validarCampoViveComFilhos();
+=======
+
+    this.validarGrupoCompartilhaCom();
+    this.logicaExclusivaSozinho();
+>>>>>>> lucas
   }
 
   validarAnoNascimento() {  
@@ -368,6 +374,7 @@ class ValidacoesSobreCursista {
     })
   }
 
+<<<<<<< HEAD
   validarCampoViveComFilhos(){
     const inputs_tem_filhos = document.getElementsByName("tem_filhos");
     const inputs_vive_com_filhos = document.getElementsByName("vive_com_filhos");
@@ -393,9 +400,80 @@ class ValidacoesSobreCursista {
       input.disabled = true;
     })
         
+=======
+  validarGrupoCompartilhaCom() {
+    // Encontra o formulário
+    const form = document.querySelector('form.form-container');
+    if (!form) return;
+
+    // Adiciona um "escutador" para o evento de 'submit'
+    form.addEventListener('submit', (event) => {
+      
+      // Pega todos os inputs do grupo "Você vive com:"
+      const checkboxes = document.querySelectorAll('input[name="compartilha_com[]"][type="checkbox"]');
+      const outroInput = document.getElementById('outro');
+      const erroSpan = document.getElementById('erro_compartilha_com');
+
+      let isChecked = false;
+      // Verifica se algum checkbox está marcado
+      checkboxes.forEach(cb => {
+        if (cb.checked) isChecked = true;
+      });
+
+      // Verifica se o campo "Outro" tem algum texto
+      const outroValue = outroInput.value.trim();
+
+      // Se nenhum checkbox estiver marcado E o campo "Outro" estiver vazio
+      if (!isChecked && outroValue === '') {
+        // 1. Impede o envio do formulário
+        event.preventDefault(); 
+        
+        // 2. Mostra a mensagem de erro
+        if (erroSpan) erroSpan.style.display = 'block';
+
+        // 3. (Opcional) Rola a tela até o campo para o usuário ver
+        outroInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        
+      } else {
+        // Se for válido, esconde a mensagem de erro (caso ela estivesse aparecendo)
+        if (erroSpan) erroSpan.style.display = 'none';
+      }
+    });
+  }
+
+  logicaExclusivaSozinho() {
+    // Lógica bônus para "Sozinho(a)"
+    const sozinhoCheckbox = document.getElementById('sozinho');
+    const outrosCheckboxes = [
+      document.getElementById('familia'),
+      document.getElementById('conjuge')
+    ];
+    const outroInput = document.getElementById('outro');
+
+    if (!sozinhoCheckbox) return; // Sai se o elemento não for encontrado
+
+    // Função para desmarcar "Sozinho"
+    const uncheckSozinho = () => {
+      sozinhoCheckbox.checked = false;
+    };
+
+    // Se marcar "Sozinho", desmarca os outros
+    sozinhoCheckbox.addEventListener('change', () => {
+      if (sozinhoCheckbox.checked) {
+        outrosCheckboxes.forEach(cb => cb.checked = false);
+        outroInput.value = '';
+      }
+    });
+
+    // Se marcar qualquer outro checkbox ou digitar em "Outro", desmarca "Sozinho"
+    outrosCheckboxes.forEach(cb => cb.addEventListener('change', uncheckSozinho));
+    outroInput.addEventListener('input', uncheckSozinho);
+>>>>>>> lucas
   }
 
 }
+
+
 
 document.addEventListener('DOMContentLoaded', function() {
   new ValidacoesSobreCursista();

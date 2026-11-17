@@ -3,10 +3,17 @@
       session_start();
   } 
 
+<<<<<<< HEAD
   if(!isset($_SESSION['id_participante'])){
     header("Location: /pesquisa_educacional/index.php");
     exit;
   }
+=======
+    if(!isset($_SESSION['id_participante'])){
+        header("Location: /index.php");
+        exit;
+    }
+>>>>>>> lucas
 
   # Armazenando a ultima página logada para poder rastrear em casos de redirecionamento para página de erro:
   $_SESSION['ultima_pagina'] = $_SERVER['REQUEST_URI'];
@@ -23,21 +30,26 @@
   <title>Informações sobre o participante</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../../public/css/sobre_cursista.css">
-    <link rel="icon" type="image/jpg" href="/pesquisa_educacional/public/assets/logos/favicon.jpg">
+    <link rel="icon" type="image/jpg" href="/public/assets/logos/favicon.jpg">
     <?php 
+<<<<<<< HEAD
       include $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/views/includes/cdn.php';
+=======
+        include $_SERVER['DOCUMENT_ROOT'] . '/views/includes/cdn.php';
+>>>>>>> lucas
     ?>
 </head>
 <body>
 
     <?php 
-        include $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/views/includes/header.php';
+        include $_SERVER['DOCUMENT_ROOT'] . '/views/includes/header.php';
     ?>
 
   <div class="container p-1">
     
     <h2 class="text-center mb-4 mt-4 fw-bold">Informações sobre o cursista</h2>
 
+<<<<<<< HEAD
     <?php if (!empty($mensagem_erro_processamento_sobre_cursista)): ?>
       <div class="alert alert-info">
           <?= htmlspecialchars($mensagem_erro_processamento_sobre_cursista) ?>
@@ -45,6 +57,9 @@
     <?php endif; ?>
 
     <form id="formulario_sobre_cursista" class="form-container" method="POST" action="/pesquisa_educacional/app/process/sobre_cursista_process.php">
+=======
+    <form class="form-container" method="post" action="../../app/process/sobre_cursista_process.php">
+>>>>>>> lucas
 
       <div class="row mb-4">
 
@@ -89,28 +104,45 @@
       <div class="row mb-4">          
 
           <div class="col-md-6 mb-4">
+<<<<<<< HEAD
             <label for="estado_naturalidade" class="form-label fw-bold">Estado de naturalidade:</label>
             <select name="estado_naturalidade" id="estado_naturalidade" class="form-select" required>
+=======
+            <label for="estado_naturalidade"  class="form-label fw-bold">Estado de naturalidade:</label>
+            <select id="estado_naturalidade" name="estado_naturalidade" class="form-select" required>
+>>>>>>> lucas
               <option value="">Selecione um estado</option>
             </select>    
           </div>
 
           <div class="col-md-6 mb-4">
+<<<<<<< HEAD
             <label for="municipio_naturalidade" class="form-label fw-bold">Município de naturalidade:</label>
+=======
+            <label for="municipio_naturalidade"  class="form-label fw-bold">Município de naturalidade:</label>
+>>>>>>> lucas
             <select id="municipio_naturalidade" name="municipio_naturalidade" class="form-select" required>
               <option value="">Selecione um estado primeiro</option>
             </select>    
           </div>
 
           <div class="col-md-6 mb-4">
+<<<<<<< HEAD
             <label for="estado_reside_atualmente" class="form-label fw-bold">Estado onde reside atualmente:</label>
+=======
+            <label for="estado_reside_atualmente"  class="form-label fw-bold">Estado onde reside atualmente:</label>
+>>>>>>> lucas
             <select id="estado_reside_atualmente" name="estado_reside_atualmente" class="form-select" required>
               <option value="">Selecione um estado</option>
             </select>    
           </div>
 
           <div class="col-md-6 mb-4">
+<<<<<<< HEAD
             <label for="muncicipio_reside_atualmente" class="form-label fw-bold">Município onde reside atualmente:</label>
+=======
+            <label for="muncicipio_reside_atualmente"  class="form-label fw-bold">Município onde reside atualmente:</label>
+>>>>>>> lucas
             <select id="municipio_reside_atualmente" name="municipio_reside_atualmente" class="form-select" required>
               <option value="">Selecione um estado primeiro</option>
             </select>    
@@ -140,7 +172,11 @@
           
           <label class="form-label fw-bold">Você vive com:</label>
           
+<<<<<<< HEAD
           <div class="form-check ">
+=======
+          <div class="form-check " >
+>>>>>>> lucas
             <input class="form-check-input" type="checkbox" name="compartilha_com[]" id="sozinho" value="Sozinho(a)">
             <label class="form-check-label" for="sozinho">Sozinho(a)</label>
           </div>
@@ -159,6 +195,10 @@
             <label class="form-check-label" for="outro">Outro:</label>
             <input class="form-control" type="text" name="compartilha_com[]" id="outro" placeholder="Ex:Com primo">
           </div>
+
+          <span id="erro_compartilha_com" style="color: red; display: none;">
+            Por favor, selecione ao menos uma opção.
+          </span>
 
         </div>
 
@@ -415,149 +455,149 @@
                 </tr>
               </thead>
 
-              <tbody>
+<tbody>
 
-                <tr>
-                  <td class="text-center"><strong>Posse de Armas</strong></td>
-                  <td>
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="posse_de_armas" id="arma1" value="Arma legalizada deve ser um direito do cidadão para se defender" required>
-                      <label class="form-check-label mb-2" for="arma1">Arma legalizada deve ser um direito do cidadão para se defender</label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="posse_de_armas" id="arma2" value="Deve ser proibida, pois ameaça a vida de outras pessoas">
-                      <label class="form-check-label" for="arma2">Deve ser proibida, pois ameaça a vida de outras pessoas</label>
-                    </div>
-                  </td>
-                </tr>
+  <tr>
+    <td class="text-center"><strong>Posse de Armas</strong></td>
+    <td>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="posse_de_armas" id="arma1" value="Arma legalizada deve ser um direito do cidadão para se defender" required>
+        <label class="form-check-label mb-2" for="arma1">Arma legalizada deve ser um direito do cidadão para se defender</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="posse_de_armas" id="arma2" value="Deve ser proibida, pois ameaça a vida de outras pessoas">
+        <label class="form-check-label" for="arma2">Deve ser proibida, pois ameaça a vida de outras pessoas</label>
+      </div>
+    </td>
+  </tr>
 
-                <tr>
-                  <td class="text-center"><strong>Migração</strong></td>
-                  <td>
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="migracao" id="migracao1" value="Pobres que migram acabam criando problemas para a cidade" required>
-                      <label class="form-check-label mb-2" for="migracao1">Pobres que migram acabam criando problemas para a cidade</label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="migracao" id="migracao2" value="Pobres que migram contribuem com o desenvolvimento e a cultura">
-                      <label class="form-check-label" for="migracao2">Pobres que migram contribuem com o desenvolvimento e a cultura</label>
-                    </div>
-                  </td>
-                </tr>
+  <tr>
+    <td class="text-center"><strong>Migração</strong></td>
+    <td>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="migracao" id="migracao1" value="Pobres que migram acabam criando problemas para a cidade" required>
+        <label class="form-check-label mb-2" for="migracao1">Pobres que migram acabam criando problemas para a cidade</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="migracao" id="migracao2" value="Pobres que migram contribuem com o desenvolvimento e a cultura">
+        <label class="form-check-label" for="migracao2">Pobres que migram contribuem com o desenvolvimento e a cultura</label>
+      </div>
+    </td>
+  </tr>
 
-                <tr>
-                  <td class="text-center"><strong>Homossexualismo</strong></td>
-                  <td>
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="homossexualismo" id="homossexualismo1" value="Deve ser desencorajado por toda a sociedade" required>
-                      <label class="form-check-label mb-2" for="homo1">Deve ser desencorajado por toda a sociedade</label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="homossexualismo" id="homossexualismo2" value="Deve ser aceito por toda a sociedade">
-                      <label class="form-check-label" for="homo2">Deve ser aceito por toda a sociedade</label>
-                    </div>
-                  </td>
-                </tr>
+  <tr>
+    <td class="text-center"><strong>Homossexualismo</strong></td>
+    <td>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="homossexualismo" id="homossexualismo1" value="Deve ser desencorajado por toda a sociedade" required>
+        <label class="form-check-label mb-2" for="homossexualismo1">Deve ser desencorajado por toda a sociedade</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="homossexualismo" id="homossexualismo2" value="Deve ser aceito por toda a sociedade">
+        <label class="form-check-label" for="homossexualismo2">Deve ser aceito por toda a sociedade</label>
+      </div>
+    </td>
+  </tr>
 
-                <tr>
-                  <td class="text-center"><strong>Pobreza</strong></td>
-                  <td>
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="pobreza" id="pobreza1" value="Boa parte está ligada à preguiça de pessoas que não querem trabalhar" required>
-                      <label class="form-check-label mb-2" for="pobreza1">Boa parte está ligada à preguiça de pessoas que não querem trabalhar</label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="pobreza" id="pobreza2" value="Boa parte está ligada à falta de oportunidades">
-                      <label class="form-check-label" for="pobreza2">Boa parte está ligada à falta de oportunidades</label>
-                    </div>
-                  </td>
-                </tr>
+  <tr>
+    <td class="text-center"><strong>Pobreza</strong></td>
+    <td>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="pobreza" id="pobreza1" value="Boa parte está ligada à preguiça de pessoas que não querem trabalhar" required>
+        <label class="form-check-label mb-2" for="pobreza1">Boa parte está ligada à preguiça de pessoas que não querem trabalhar</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="pobreza" id="pobreza2" value="Boa parte está ligada à falta de oportunidades">
+        <label class="form-check-label" for="pobreza2">Boa parte está ligada à falta de oportunidades</label>
+      </div>
+    </td>
+  </tr>
 
-                <tr>
-                  <td class="text-center"><strong>Pena de Morte</strong></td>
-                  <td>
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="pena_de_morte" id="pena1" value="É a melhor punição para indivíduos que cometem crimes graves" required>
-                      <label class="form-check-label mb-2" for="pena1">É a melhor punição para indivíduos que cometem crimes graves</label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="pena_de_morte" id="pena2" value="Não cabe, mesmo que a pessoa tenha cometido algum crime grave">
-                      <label class="form-check-label" for="pena2">Não cabe, mesmo que a pessoa tenha cometido algum crime grave</label>
-                    </div>
-                  </td>
-                </tr>
+  <tr>
+    <td class="text-center"><strong>Pena de Morte</strong></td>
+    <td>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="pena_de_morte" id="pena1" value="É a melhor punição para indivíduos que cometem crimes graves" required>
+        <label class="form-check-label mb-2" for="pena1">É a melhor punição para indivíduos que cometem crimes graves</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="pena_de_morte" id="pena2" value="Não cabe, mesmo que a pessoa tenha cometido algum crime grave">
+        <label class="form-check-label" for="pena2">Não cabe, mesmo que a pessoa tenha cometido algum crime grave</label>
+      </div>
+    </td>
+  </tr>
 
-                <tr>
-                  <td class="text-center"><strong>Sindicatos</strong></td>
-                  <td>
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="sindicatos" id="sindicato1" value="Servem mais para fazer política do que defender os trabalhadores" required>
-                      <label class="form-check-label mb-2" for="sind1">Servem mais para fazer política do que defender os trabalhadores</label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="sindicatos" id="sindicato2" value="São importantes para defender os interesses dos trabalhadores">
-                      <label class="form-check-label" for="sind2">São importantes para defender os interesses dos trabalhadores</label>
-                    </div>
-                  </td>
-                </tr>
+  <tr>
+    <td class="text-center"><strong>Sindicatos</strong></td>
+    <td>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="sindicatos" id="sindicato1" value="Servem mais para fazer política do que defender os trabalhadores" required>
+        <label class="form-check-label mb-2" for="sindicato1">Servem mais para fazer política do que defender os trabalhadores</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="sindicatos" id="sindicato2" value="São importantes para defender os interesses dos trabalhadores">
+        <label class="form-check-label" for="sindicato2">São importantes para defender os interesses dos trabalhadores</label>
+      </div>
+    </td>
+  </tr>
 
-                <tr>
-                  <td class="text-center"><strong>Criminalidade</strong></td>
-                  <td>
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="criminalidade" id="crime1" value="A maior causa é a maldade das pessoas" required>
-                      <label class="form-check-label mb-2" for="crime1">A maior causa é a maldade das pessoas</label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="criminalidade" id="crime2" value="A maior causa é a falta de oportunidades iguais para todos">
-                      <label class="form-check-label" for="crime2">A maior causa é a falta de oportunidades iguais para todos</label>
-                    </div>
-                  </td>
-                </tr>
+  <tr>
+    <td class="text-center"><strong>Criminalidade</strong></td>
+    <td>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="criminalidade" id="crime1" value="A maior causa é a maldade das pessoas" required>
+        <label class="form-check-label mb-2" for="crime1">A maior causa é a maldade das pessoas</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="criminalidade" id="crime2" value="A maior causa é a falta de oportunidades iguais para todos">
+        <label class="form-check-label" for="crime2">A maior causa é a falta de oportunidades iguais para todos</label>
+      </div>
+    </td>
+  </tr>
 
-                <tr>
-                  <td class="text-center"><strong>Adolescentes</strong></td>
-                  <td>
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="adolescentes" id="adolescentes1" value="Aqueles que cometem crimes devem ser punidos como adultos" required>
-                      <label class="form-check-label mb-2" for="adol1">Aqueles que cometem crimes devem ser punidos como adultos</label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="adolescentes" id="adolescentes2" value="Aqueles que cometem crimes devem ser reeducados">
-                      <label class="form-check-label" for="adol2">Aqueles que cometem crimes devem ser reeducados</label>
-                    </div>
-                  </td>
-                </tr>
+  <tr>
+    <td class="text-center"><strong>Adolescentes</strong></td>
+    <td>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="adolescentes" id="adolescentes1" value="Aqueles que cometem crimes devem ser punidos como adultos" required>
+        <label class="form-check-label mb-2" for="adolescentes1">Aqueles que cometem crimes devem ser punidos como adultos</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="adolescentes" id="adolescentes2" value="Aqueles que cometem crimes devem ser reeducados">
+        <label class="form-check-label" for="adolescentes2">Aqueles que cometem crimes devem ser reeducados</label>
+      </div>
+    </td>
+  </tr>
 
-                <tr>
-                  <td class="text-center"><strong>Drogas</strong></td>
-                  <td>
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="drogas" id="droga1" value="Uso deve ser proibido, pois toda a sociedade sofre as consequências" required>
-                      <label class="form-check-label mb-2" for="droga1">Uso deve ser proibido, pois toda a sociedade sofre as consequências</label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="drogas" id="droga2" value="Uso não deve ser proibido, pois é o usuário que sofre as consequências">
-                      <label class="form-check-label" for="droga2">Uso não deve ser proibido, pois é o usuário que sofre as consequências</label>
-                    </div>
-                  </td>
-                </tr>
+  <tr>
+    <td class="text-center"><strong>Drogas</strong></td>
+    <td>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="drogas" id="droga1" value="Uso deve ser proibido, pois toda a sociedade sofre as consequências" required>
+        <label class="form-check-label mb-2" for="droga1">Uso deve ser proibido, pois toda a sociedade sofre as consequências</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="drogas" id="droga2" value="Uso não deve ser proibido, pois é o usuário que sofre as consequências">
+        <label class="form-check-label" for="droga2">Uso não deve ser proibido, pois é o usuário que sofre as consequências</label>
+      </div>
+    </td>
+  </tr>
 
-                <tr>
-                  <td class="text-center"><strong>Religião</strong></td>
-                  <td>
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="religiao" id="religiao1" value="Acreditar em Deus torna as pessoas melhores" required>
-                      <label class="form-check-label mb-2" for="religiao1">Acreditar em Deus torna as pessoas melhores</label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="religiao" id="religiao2" value="Acreditar em Deus não necessariamente torna as pessoas melhores">
-                      <label class="form-check-label" for="religiao2">Acreditar em Deus não necessariamente torna as pessoas melhores</label>
-                    </div>
-                  </td>
-                </tr>
+  <tr>
+    <td class="text-center"><strong>Religião</strong></td>
+    <td>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="religiao" id="religiao1" value="Acreditar em Deus torna as pessoas melhores" required>
+        <label class="form-check-label mb-2" for="religiao1">Acreditar em Deus torna as pessoas melhores</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="religiao" id="religiao2" value="Acreditar em Deus não necessariamente torna as pessoas melhores">
+        <label class="form-check-label" for="religiao2">Acreditar em Deus não necessariamente torna as pessoas melhores</label>
+      </div>
+    </td>
+  </tr>
 
-              </tbody>
+</tbody>
 
             </table>
 

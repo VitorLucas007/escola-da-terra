@@ -4,7 +4,7 @@
     } 
 
     if(!isset($_SESSION['id_participante'])){
-        header("Location: /pesquisa_educacional/index.php");
+        header("Location: /index.php");
         exit;
     }
 
@@ -20,21 +20,21 @@
   <title>Informações sobre condições de estudo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../../public/css/sobre_condicao_estudo.css">
-    <link rel="icon" type="image/jpg" href="/pesquisa_educacional/public/assets/logos/favicon.jpg">
+    <link rel="icon" type="image/jpg" href="/public/assets/logos/favicon.jpg">
     <?php 
-        include $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/views/includes/cdn.php';
+        include $_SERVER['DOCUMENT_ROOT'] . '/views/includes/cdn.php';
     ?>
 </head>
 <body>
 
     <?php 
-        include $_SERVER['DOCUMENT_ROOT'] . '/pesquisa_educacional/views/includes/header.php';
+        include $_SERVER['DOCUMENT_ROOT'] . '/views/includes/header.php';
     ?>
 
     <div class="container">
         <h2 class="text-center mb-4 mt-5 fw-bold">Informações sobre condições de estudo</h2>
 
-        <form class="form-container" method="post" action="#">
+        <form class="form-container" method="post" action="../../app/process/sobre_condicao_estudo_process.php">
 
             <div class="row mb-4">
 
@@ -109,9 +109,11 @@
 
                         <div class="row mb-2">
 
+                            <!-- Array de leitura_frequente com índices -->
                             <div class="col-md-4">
                                 <label for="frequencia_revistas" class="form-label">Revistas</label>
-                                <select class="form-select" name="frequencia_revistas" id="frequencia_revistas" required>
+                                <input type="hidden" name="leitura_frequente[0][veiculo_lido]" value="Revistas">
+                                <select class="form-select" name="leitura_frequente[0][frequencia_leitura]" id="frequencia_revistas" required>
                                     <option value="">Selecione</option>
                                     <option value="Todos os dias">Todos os dias</option>
                                     <option value="1 a 3 vezes na semana">1 a 3 vezes na semana</option>
@@ -123,7 +125,8 @@
 
                             <div class="col-md-4">
                                 <label for="frequencia_jornais" class="form-label">Jornais</label>
-                                <select class="form-select" name="frequencia_jornais" id="frequencia_jornais" required>
+                                <input type="hidden" name="leitura_frequente[1][veiculo_lido]" value="Jornais">
+                                <select class="form-select" name="leitura_frequente[1][frequencia_leitura]" id="frequencia_jornais" required>
                                     <option value="">Selecione</option>
                                     <option value="Todos os dias">Todos os dias</option>
                                     <option value="1 a 3 vezes na semana">1 a 3 vezes na semana</option>
@@ -135,7 +138,8 @@
 
                             <div class="col-md-4">
                                 <label for="frequencia_livros" class="form-label">Livros</label>
-                                <select class="form-select" name="frequencia_livros" id="frequencia_livros" required>
+                                <input type="hidden" name="leitura_frequente[2][veiculo_lido]" value="Livros">
+                                <select class="form-select" name="leitura_frequente[2][frequencia_leitura]" id="frequencia_livros" required>
                                     <option value="">Selecione</option>
                                     <option value="Todos os dias">Todos os dias</option>
                                     <option value="1 a 3 vezes na semana">1 a 3 vezes na semana</option>
@@ -187,50 +191,51 @@
                         <label class="form-label fw-bold">Qual categoria de livros você lê com mais frequência?</label>
                         <small class="d-block mb-2 text-muted">Pode marcar mais de uma opção</small>
                         
+                        <!-- Corrigido para categoria_livro_frequente[] -->
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="categoria_livros_frequente[]" value="Literatura clássica" id="categoria_classica" required>
+                            <input class="form-check-input" type="checkbox" name="categoria_livro_frequente[]" value="Literatura clássica" id="categoria_classica">
                             <label class="form-check-label" for="categoria_classica">Obras de literatura clássica</label>
                         </div>
                         
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="categoria_livros_frequente[]" value="Romances" id="categoria_romance">
+                            <input class="form-check-input" type="checkbox" name="categoria_livro_frequente[]" value="Romances" id="categoria_romance">
                             <label class="form-check-label" for="categoria_romance">Romances</label>
                         </div>
                         
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="categoria_livros_frequente[]" value="Ficção" id="categoria_ficcao">
+                            <input class="form-check-input" type="checkbox" name="categoria_livro_frequente[]" value="Ficção" id="categoria_ficcao">
                             <label class="form-check-label" for="categoria_ficcao">Ficção</label>
                         </div>
                         
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="categoria_livros_frequente[]" value="Ciências Humanas" id="categoria_humanas">
+                            <input class="form-check-input" type="checkbox" name="categoria_livro_frequente[]" value="Ciências Humanas" id="categoria_humanas">
                             <label class="form-check-label" for="categoria_humanas">Livros de Ciências Humanas</label>
                         </div>
                         
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="categoria_livros_frequente[]" value="Filosóficos/políticos/religiosos" id="categoria_filosoficos">
+                            <input class="form-check-input" type="checkbox" name="categoria_livro_frequente[]" value="Filosóficos/políticos/religiosos" id="categoria_filosoficos">
                             <label class="form-check-label" for="categoria_filosoficos">Livros filosóficos, políticos, religiosos</label>
                         </div>
                         
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="categoria_livros_frequente[]" value="Técnicos ou profissionais" id="categoria_tecnicos">
+                            <input class="form-check-input" type="checkbox" name="categoria_livro_frequente[]" value="Técnicos ou profissionais" id="categoria_tecnicos">
                             <label class="form-check-label" for="categoria_tecnicos">Livros científicos técnicos ou profissionais</label>
                         </div>
                     
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="categoria_livros_frequente[]" value="Livros de Arte" id="categoria_artes">
+                            <input class="form-check-input" type="checkbox" name="categoria_livro_frequente[]" value="Livros de Arte" id="categoria_artes">
                             <label class="form-check-label" for="categoria_artes">Livros de Arte</label>
                         </div>
 
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="categoria_livros_frequente[]" value="Revistas em quadrinhos" id="categoria_quadrinhos">
+                            <input class="form-check-input" type="checkbox" name="categoria_livro_frequente[]" value="Revistas em quadrinhos" id="categoria_quadrinhos">
                             <label class="form-check-label" for="categoria_quadrinhos">Revistas em quadrinhos</label>
                         </div>
 
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="categoria_livros_frequente_outro" value="Outros tipos" id="categoria_livros_frequente_outro">
-                            <label class="form-check-label" for="categoria_livros_frequente_outro">Outros tipos</label>
-                            <input type="text" id="especificacao_outra_categoria" name="categoria_livros_frequente" class="form-control" style="display:none;" placeholder="Qual?">
+                            <input class="form-check-input" type="checkbox" name="categoria_livro_frequente_outro_check" value="1" id="categoria_livro_frequente_outro">
+                            <label class="form-check-label" for="categoria_livro_frequente_outro">Outros tipos</label>
+                            <input type="text" id="especificacao_outra_categoria" name="categoria_livro_frequente_outro" class="form-control mt-2" style="display:none;" placeholder="Qual?">
                         </div>
 
                     </div>
@@ -261,16 +266,20 @@
                     <div class="mb-4">
                         <label class="form-label fw-bold">Cite os últimos livros que você leu e que mais gostou (por ordem de preferência):</label>
                         
+                        <!-- Corrigido para estrutura esperada pelo PHP -->
                         <div class="mb-2">
-                            <input type="text" name="nome_livro_a" class="form-control" placeholder="a)"required>
+                            <input type="hidden" name="ultimo_livro_gostado[0][ordem_preferencia]" value="1">
+                            <input type="text" name="ultimo_livro_gostado[0][nome_livro]" class="form-control" placeholder="a)" required>
                         </div>
                         
                         <div class="mb-2">
-                            <input type="text" name="nome_livro_b" class="form-control" placeholder="b)">
+                            <input type="hidden" name="ultimo_livro_gostado[1][ordem_preferencia]" value="2">
+                            <input type="text" name="ultimo_livro_gostado[1][nome_livro]" class="form-control" placeholder="b)">
                         </div>
                         
                         <div class="mb-2">
-                            <input type="text" name="nome_livro_c" class="form-control" placeholder="c)">
+                            <input type="hidden" name="ultimo_livro_gostado[2][ordem_preferencia]" value="3">
+                            <input type="text" name="ultimo_livro_gostado[2][nome_livro]" class="form-control" placeholder="c)">
                         </div>
                     
                     </div>
@@ -302,31 +311,32 @@
                     <div class="mb-4">
                         <label class="form-label fw-bold">Você acessa a internet (várias respostas possíveis):</label>
                         
+                        <!-- Corrigido para local_acesso_internet[] -->
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="local_acesso[]" value="Em sua residência" id="internet_residencia" required>
+                            <input class="form-check-input" type="checkbox" name="local_acesso_internet[]" value="Em sua residência" id="internet_residencia">
                             <label class="form-check-label" for="internet_residencia">Em sua residência</label>
                         </div>
                         
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="local_acesso[]" value="Casa de um membro da família ou amigo" id="internet_casa_amigo">
+                            <input class="form-check-input" type="checkbox" name="local_acesso_internet[]" value="Casa de um membro da família ou amigo" id="internet_casa_amigo">
                             <label class="form-check-label" for="internet_casa_amigo">Na casa de um membro da família ou de amigos</label>
                         </div>
                         
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="local_acesso[]" value="Lanhouse" id="internet_lanhouse">
+                            <input class="form-check-input" type="checkbox" name="local_acesso_internet[]" value="Lanhouse" id="internet_lanhouse">
                             <label class="form-check-label" for="internet_lanhouse">Em uma lanhouse</label>
                         </div>
                         
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="local_acesso[]" value="Espaço público (wifi)" id="internet_publico">
+                            <input class="form-check-input" type="checkbox" name="local_acesso_internet[]" value="Espaço público (wifi)" id="internet_publico">
                             <label class="form-check-label" for="internet_publico">Em um espaço público (wifi)</label>
                         </div>
                         
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="local_acesso_outro" value="Outro" id="local_acesso_outro">
+                            <input class="form-check-input" type="checkbox" name="local_acesso_internet_outro_check" value="1" id="local_acesso_outro">
                             <label class="form-check-label" for="local_acesso_outro">Outro</label>
                         </div>
-                        <input type="text" name="local_acesso[]" id="local_acesso_especificacao" class="form-control mt-2" placeholder="Onde?" style="display: none;">
+                        <input type="text" name="local_acesso_internet_outro" id="local_acesso_especificacao" class="form-control mt-2" placeholder="Onde?" style="display: none;">
                     
                     </div>
                 
